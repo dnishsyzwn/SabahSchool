@@ -18,9 +18,9 @@
         <div class="max-w-7xl mx-auto w-full flex justify-center items-center relative">
             <!-- Navigation Links -->
             <div class="hidden sm:flex space-x-8">
-                <a href="{{ url('/') }}" class="text-secondary uppercase font-bold text-[14px] tracking-widest hover:text-white transition duration-150">HOME</a>
+                <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'text-secondary' : 'text-white' }} uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">HOME</a>
                 <a href="#" class="text-white uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">PROFIL KGKS</a>
-                <a href="#" class="text-white uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">GALERI</a>
+                <a href="{{ url('/galeri') }}" class="{{ Request::is('galeri') ? 'text-secondary' : 'text-white' }} uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">GALERI</a>
                 <a href="#" class="text-white uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">MUAT TURUN</a>
                 <a href="#" class="text-white uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">HUBUNGI KAMI</a>
             </div>
