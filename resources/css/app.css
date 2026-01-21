@@ -11,6 +11,7 @@
         "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --color-primary: #001a6e;
     --color-secondary: #FEB21A;
+    --color-green: #016B61;
 }
 
 #bottom-bar.is-sticky {

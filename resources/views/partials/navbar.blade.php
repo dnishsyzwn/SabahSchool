@@ -1,5 +1,5 @@
 <!-- Top Bar  - Static, scrolls away -->
-<div id="top-bar" class="bg-secondary h-26 flex items-center justify-between px-4 sm:px-6 lg:px-8">
+<div id="top-bar" class="bg-green/60 h-26 flex items-center justify-between px-4 sm:px-6 lg:px-8">
     <div class="flex-1"></div>
     
     <!-- Logo -->
