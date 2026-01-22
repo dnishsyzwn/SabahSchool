@@ -19,7 +19,7 @@
             <!-- Navigation Links -->
             <div class="hidden sm:flex space-x-8">
                 <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'text-secondary' : 'text-white' }} uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">HOME</a>
-                <a href="#" class="text-white uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">PROFIL KGKS</a>
+                <a href="#" class="text-white uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">PROFIL STU</a>
                 <a href="{{ url('/galeri') }}" class="{{ Request::is('galeri') ? 'text-secondary' : 'text-white' }} uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">GALERI</a>
                 <a href="#" class="text-white uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">MUAT TURUN</a>
                 <a href="#" class="text-white uppercase font-bold text-[14px] tracking-widest hover:text-secondary transition duration-150">HUBUNGI KAMI</a>
@@ -53,16 +53,24 @@
         const stickyWrapper = document.getElementById('sticky-wrapper');
         const bottomBar = document.getElementById('bottom-bar');
         const stickyFlags = document.getElementById('sticky-flags');
-        const stickyOffset = stickyWrapper.offsetTop;
+        
+        // Initial offset calculation
+        let stickyOffset = stickyWrapper.offsetTop;
 
         window.addEventListener('scroll', function() {
-            if (window.pageYOffset >= stickyOffset) {
+            // Re-calculate offset in case of layout shifts, but use a threshold for performance
+            if (window.scrollY > stickyOffset) {
                 bottomBar.classList.add('is-sticky');
-                stickyFlags.classList.remove('hidden');
+                if (stickyFlags) stickyFlags.classList.remove('hidden');
             } else {
                 bottomBar.classList.remove('is-sticky');
-                stickyFlags.classList.add('hidden');
+                if (stickyFlags) stickyFlags.classList.add('hidden');
             }
+        }, { passive: true });
+
+        // Update offset on resize
+        window.addEventListener('resize', function() {
+            stickyOffset = stickyWrapper.offsetTop;
         });
     })();
 </script>

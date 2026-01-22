@@ -1,4 +1,4 @@
-<section class="py-20 bg-gray-50/50 overflow-hidden">
+<section class="py-20 bg-gray-100/60 overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
@@ -57,9 +57,6 @@
                                 <div class="px-2 pb-2 flex-grow flex flex-col">
                                     <div class="flex items-center gap-2 mb-3">
                                         <h3 class="text-xl font-bold text-gray-900 leading-tight">{{ $article['title'] }}</h3>
-                                        <svg class="w-5 h-5 text-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                        </svg>
                                     </div>
                                     <p class="text-gray-500 leading-relaxed mb-6 text-sm line-clamp-2">
                                         {{ $article['desc'] }}
