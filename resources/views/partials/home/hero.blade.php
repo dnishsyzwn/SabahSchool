@@ -3,7 +3,7 @@
     <!-- Slides Container -->
     <div id="carousel-inner" class="relative w-full h-full">
         <!-- Slide 1 -->
-        <div class="carousel-item absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out">
+        <div class="carousel-item absolute inset-0 opacity-100 pointer-events-auto transition-opacity duration-1000 ease-in-out">
             <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Suasana Sekolah">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,8 +14,14 @@
                         </h1>
                         <p class="mt-4 sm:mt-6 text-base sm:text-xl text-gray-200">Kesatuan terulung bagi para pendidik di Sabah, berdedikasi ke arah kecemerlangan profesional dan perpaduan kesatuan.</p>
                         <div class="mt-6 sm:mt-10 flex flex-wrap gap-4">
-                            <a href="#" class="px-6 py-3 sm:px-10 sm:py-4 bg-primary text-secondary rounded-xl font-bold hover:scale-105 transition transform duration-200 text-base sm:text-lg">Sertai Sekarang</a>
-                            <a href="#" class="px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold hover:bg-white/20 transition duration-200 text-base sm:text-lg">Teroka Faedah</a>
+                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
+                                <span class="relative z-10 text-secondary">Sertai Sekarang</span>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                            </a>
+                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold hover:bg-white/20 hover:shadow-xl active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block">
+                                <span class="relative z-10">Teroka Faedah</span>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -23,7 +29,7 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
+        <div class="carousel-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out">
             <img src="https://images.unsplash.com/photo-1544717297-fa95b33c0317?q=80&w=2070&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Kerjasama">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +40,10 @@
                         </h1>
                         <p class="mt-4 sm:mt-6 text-base sm:text-xl text-gray-200">Kami menyediakan sumber dan sokongan untuk membantu guru-guru Sabah berkembang maju dalam peredaran masa.</p>
                         <div class="mt-6 sm:mt-10">
-                            <a href="#" class="px-6 py-3 sm:px-10 sm:py-4 bg-primary text-secondary rounded-xl font-bold hover:scale-105 transition transform duration-200 text-base sm:text-lg">Sumber Kami</a>
+                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
+                                <span class="relative z-10 text-secondary">Sumber Kami</span>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -42,7 +51,7 @@
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
+        <div class="carousel-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out">
             <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2104&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Pembelajaran Pelajar">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +62,10 @@
                         </h1>
                         <p class="mt-4 sm:mt-6 text-base sm:text-xl text-gray-200">Menghubungkan guru-guru dari setiap pelosok Sabah untuk berkongsi ilmu dan visi.</p>
                         <div class="mt-6 sm:mt-10">
-                            <a href="#" class="px-6 py-3 sm:px-10 sm:py-4 bg-primary text-secondary rounded-xl font-bold hover:scale-105 transition transform duration-200 text-base sm:text-lg">Portal Ahli</a>
+                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
+                                <span class="relative z-10 text-secondary">Portal Ahli</span>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -61,7 +73,7 @@
         </div>
 
         <!-- Slide 4 -->
-        <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
+        <div class="carousel-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out">
             <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Graduasi">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,7 +84,10 @@
                         </h1>
                         <p class="mt-4 sm:mt-6 text-base sm:text-xl text-gray-200">Memperjuangkan taraf pendidikan yang lebih tinggi dan kebajikan guru di seluruh wilayah.</p>
                         <div class="mt-6 sm:mt-10">
-                            <a href="#" class="px-6 py-3 sm:px-10 sm:py-4 bg-primary text-secondary rounded-xl font-bold hover:scale-105 transition transform duration-200 text-base sm:text-lg">Ketahui Lanjut</a>
+                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
+                                <span class="relative z-10 text-secondary">Ketahui Lanjut</span>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -80,7 +95,7 @@
         </div>
 
         <!-- Slide 5 -->
-        <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
+        <div class="carousel-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out">
             <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Pembelajaran Moden">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,7 +106,10 @@
                         </h1>
                         <p class="mt-4 sm:mt-6 text-base sm:text-xl text-gray-200">Jadilah sebahagian daripada komuniti aktif yang membentuk landskap pendidikan Sabah.</p>
                         <div class="mt-6 sm:mt-10">
-                            <a href="#" class="px-6 py-3 sm:px-10 sm:py-4 bg-primary text-secondary rounded-xl font-bold hover:scale-105 transition transform duration-200 text-base sm:text-lg" >Pendaftaran Ahli</a>
+                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
+                                <span class="relative z-10 text-secondary">Pendaftaran Ahli</span>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                            </a>
                         </div>
                     </div>
                 </div>
