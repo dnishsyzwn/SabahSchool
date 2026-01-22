@@ -8,3 +8,6 @@ Route::get('/', function () {
 Route::get('/galeri', function () {
     return view('pages.galeri');
 });
+Route::get('/borang/muat-turun', function () {
+    return view('pages.muat-turun');
+});

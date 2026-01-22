@@ -15,7 +15,7 @@
 
     <!-- Grid Gallery Section -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
             <!-- Item 1 -->
             <div class="gallery-item animate-fade-in-up delay-100 relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 aspect-square cursor-pointer" onclick="openLightbox(0)">
