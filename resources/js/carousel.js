@@ -10,6 +10,8 @@ export default function initCarousel() {
     let interval;
 
     function showSlide(index) {
+        if (index === currentIndex) return;
+
         items[currentIndex].classList.remove(
             "opacity-100",
             "pointer-events-auto",
@@ -47,11 +49,21 @@ export default function initCarousel() {
     }
 
     function startAutoplay() {
-        interval = setInterval(nextSlide, 7000);
+        if (interval) return; // Prevent double intervals
+        interval = setInterval(() => {
+            nextSlide();
+        }, 4000);
+    }
+
+    function stopAutoplay() {
+        if (interval) {
+            clearInterval(interval);
+            interval = null;
+        }
     }
 
     function resetAutoplay() {
-        clearInterval(interval);
+        stopAutoplay();
         startAutoplay();
     }
 
@@ -78,7 +90,7 @@ export default function initCarousel() {
     });
 
     // Pause on hover
-    carousel.addEventListener("mouseenter", () => clearInterval(interval));
+    carousel.addEventListener("mouseenter", stopAutoplay);
     carousel.addEventListener("mouseleave", startAutoplay);
 
     startAutoplay();
