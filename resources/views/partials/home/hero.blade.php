@@ -16,11 +16,11 @@
                         <div class="mt-6 sm:mt-10 flex flex-wrap gap-4">
                             <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
                                 <span class="relative z-10 text-secondary">Sertai Sekarang</span>
-                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
                             <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold hover:bg-white/20 hover:shadow-xl active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block">
                                 <span class="relative z-10">Teroka Faedah</span>
-                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                         <div class="mt-6 sm:mt-10">
                             <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
                                 <span class="relative z-10 text-secondary">Sumber Kami</span>
-                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                         <div class="mt-6 sm:mt-10">
                             <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
                                 <span class="relative z-10 text-secondary">Portal Ahli</span>
-                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                         <div class="mt-6 sm:mt-10">
                             <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
                                 <span class="relative z-10 text-secondary">Ketahui Lanjut</span>
-                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                         <div class="mt-6 sm:mt-10">
                             <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
                                 <span class="relative z-10 text-secondary">Pendaftaran Ahli</span>
-                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out"></div>
+                                <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
                         </div>
                     </div>
