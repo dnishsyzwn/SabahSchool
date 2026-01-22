@@ -10,8 +10,8 @@
         "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
         "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --color-primary: #001a6e;
-    --color-secondary: #FEB21A;
-    --color-green: #016B61;
+    --color-secondary: #feb21a;
+    --color-green: #016b61;
 }
 
 #bottom-bar.is-sticky {
@@ -23,8 +23,7 @@
 }
 
 .sticky-wrapper {
-    height: 48px;
-    /* Matches h-12 */
+    height: 64px; /* Matches h-16 */
 }
 
 @keyframes fadeInUp {

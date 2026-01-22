@@ -14,7 +14,7 @@
 
 <!-- Bottom Bar Wrapper (Sticky Section) -->
 <div id="sticky-wrapper" class="sticky-wrapper">
-    <div id="bottom-bar" class="bg-primary h-12 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div id="bottom-bar" class="bg-primary h-16 flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto w-full flex justify-center items-center relative">
             <!-- Navigation Links -->
             <div class="hidden sm:flex space-x-8">
