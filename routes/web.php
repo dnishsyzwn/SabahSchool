@@ -11,3 +11,7 @@ Route::get('/galeri', function () {
 Route::get('/muat-turun', function () {
     return view('pages.muat-turun');
 });
+
+Route::get('/hubungi-kami', function () {
+    return view('pages.hubungi');
+});

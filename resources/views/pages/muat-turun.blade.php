@@ -3,9 +3,36 @@
 @section('title', 'Muat Turun | Sabah Teachers Union')
 
 @section('content')
+
+{{-- 
+    Define the animations here to ensure they match the Gallery page. 
+    If you already have these in your tailwind.config.js, you can remove this style block.
+--}}
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 40px, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    
+    .animate-fade-in-up {
+        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        opacity: 0; /* Start hidden */
+    }
+
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+</style>
+
 <div class="min-h-screen bg-white">
-    <!-- Download Section at Top -->
-    <div class="border-b border-gray-100">
+    <div class="border-b border-gray-100 animate-fade-in-up">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex flex-col items-center justify-center">
                 <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-4">
@@ -16,7 +43,7 @@
                 <h1 class="text-3xl font-bold text-gray-900 mb-3">Borang Keahlian STU</h1>
                 <p class="text-gray-600 mb-6 text-center max-w-lg">Muat turun borang keahlian dan hantar borang yang telah dilengkapkan</p>
                 
-                <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm animate-fade-in-up delay-100">
                     <div class="flex items-center gap-4">
                         <div>
                             <h3 class="font-medium text-gray-900">BorangKeahlian.pdf</h3>
@@ -35,18 +62,16 @@
         </div>
     </div>
 
-    <!-- Split Layout Section -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 border border-2 border-gray-100 rounded-md shadow-md p-8">
-            <!-- Left Side: Form -->
-            <div>
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 border-2 border-gray-100 rounded-md shadow-md p-8">
+            
+            <div class="animate-fade-in-up delay-200">
                 <div class="mb-8">
                     <h2 class="text-2xl font-bold text-gray-900 mb-3">Hantar Borang Keahlian</h2>
                     <p class="text-gray-600">Isi maklumat dan lampirkan borang yang telah dilengkapkan</p>
                 </div>
 
                 <form class="space-y-6">
-                    <!-- Email Field -->
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
                             Alamat Email <span class="text-red-500">*</span>
@@ -56,7 +81,6 @@
                                placeholder="email@gmail.com">
                     </div>
 
-                    <!-- Subject Field -->
                     <div>
                         <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
                             Subjek <span class="text-red-500">*</span>
@@ -66,7 +90,6 @@
                                placeholder="Permohonan Keahlian Baharu STU">
                     </div>
 
-                    <!-- File Attachment -->
                     <div>
                         <label for="file" class="block text-sm font-medium text-gray-700 mb-2">
                             Lampiran Borang <span class="text-red-500">*</span>
@@ -91,11 +114,9 @@
                             </div>
                         </div>
                         <div id="file-preview" class="mt-4 hidden">
-                            <!-- File preview will be shown here -->
-                        </div>
+                            </div>
                     </div>
 
-                    <!-- Message Content -->
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
                             Kandungan Mesej (Pilihan)
@@ -105,7 +126,6 @@
                                   placeholder="Sila nyatakan maklumat tambahan jika perlu..."></textarea>
                     </div>
 
-                    <!-- Submit Button -->
                     <div class="pt-4">
                         <button type="button" onclick="showComingSoon()"
                                 class="w-full py-3.5 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors duration-200">
@@ -118,9 +138,7 @@
                 </form>
             </div>
 
-            <!-- Right Side: Image and Info -->
-            <div class="lg:pl-8 lg:border-l border-gray-200">
-                <!-- Image -->
+            <div class="lg:pl-8 lg:border-l border-gray-200 animate-fade-in-up delay-300">
                 <div class="mb-8">
                     <div class="aspect-[4/3] overflow-hidden rounded-lg">
                         <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=2072&auto=format&fit=crop"
@@ -133,7 +151,6 @@
                     </div>
                 </div>
 
-                <!-- Process Steps -->
                 <div class="space-y-6">
                     <h4 class="font-medium text-gray-900 text-lg">Proses Permohonan</h4>
                     
