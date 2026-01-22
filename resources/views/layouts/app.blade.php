@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" type="image/png" href="{{ Vite::asset('resources/images/stu-logo.png') }}">
     <title>@yield('title', config('app.name', 'Sabah Teachers Union'))</title>
 
     <!-- Fonts -->
@@ -35,10 +36,6 @@
             @yield('content')
         </main>
 
-        <!-- Section Divider -->
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center my-0">
-            <div class="h-px w-full bg-linear-to-r from-transparent via-gray-400 to-transparent"></div>
-        </div>
 
         @include('partials.footer')
     </div>

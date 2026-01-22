@@ -10,11 +10,19 @@ export default function initCarousel() {
     let interval;
 
     function showSlide(index) {
-        items[currentIndex].classList.replace("opacity-100", "opacity-0");
+        items[currentIndex].classList.remove(
+            "opacity-100",
+            "pointer-events-auto",
+        );
+        items[currentIndex].classList.add("opacity-0", "pointer-events-none");
 
         currentIndex = index;
 
-        items[currentIndex].classList.replace("opacity-0", "opacity-100");
+        items[currentIndex].classList.remove(
+            "opacity-0",
+            "pointer-events-none",
+        );
+        items[currentIndex].classList.add("opacity-100", "pointer-events-auto");
 
         // Update Indicators
         indicators.forEach((indicator, i) => {
@@ -39,7 +47,7 @@ export default function initCarousel() {
     }
 
     function startAutoplay() {
-        interval = setInterval(nextSlide, 5000);
+        interval = setInterval(nextSlide, 7000);
     }
 
     function resetAutoplay() {
