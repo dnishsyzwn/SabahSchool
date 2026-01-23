@@ -12,6 +12,10 @@ Route::get('/borang/muat-turun', function () {
     return view('pages.muat-turun');
 });
 
-Route::get('/hubungi-kami', function () {
+Route::get('/hubungi', function () {
     return view('pages.hubungi');
+});
+
+Route::get('/mengenai-stu', function(){
+    return view('pages.mengenai-stu');  
 });

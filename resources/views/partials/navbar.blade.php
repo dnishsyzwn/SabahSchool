@@ -32,7 +32,7 @@
                     <!-- Dropdown Menu -->
                     <div class="absolute top-full mt-6 left-1/2 -translate-x-1/2 w-72 bg-primary border-t-2 border-secondary shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 z-[60]">
                         <div>
-                            <a href="#" class="block px-6 py-3 text-white text-[13px] font-bold tracking-wider hover:bg-secondary hover:text-primary transition-colors">
+                            <a href="{{ url('/mengenai-stu') }}" class="block px-6 py-3 text-white text-[13px] font-bold tracking-wider hover:bg-secondary hover:text-primary transition-colors">
                                 MENGENAI STU
                             </a>
                             <a href="#" class="block px-6 py-3 text-white text-[13px] font-bold tracking-wider hover:bg-secondary hover:text-primary transition-colors border-t border-white/5 uppercase">
@@ -145,7 +145,7 @@
                     </svg>
                 </button>
                 <div class="mobile-accordion-content pl-6 pr-4 hidden space-y-2 mt-2">
-                    <a href="#" class="block py-2 px-4 text-white text-[14px] font-bold tracking-wider hover:bg-secondary hover:text-primary transition-colors rounded-lg">
+                    <a href="{{ url('/mengenai-stu') }}" class="block py-2 px-4 text-white text-[14px] font-bold tracking-wider hover:bg-secondary hover:text-primary transition-colors rounded-lg">
                         MENGENAI STU
                     </a>
                     <a href="#" class="block py-2 px-4 text-white text-[14px] font-bold tracking-wider hover:bg-secondary hover:text-primary transition-colors rounded-lg uppercase">
