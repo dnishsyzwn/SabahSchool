@@ -30,7 +30,7 @@
 
         <!-- Slide 2 -->
         <div class="carousel-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out">
-            <img src="https://images.unsplash.com/photo-1544717297-fa95b33c0317?q=80&w=2070&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Kerjasama">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Kecemerlangan Pengajaran">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="max-w-2xl">
@@ -74,7 +74,7 @@
 
         <!-- Slide 4 -->
         <div class="carousel-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out">
-            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Graduasi">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Masa Depan">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="max-w-2xl">

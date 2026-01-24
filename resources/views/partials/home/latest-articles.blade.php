@@ -32,13 +32,13 @@
                     @php
                         $articles = [
                             ['title' => 'Seminar Pendidikan 2026', 'desc' => 'Meneroka paradigma baharu dalam sistem pengajaran digital untuk guru-guru di seluruh Sabah.', 'img' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655'],
-                            ['title' => 'Kebajikan Guru Sabah', 'desc' => 'Inisiatif baharu STU dalam memastikan kebajikan dan perlindungan ahli sentiasa diutamakan.', 'img' => 'https://images.unsplash.com/photo-1544717297-fa95b33c0317'],
+                            ['title' => 'Kebajikan Guru Sabah', 'desc' => 'Inisiatif baharu STU dalam memastikan kebajikan dan perlindungan ahli sentiasa diutamakan.', 'img' => 'https://images.unsplash.com/photo-1590650153855-d9e808231d41'],
                             ['title' => 'Teknologi Masa Kini', 'desc' => 'Bagaimana mengintegrasikan AI dalam bilik darjah untuk pembelajaran yang lebih efektif.', 'img' => 'https://images.unsplash.com/photo-1509062522246-3755977927d7'],
                             ['title' => 'Kepimpinan Pendidikan', 'desc' => 'Membina barisan kepimpinan sekolah yang dinamik dan berwawasan tinggi.', 'img' => 'https://images.unsplash.com/photo-1517048676732-d65bc937f952'],
                             ['title' => 'Inovasi PDPR', 'desc' => 'Strategi pengajaran kreatif untuk menarik minat pelajar dalam era hibrid.', 'img' => 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3'],
                             ['title' => 'Kesihatan Mental Guru', 'desc' => 'Menangani tekanan kerja dan mengekalkan kesihatan mental yang optima.', 'img' => 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e'],
                             ['title' => 'Kurikulum Baharu', 'desc' => 'Persediaan guru-guru Sabah terhadap semakan kurikulum kebangsaan akan datang.', 'img' => 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6'],
-                            ['title' => 'Biasiswa Pengajian', 'desc' => 'Peluang biasiswa untuk guru yang ingin melanjutkan pelajaran ke peringkat Master/PhD.', 'img' => 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1'],
+                            ['title' => 'Biasiswa Pengajian', 'desc' => 'Peluang biasiswa untuk guru yang ingin melanjutkan pelajaran ke peringkat Master/PhD.', 'img' => 'https://images.unsplash.com/photo-1523240795612-9a054b0db644'],
                             ['title' => 'Hari Guru Sabah', 'desc' => 'Sambutan gilang-gemilang menghargai jasa pendidik di seluruh negeri.', 'img' => 'https://images.unsplash.com/photo-1511632765486-a01980e01a18']
                         ];
                     @endphp
