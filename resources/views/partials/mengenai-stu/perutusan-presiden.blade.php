@@ -6,7 +6,7 @@
             <div class="md:w-5/12 lg:w-4/12 bg-primary relative overflow-hidden flex flex-col">
                 <!-- Background Pattern -->
                 <div class="absolute inset-0 opacity-10">
-                    <img src="{{ Vite::asset('resources/images/stu-logo.png') }}" class="w-full h-full object-cover scale-100 blur-sm" alt="">
+                    <img src="{{ asset('images/stu-logo.png') }}" class="w-full h-full object-cover scale-100 blur-sm" alt="">
                 </div>
                 
                 <!-- Image Container -->

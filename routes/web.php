@@ -19,3 +19,8 @@ Route::get('/hubungi', function () {
 Route::get('/mengenai-stu', function(){
     return view('pages.mengenai-stu');  
 });
+
+Route::get('/ahli-tertinggi-exco', function(){
+    return view('pages.ahli-tertinggi-exco');  
+});
+

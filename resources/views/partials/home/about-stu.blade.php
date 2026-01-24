@@ -27,7 +27,7 @@
             <!-- Right Side: Content -->
             <div class="w-full lg:w-1/2">
                 <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green rounded-lg mb-6">
-                    <img src="{{ Vite::asset('resources/images/stu-logo.png') }}" class="w-5 h-5" alt="Icon">
+                    <img src="{{ asset('images/stu-logo.png') }}" class="w-5 h-5" alt="Icon">
                     <span class="text-sm font-bold tracking-wider uppercase">Mengenai STU</span>
                 </div>
                 

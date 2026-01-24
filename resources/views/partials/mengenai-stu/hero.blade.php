@@ -3,13 +3,13 @@
     <!-- Background Banner (Darkened) -->
     <div class="absolute inset-0 opacity-20 pointer-events-none">
         <div class="absolute inset-0 bg-black/60"></div>
-        <img src="{{ Vite::asset('resources/images/stu-logo.png') }}" alt="Background Pattern" class="w-full h-full object-cover scale-150 blur-[2px]">
+        <img src="{{ asset('images/stu-logo.png') }}" alt="Background Pattern" class="w-full h-full object-cover scale-150 blur-[2px]">
     </div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
         <!-- Logo -->
         <div class="mb-6 animate-fade-in-up">
-            <img src="{{ Vite::asset('resources/images/stu-logo.png') }}" alt="STU Logo" class="h-32 md:h-40 w-auto drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+            <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" class="h-32 md:h-40 w-auto drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
         </div>
 
         <!-- Title Content -->

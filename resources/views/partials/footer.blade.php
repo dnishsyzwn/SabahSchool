@@ -4,7 +4,7 @@
             <!-- Column 1: Info -->
             <div class="space-y-6">
                 <div class="flex items-center space-x-3">
-                    <img src="{{ Vite::asset('resources/images/stu-logo.png') }}" alt="STU Logo" class="h-16 w-auto " onerror="this.src='https://via.placeholder.com/60?text=LOGO'">
+                    <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" class="h-16 w-auto " onerror="this.src='https://via.placeholder.com/60?text=LOGO'">
                     <div>
                         <h2 class="font-bold text-lg leading-tight uppercase">Sabah Teachers' Union</h2>
                         <p class="text-xs opacity-80 mt-1 uppercase tracking-wider">(STU)</p>
