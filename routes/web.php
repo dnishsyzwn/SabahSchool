@@ -28,3 +28,12 @@ Route::get('/ahli-tertinggi-exco', function(){
     return view('pages.ahli-tertinggi-exco');  
 });
 
+Route::get('/kerjaya', function () {
+    return view('pages.kerjaya');
+});
+
+Route::get('/kerjaya/detail', function () {
+    return view('pages.kerjaya-detail');
+});
+
+

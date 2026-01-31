@@ -31,7 +31,7 @@
     <!-- Header Section -->
     <div class="border-b border-gray-100 animate-fade-in-up">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Hantar Borang Keahlian</h1>
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Hantar Borang</h1>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">Sila lengkapkan maklumat dan lampirkan borang yang telah diisi untuk dihantar kepada pihak STU.</p>
         </div>
     </div>
@@ -41,7 +41,7 @@
             
             <div class="animate-fade-in-up delay-200">
                 <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Hantar Borang Keahlian</h2>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-3">Hantar Borang</h2>
                     <p class="text-gray-600">Isi maklumat dan lampirkan borang yang telah dilengkapkan</p>
                 </div>
 
@@ -51,8 +51,25 @@
                             Alamat Email <span class="text-red-500">*</span>
                         </label>
                         <input type="email" id="email" name="email" required
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                               placeholder="email@gmail.com">
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                placeholder="email@gmail.com">
+                    </div>
+
+                    <div>
+                        <label for="form_type" class="block text-sm font-medium text-gray-700 mb-2">
+                            Jenis Borang <span class="text-red-500">*</span>
+                        </label>
+                        <select id="form_type" name="form_type" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200 bg-white">
+                            <option value="" disabled selected>Pilih jenis borang</option>
+                            <option value="Borang Keahlian STU">Borang Keahlian STU</option>
+                            <option value="Borang Tuntutan Kebajikan">Borang Tuntutan Kebajikan</option>
+                            <option value="Borang Tuntutan Perjalanan">Borang Tuntutan Perjalanan</option>
+                            <option value="Borang Pesanan Buku">Borang Pesanan Buku</option>
+                            <option value="Borang Permohonan Cuti">Borang Permohonan Cuti</option>
+                            <option value="Borang Pendaftaran Kursus">Borang Pendaftaran Kursus</option>
+                            <option value="Lain-lain">Lain-lain</option>
+                        </select>
                     </div>
 
                     <div>
@@ -60,8 +77,8 @@
                             Subjek <span class="text-red-500">*</span>
                         </label>
                         <input type="text" id="subject" name="subject" required
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                               placeholder="Permohonan Keahlian Baharu STU">
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                placeholder="Contoh: Permohonan Keahlian Baharu STU">
                     </div>
 
                     <div>
@@ -103,7 +120,7 @@
                     <div class="pt-4">
                         <button type="button" onclick="showComingSoon()"
                                 class="w-full py-3.5 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors duration-200">
-                            Hantar Borang Keahlian
+                            Hantar Borang
                         </button>
                         <p class="text-center text-sm text-gray-500 mt-3">
                             Borang akan diproses dalam masa 3-5 hari bekerja
@@ -133,7 +150,7 @@
                             <div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium mt-0.5 flex-shrink-0">1</div>
                             <div>
                                 <p class="font-medium text-gray-900">Muat Turun Borang</p>
-                                <p class="text-sm text-gray-600">Klik butang "Muat Turun" untuk dapatkan borang keahlian</p>
+                                <p class="text-sm text-gray-600">Pilih dan muat turun borang yang anda perlukan di halaman Muat Turun</p>
                             </div>
                         </div>
 
@@ -141,7 +158,7 @@
                             <div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium mt-0.5 flex-shrink-0">2</div>
                             <div>
                                 <p class="font-medium text-gray-900">Lengkapkan Borang</p>
-                                <p class="text-sm text-gray-600">Isi semua maklumat yang diperlukan dengan lengkap</p>
+                                <p class="text-sm text-gray-600">Isi semua maklumat yang diperlukan dengan lengkap dan tandatangan</p>
                             </div>
                         </div>
 
@@ -149,7 +166,7 @@
                             <div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium mt-0.5 flex-shrink-0">3</div>
                             <div>
                                 <p class="font-medium text-gray-900">Hantar Borang</p>
-                                <p class="text-sm text-gray-600">Isi borang di sebelah dan lampirkan borang yang telah dilengkapkan</p>
+                                <p class="text-sm text-gray-600">Pilih jenis borang, lampirkan dokumen, dan hantar melalui borang ini</p>
                             </div>
                         </div>
                     </div>
