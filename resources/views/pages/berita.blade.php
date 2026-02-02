@@ -129,8 +129,8 @@
 
                 @foreach($articles as $article)
                 <div class="group flex flex-col bg-white rounded-[2.5rem] p-4 shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden">
-                    <!-- Image Container -->
-                    <div class="relative h-64 w-full overflow-hidden rounded-[2rem] mb-6 flex-shrink-0">
+                    <!-- Image Container (16:9) -->
+                    <div class="relative aspect-video w-full overflow-hidden rounded-[2rem] mb-6 flex-shrink-0">
                         <img src="{{ $article['img'] }}?q=80&w=2070&auto=format&fit=crop" 
                              alt="{{ $article['title'] }}" 
                              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
@@ -156,10 +156,12 @@
 
                         <!-- Footer -->
                         <div class="mt-auto pt-6 border-t border-gray-50">
-                            <a href="#" class="inline-flex items-center gap-2 text-green font-bold text-sm hover:gap-3 transition-all">
-                                Baca Artikel Penuh
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                            </a>
+                                <a href="{{ url('/berita/1') }}" class="group/btn flex items-center gap-2 text-primary font-bold text-sm tracking-tight">
+                                    Baca Penuh
+                                    <svg class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </a>
                         </div>
                     </div>
                 </div>

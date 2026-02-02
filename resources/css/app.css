@@ -163,18 +163,15 @@
 
 @media (max-width: 640px) {
     .flatpickr-calendar {
-        width: 95% !important;
+        width: 94% !important;
         max-width: none !important;
-        left: 2.5% !important;
-        right: 2.5% !important;
+        left: 3% !important;
+        right: 3% !important;
         margin: 0 auto;
+        padding: 4px !important;
     }
-    .flatpickr-innerContainer {
-        width: 100% !important;
-    }
-    .flatpickr-rContainer {
-        width: 100% !important;
-    }
+    .flatpickr-innerContainer,
+    .flatpickr-rContainer,
     .flatpickr-days {
         width: 100% !important;
     }
@@ -184,7 +181,8 @@
         max-width: 100% !important;
         display: grid !important;
         grid-template-columns: repeat(7, 1fr);
-        padding: 0 4px;
+        padding: 0 2px !important;
+        gap: 2px !important;
     }
     .flatpickr-day {
         max-width: none !important;
@@ -195,7 +193,24 @@
         align-items: center;
         justify-content: center;
         line-height: normal !important;
-        margin: 2px 0 !important;
+        margin: 0 !important;
+        font-size: 13px !important;
+    }
+    /* Make the visual circle slightly smaller than the hit area for a premium look */
+    .flatpickr-day.selected::after,
+    .flatpickr-day.startRange::after,
+    .flatpickr-day.endRange::after {
+        content: "";
+        position: absolute;
+        width: 85%;
+        height: 85%;
+        background: inherit;
+        border-radius: 50%;
+        z-index: -1;
+    }
+    /* Fix for Saturday visibility - ensure no padding-right on the container */
+    .flatpickr-rContainer {
+        padding-right: 0 !important;
     }
 }
 

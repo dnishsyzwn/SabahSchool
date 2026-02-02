@@ -32,6 +32,10 @@ Route::get('/berita', function () {
     return view('pages.berita');
 });
 
+Route::get('/berita/{id}', function ($id) {
+    return view('pages.berita-detail', ['id' => $id]);
+});
+
 Route::get('/kerjaya', function () {
     return view('pages.kerjaya');
 });
