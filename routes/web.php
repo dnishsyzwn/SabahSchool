@@ -28,6 +28,10 @@ Route::get('/ahli-tertinggi-exco', function(){
     return view('pages.ahli-tertinggi-exco');  
 });
 
+Route::get('/berita', function () {
+    return view('pages.berita');
+});
+
 Route::get('/kerjaya', function () {
     return view('pages.kerjaya');
 });

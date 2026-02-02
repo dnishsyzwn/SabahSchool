@@ -15,6 +15,7 @@
 
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     
     @stack('styles')
 </head>
@@ -37,9 +38,10 @@
         </main>
 
 
-        @include('partials.footer')
+    @include('partials.footer')
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @stack('scripts')
 </body>
 </html>
