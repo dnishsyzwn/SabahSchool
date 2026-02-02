@@ -7,15 +7,16 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="relative min-h-[45vh] flex items-center bg-primary overflow-hidden pt-20">
-        <!-- Background Elements -->
+    <section class="relative min-h-[50vh] flex items-center bg-primary overflow-hidden pt-20">
+        <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
-            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
-            <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-green/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
-            <!-- Pattern Overlay -->
-            <div class="absolute inset-0 opacity-[0.03] pointer-events-none" 
-                 style="background-image: url('{{ asset('images/stu-logo.png') }}'); background-size: 400px; background-repeat: repeat; filter: grayscale(1);">
-            </div>
+            <img src="{{ asset('images/berita-hero.png') }}" alt="Berita & Artikel" class="w-full h-full object-cover">
+            <!-- Premium Gradient Overlays -->
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-primary/40"></div>
+            
+            <!-- Abstract Blur Accents -->
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 opacity-60"></div>
+            <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-green/5 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4"></div>
         </div>
 
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16">

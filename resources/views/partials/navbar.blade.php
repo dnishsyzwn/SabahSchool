@@ -18,6 +18,8 @@
         <div class="max-w-7xl mx-auto w-full flex justify-center items-center relative">
             <!-- Navigation Links (Desktop) -->
             <div class="hidden sm:flex space-x-8">
+
+                <!-- Home -->
                 <x-navbar.nav-link :href="url('/')" :active="Request::is('/')">HOME</x-navbar.nav-link>
                 
                 <!-- PROFIL STU Dropdown -->
@@ -27,7 +29,11 @@
                     <x-navbar.nav-dropdown-link :href="url('/pengurusan')" :bordered="true">PENGURUSAN</x-navbar.nav-dropdown-link>
                 </x-navbar.nav-dropdown>
                 
+                <!-- Galeri -->
                 <x-navbar.nav-link :href="url('/galeri')" :active="Request::is('galeri')">GALERI</x-navbar.nav-link>
+
+                <!-- Berita -->
+                <x-navbar.nav-link :href="url('/berita')" :active="Request::is('berita')">BERITA</x-navbar.nav-link>
                 
                 <!-- BORANG Dropdown -->
                 <x-navbar.nav-dropdown title="BORANG">
@@ -90,6 +96,8 @@
             </x-navbar.mobile-nav-accordion>
 
             <x-navbar.mobile-nav-link :href="url('/galeri')" :active="Request::is('galeri')">GALERI</x-navbar.mobile-nav-link>
+
+            <x-navbar.mobile-nav-link :href="url('/berita')" :active="Request::is('berita')">BERITA</x-navbar.mobile-nav-link>
 
             <x-navbar.mobile-nav-accordion title="BORANG">
                 <x-navbar.mobile-nav-accordion-link :href="url('/borang/muat-turun')">MUAT TURUN BORANG</x-navbar.mobile-nav-accordion-link>
