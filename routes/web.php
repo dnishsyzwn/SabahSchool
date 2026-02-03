@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.home');
 });
+
+Route::get('/login', function () {
+    return view('pages.login');
+});
+
 Route::get('/galeri', function () {
     return view('pages.galeri');
 });
@@ -31,6 +36,8 @@ Route::get('/ahli-tertinggi-exco', function(){
 Route::get('/berita', function () {
     return view('pages.berita');
 });
+
+
 
 Route::get('/berita/{id}', function ($id) {
     return view('pages.berita-detail', ['id' => $id]);
