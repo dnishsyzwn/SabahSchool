@@ -111,4 +111,42 @@ export default function initNavbar() {
             }
         });
     }
+
+    // --- Desktop Dropdown Click Support ---
+    const dropdownWrappers = document.querySelectorAll(".nav-dropdown-wrapper");
+
+    dropdownWrappers.forEach((wrapper) => {
+        const toggle = wrapper.querySelector(".nav-dropdown-toggle");
+
+        if (toggle) {
+            toggle.addEventListener("click", (e) => {
+                // Check if we are on desktop (sm breakpoint)
+                if (window.innerWidth >= 640) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const isOpen = wrapper.classList.contains("is-open");
+
+                    // Close all other dropdowns
+                    dropdownWrappers.forEach((w) =>
+                        w.classList.remove("is-open"),
+                    );
+
+                    // Toggle current
+                    if (!isOpen) {
+                        wrapper.classList.add("is-open");
+                    }
+                }
+            });
+        }
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".nav-dropdown-wrapper")) {
+            dropdownWrappers.forEach((wrapper) => {
+                wrapper.classList.remove("is-open");
+            });
+        }
+    });
 }
