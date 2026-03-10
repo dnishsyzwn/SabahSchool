@@ -21,6 +21,9 @@
 
                 <!-- Home -->
                 <x-navbar.nav-link :href="url('/')" :active="Request::is('/')">HOME</x-navbar.nav-link>
+
+                <!-- Keahlian -->
+                <x-navbar.nav-link :href="url('/keahlian')" :active="Request::is('keahlian')">KEAHLIAN</x-navbar.nav-link>
                 
                 <!-- PROFIL STU Dropdown -->
                 <x-navbar.nav-dropdown title="PROFIL STU">
