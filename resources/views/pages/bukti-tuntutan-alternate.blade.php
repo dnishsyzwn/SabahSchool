@@ -68,7 +68,7 @@
                 @foreach($items as $index => $it)
                 @php $isEven = $index % 2 === 0; @endphp
 
-                <div class="relative flex flex-col lg:flex-row items-center group">
+                <div class="relative flex flex-col lg:flex-row items-center group @if($index >= 5) hidden extra-item @endif">
                     <div class="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-white border-4 border-primary z-10 items-center justify-center group-hover:scale-125 transition-transform duration-300">
                         <div class="w-2 h-2 bg-primary rounded-full"></div>
                     </div>
@@ -103,6 +103,14 @@
                     </div>
                 </div>
                 @endforeach
+
+                @if(count($items) > 5)
+                    <div class="flex justify-center mt-6">
+                        <button id="show-more" class="px-6 py-2 bg-primary text-white rounded-xl font-bold hover:bg-primary-dark transition">
+                            Tunjukkan lebih lagi
+                        </button>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
@@ -134,8 +142,8 @@
                     ];
                 @endphp
 
-                @foreach($smallItems as $index => $item)
-                <div class="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 @if($index >= 5) hidden extra-item @endif">
+                @foreach($smallItems as $item)
+                <div class="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500">
                     <div class="aspect-square overflow-hidden">
                         <img src="{{ $item['img'] }}?auto=format&fit=crop&w=600&q=80"
                              alt="{{ $item['title'] }}"
@@ -167,14 +175,7 @@
                     <p class="text-gray-400 font-bold text-sm text-center uppercase tracking-wider">Tambah Rekod<br>Sumbangan</p>
                 </div>
             </div>
-                @if(count($smallItems) > 5)
-                    <div class="flex justify-center mt-6">
-                        <button id="show-more" class="px-6 py-2 bg-primary text-white rounded-xl font-bold hover:bg-primary-dark transition">
-                            Tunjukkan lebih lagi
-                        </button>
-                    </div>
-                @endif
-            </div>
+                </div>
         </div>
     </section>
 
@@ -215,8 +216,14 @@
             const btn = document.getElementById('show-more');
             if (!btn) return;
             btn.addEventListener('click', function () {
-                document.querySelectorAll('.extra-item').forEach(el => el.classList.remove('hidden'));
-                btn.remove();
+                // reveal next batch of up to 5 hidden extras
+                const hiddenItems = Array.from(document.querySelectorAll('.extra-item.hidden'));
+                hiddenItems.slice(0, 5).forEach(el => el.classList.remove('hidden'));
+
+                // if no more remain, remove the button
+                if (hiddenItems.length <= 5) {
+                    btn.remove();
+                }
             });
         });
     </script>
