@@ -11,15 +11,28 @@ export default function initTextAnimations() {
         element.textContent = "";
         element.classList.add("reveal-text");
 
-        // Split by characters
-        const chars = text.split("");
-        chars.forEach((char, index) => {
-            const span = document.createElement("span");
-            span.textContent = char;
-            span.classList.add("split-char");
-            // Add a slight stagger for each character
-            span.style.animationDelay = `${index * 10}ms`;
-            element.appendChild(span);
+        // Split by words to prevent wrapping mid-word
+        const words = text.split(" ");
+        let globalIndex = 0;
+        
+        words.forEach((word) => {
+            const wordSpan = document.createElement("span");
+            wordSpan.style.display = "inline-block";
+            // Allow wrapping between words naturally, but not inside words
+            
+            const chars = word.split("");
+            chars.forEach((char) => {
+                const span = document.createElement("span");
+                span.textContent = char;
+                span.classList.add("split-char");
+                span.style.animationDelay = `${globalIndex * 10}ms`;
+                wordSpan.appendChild(span);
+                globalIndex++;
+            });
+            
+            element.appendChild(wordSpan);
+            // Add a space after each word
+            element.appendChild(document.createTextNode(" "));
         });
     });
 
