@@ -19,24 +19,27 @@
             <!-- Navigation Links (Desktop) -->
             <div class="hidden sm:flex space-x-8">
 
-                <!-- Home -->
+                <!-- HOME -->
                 <x-navbar.nav-link :href="url('/')" :active="Request::is('/')">HOME</x-navbar.nav-link>
 
-                <!-- Keahlian -->
-                <x-navbar.nav-link :href="url('/keahlian')" :active="Request::is('keahlian')">KEAHLIAN</x-navbar.nav-link>
-                
+                <!-- INFORMASI KEAHLIAN Dropdown -->
+                <x-navbar.nav-dropdown title="INFORMASI KEAHLIAN">
+                    <x-navbar.nav-dropdown-link :href="url('/keahlian')">KEAHLIAN</x-navbar.nav-dropdown-link>
+                    <x-navbar.nav-dropdown-link :href="url('/bukti-tuntutan')" :bordered="true">BUKTI TUNTUTAN</x-navbar.nav-dropdown-link>
+                </x-navbar.nav-dropdown>
+
                 <!-- PROFIL STU Dropdown -->
                 <x-navbar.nav-dropdown title="PROFIL STU">
                     <x-navbar.nav-dropdown-link :href="url('/mengenai-stu')">MENGENAI STU</x-navbar.nav-dropdown-link>
                     <x-navbar.nav-dropdown-link :href="url('/ahli-tertinggi-exco')" :bordered="true">AHLI TERTINGGI & EXCO</x-navbar.nav-dropdown-link>
                     <x-navbar.nav-dropdown-link :href="url('/pengurusan')" :bordered="true">PENGURUSAN</x-navbar.nav-dropdown-link>
                 </x-navbar.nav-dropdown>
-                
-                <!-- Galeri -->
-                <x-navbar.nav-link :href="url('/galeri')" :active="Request::is('galeri')">GALERI</x-navbar.nav-link>
 
-                <!-- Berita -->
-                <x-navbar.nav-link :href="url('/berita')" :active="Request::is('berita')">BERITA</x-navbar.nav-link>
+                <!-- MEDIA & AKTIVITI Dropdown -->
+                <x-navbar.nav-dropdown title="MEDIA & AKTIVITI">
+                    <x-navbar.nav-dropdown-link :href="url('/galeri')">AKTIVITI KAMI</x-navbar.nav-dropdown-link>
+                    <x-navbar.nav-dropdown-link :href="url('/berita')" :bordered="true">BERITA</x-navbar.nav-dropdown-link>
+                </x-navbar.nav-dropdown>
                 
                 <!-- BORANG Dropdown -->
                 <x-navbar.nav-dropdown title="BORANG">
@@ -92,15 +95,21 @@
         <nav class="space-y-4">
             <x-navbar.mobile-nav-link :href="url('/')" :active="Request::is('/')">HOME</x-navbar.mobile-nav-link>
 
+            <x-navbar.mobile-nav-accordion title="INFORMASI KEAHLIAN">
+                <x-navbar.mobile-nav-accordion-link :href="url('/keahlian')">KEAHLIAN</x-navbar.nav-accordion-link>
+                <x-navbar.mobile-nav-accordion-link :href="url('/bukti-tuntutan')">BUKTI TUNTUTAN</x-navbar.mobile-nav-accordion-link>
+            </x-navbar.mobile-nav-accordion>
+
             <x-navbar.mobile-nav-accordion title="PROFIL STU">
                 <x-navbar.mobile-nav-accordion-link :href="url('/mengenai-stu')">MENGENAI STU</x-navbar.mobile-nav-accordion-link>
                 <x-navbar.mobile-nav-accordion-link :href="url('/ahli-tertinggi-exco')">AHLI TERTINGGI & EXCO</x-navbar.mobile-nav-accordion-link>
                 <x-navbar.mobile-nav-accordion-link :href="url('/pengurusan')">PENGURUSAN</x-navbar.mobile-nav-accordion-link>
             </x-navbar.mobile-nav-accordion>
 
-            <x-navbar.mobile-nav-link :href="url('/galeri')" :active="Request::is('galeri')">GALERI</x-navbar.mobile-nav-link>
-
-            <x-navbar.mobile-nav-link :href="url('/berita')" :active="Request::is('berita')">BERITA</x-navbar.mobile-nav-link>
+            <x-navbar.mobile-nav-accordion title="MEDIA & AKTIVITI">
+                <x-navbar.mobile-nav-accordion-link :href="url('/galeri')">AKTIVITI KAMI</x-navbar.mobile-nav-accordion-link>
+                <x-navbar.mobile-nav-accordion-link :href="url('/berita')">BERITA</x-navbar.mobile-nav-accordion-link>
+            </x-navbar.mobile-nav-accordion>
 
             <x-navbar.mobile-nav-accordion title="BORANG">
                 <x-navbar.mobile-nav-accordion-link :href="url('/borang/muat-turun')">MUAT TURUN BORANG</x-navbar.mobile-nav-accordion-link>
