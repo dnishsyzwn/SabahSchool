@@ -1,7 +1,7 @@
 <!-- Top Bar  - Static, scrolls away -->
 <div id="top-bar" class="bg-green/60 h-26 flex items-center justify-between px-4 sm:px-6 lg:px-8">
     <div class="flex-1"></div>
-    
+
     <!-- Logo -->
     <div class="flex-shrink-0 flex items-center justify-center">
         <a href="{{ url('/') }}">
@@ -21,26 +21,29 @@
 
                 <!-- Home -->
                 <x-navbar.nav-link :href="url('/')" :active="Request::is('/')">HOME</x-navbar.nav-link>
-                
+
                 <!-- PROFIL STU Dropdown -->
                 <x-navbar.nav-dropdown title="PROFIL STU">
                     <x-navbar.nav-dropdown-link :href="url('/mengenai-stu')">MENGENAI STU</x-navbar.nav-dropdown-link>
                     <x-navbar.nav-dropdown-link :href="url('/ahli-tertinggi-exco')" :bordered="true">AHLI TERTINGGI & EXCO</x-navbar.nav-dropdown-link>
                     <x-navbar.nav-dropdown-link :href="url('/pengurusan')" :bordered="true">PENGURUSAN</x-navbar.nav-dropdown-link>
                 </x-navbar.nav-dropdown>
-                
+
                 <!-- Galeri -->
                 <x-navbar.nav-link :href="url('/galeri')" :active="Request::is('galeri')">GALERI</x-navbar.nav-link>
 
                 <!-- Berita -->
                 <x-navbar.nav-link :href="url('/berita')" :active="Request::is('berita')">BERITA</x-navbar.nav-link>
-                
+
+                <!-- Bukti Tuntutan -->
+                <x-navbar.nav-link :href="url('/bukti-tuntutan')" :active="Request::is('bukti-tuntutan')">BUKTI TUNTUTAN</x-navbar.nav-link>
+
                 <!-- BORANG Dropdown -->
                 <x-navbar.nav-dropdown title="BORANG">
                     <x-navbar.nav-dropdown-link :href="url('/borang/muat-turun')">MUAT TURUN BORANG</x-navbar.nav-dropdown-link>
                     <x-navbar.nav-dropdown-link :href="url('/borang/hantar')" :bordered="true">HANTAR BORANG</x-navbar.nav-dropdown-link>
                 </x-navbar.nav-dropdown>
-                
+
                 <!-- KONTAK Dropdown -->
                 <x-navbar.nav-dropdown title="KONTAK">
                     <x-navbar.nav-dropdown-link :href="url('/hubungi')">HUBUNGI KAMI</x-navbar.nav-dropdown-link>
@@ -98,6 +101,8 @@
             <x-navbar.mobile-nav-link :href="url('/galeri')" :active="Request::is('galeri')">GALERI</x-navbar.mobile-nav-link>
 
             <x-navbar.mobile-nav-link :href="url('/berita')" :active="Request::is('berita')">BERITA</x-navbar.mobile-nav-link>
+
+            <x-navbar.mobile-nav-link :href="url('/bukti-tuntutan')" :active="Request::is('bukti-tuntutan')">BUKTI TUNTUTAN</x-navbar.mobile-nav-link>
 
             <x-navbar.mobile-nav-accordion title="BORANG">
                 <x-navbar.mobile-nav-accordion-link :href="url('/borang/muat-turun')">MUAT TURUN BORANG</x-navbar.mobile-nav-accordion-link>

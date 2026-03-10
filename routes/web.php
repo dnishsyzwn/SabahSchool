@@ -26,11 +26,17 @@ Route::get('/hubungi', function () {
 });
 
 Route::get('/mengenai-stu', function(){
-    return view('pages.mengenai-stu');  
+    return view('pages.mengenai-stu');
 });
 
 Route::get('/ahli-tertinggi-exco', function(){
-    return view('pages.ahli-tertinggi-exco');  
+    return view('pages.ahli-tertinggi-exco');
+});
+
+// page showing evidence of donations / organization efforts
+// (alternate layout is now the primary version)
+Route::get('/bukti-tuntutan', function () {
+    return view('pages.bukti-tuntutan-alternate');
 });
 
 Route::get('/berita', function () {
@@ -50,5 +56,6 @@ Route::get('/kerjaya', function () {
 Route::get('/kerjaya/detail', function () {
     return view('pages.kerjaya-detail');
 });
+
 
 
