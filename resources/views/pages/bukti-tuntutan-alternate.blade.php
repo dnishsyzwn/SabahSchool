@@ -115,7 +115,7 @@
         </div>
     </section>
 
-    <section class="py-24 bg-slate-50 border-t border-gray-100">
+    <!-- <section class="py-24 bg-slate-50 border-t border-gray-100">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12">
                 <div class="max-w-xl">
@@ -177,9 +177,9 @@
             </div>
                 </div>
         </div>
-    </section>
+    </section> -->
 
-    <section class="py-20 bg-white">
+    <!-- <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="bg-gradient-to-br from-primary via-primary to-blue-800 rounded-[3rem] p-12 text-center text-white relative overflow-hidden shadow-2xl">
                 <div class="relative z-10">
@@ -200,7 +200,7 @@
                 <div class="absolute -top-12 -right-12 w-64 h-64 bg-secondary/20 rounded-full blur-3xl"></div>
             </div>
         </div>
-    </section>
+    </section> -->
 @endsection
 
 @push('scripts')

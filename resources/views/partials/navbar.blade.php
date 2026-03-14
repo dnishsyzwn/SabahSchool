@@ -38,11 +38,9 @@
 
                 <!-- MEDIA & AKTIVITI Dropdown -->
                 <x-navbar.nav-dropdown title="MEDIA & AKTIVITI">
-                    <x-navbar.nav-dropdown-link :href="url('/galeri')">AKTIVITI KAMI</x-navbar.nav-dropdown-link>
+                    <x-navbar.nav-dropdown-link :href="url('/aktiviti-kami')">AKTIVITI KAMI</x-navbar.nav-dropdown-link>
                     <x-navbar.nav-dropdown-link :href="url('/berita')" :bordered="true">BERITA</x-navbar.nav-dropdown-link>
                 </x-navbar.nav-dropdown>
-
-                <!-- BORANG Dropdown -->
                 <x-navbar.nav-dropdown title="BORANG">
                     <x-navbar.nav-dropdown-link :href="url('/borang/muat-turun')">MUAT TURUN BORANG</x-navbar.nav-dropdown-link>
                     <x-navbar.nav-dropdown-link :href="url('/borang/hantar')" :bordered="true">HANTAR BORANG</x-navbar.nav-dropdown-link>
@@ -108,7 +106,7 @@
             </x-navbar.mobile-nav-accordion>
 
             <x-navbar.mobile-nav-accordion title="MEDIA & AKTIVITI">
-                <x-navbar.mobile-nav-accordion-link :href="url('/galeri')">AKTIVITI KAMI</x-navbar.mobile-nav-accordion-link>
+                <x-navbar.mobile-nav-accordion-link :href="url('/aktiviti-kami')">AKTIVITI KAMI</x-navbar.mobile-nav-accordion-link>
                 <x-navbar.mobile-nav-accordion-link :href="url('/berita')">BERITA</x-navbar.mobile-nav-accordion-link>
             </x-navbar.mobile-nav-accordion>
 

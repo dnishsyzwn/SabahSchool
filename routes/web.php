@@ -10,8 +10,8 @@ Route::get('/login', function () {
     return view('pages.login');
 });
 
-Route::get('/galeri', function () {
-    return view('pages.galeri');
+Route::get('/aktiviti-kami', function () {
+    return view('pages.aktiviti-kami');
 });
 Route::get('/borang/muat-turun', function () {
     return view('pages.muat-turun');

@@ -17,11 +17,11 @@
 </style>
 
 <div class="min-h-screen bg-gray-50">
-    
+
     <div class="relative bg-gray-900 overflow-hidden">
         <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=2071&auto=format&fit=crop" 
-                 alt="Contact Background" 
+            <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=2071&auto=format&fit=crop"
+                 alt="Contact Background"
                  class="w-full h-full object-cover opacity-30">
         </div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/30"></div>
@@ -39,7 +39,7 @@
     <div class="bg-white border-b border-gray-100 animate-fade-in-up delay-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 items-center">
-                
+
     <div class="flex flex-col items-center text-center">
         <div class="flex items-center justify-center gap-3 mb-3">
             <div class="p-2 bg-primary/10 rounded-full text-primary">
@@ -85,14 +85,14 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
-            
+
             <div class="lg:col-span-5 space-y-8 animate-fade-in-up delay-200">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-[400px] lg:h-full min-h-[400px] relative">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.043534882143!2d116.07106097587895!3d5.977464994008168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x323b69904d25160f%3A0x6e3263013d314816!2sSinsuran%20Complex%2C%20Pusat%20Bandar%20Kota%20Kinabalu%2C%2088000%20Kota%20Kinabalu%2C%20Sabah!5e0!3m2!1sen!2smy!4v1706692800000!5m2!1sen!2smy" 
-                        class="w-full h-full border-0" 
-                        allowfullscreen="" 
-                        loading="lazy" 
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.043534882143!2d116.07106097587895!3d5.977464994008168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x323b69904d25160f%3A0x6e3263013d314816!2sSinsuran%20Complex%2C%20Pusat%20Bandar%20Kota%20Kinabalu%2C%2088000%20Kota%20Kinabalu%2C%20Sabah!5e0!3m2!1sen!2smy!4v1706692800000!5m2!1sen!2smy"
+                        class="w-full h-full border-0"
+                        allowfullscreen=""
+                        loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                     <a href="https://maps.google.com?q=Kompleks+Sinsuran+Kota+Kinabalu" target="_blank" class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium text-gray-900 hover:text-primary transition-colors flex items-center gap-2">
@@ -105,40 +105,52 @@
             <div class="lg:col-span-7 animate-fade-in-up delay-300">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8 lg:p-10">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">Hantar Mesej</h2>
-                    
+
                     <form class="space-y-6">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Penuh</label>
-                                <input type="text" id="name" name="name" 
+                                <input type="text" id="name" name="name"
                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
                                        placeholder="Nama anda">
                             </div>
                             <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Alamat Email</label>
-                                <input type="email" id="email" name="email" 
+                                <label for="ic" class="block text-sm font-medium text-gray-700 mb-2">No. IC</label>
+                                <input type="text" id="ic" name="ic"
                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                       placeholder="email@contoh.com">
+                                       placeholder="000000-00-0000">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">No. HP</label>
+                                <input type="tel" id="phone" name="phone"
+                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                       placeholder="012-3456789">
+                            </div>
+                            <div>
+                                <label for="school" class="block text-sm font-medium text-gray-700 mb-2">Nama Sekolah</label>
+                                <input type="text" id="school" name="school"
+                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                       placeholder="Contoh: SMK Contoh">
                             </div>
                         </div>
 
                         <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Perkara / Tajuk</label>
-                            <input type="text" id="subject" name="subject" 
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Alamat Email</label>
+                            <input type="email" id="email" name="email"
                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                   placeholder="Contoh: Pertanyaan Keahlian">
+                                   placeholder="email@contoh.com">
                         </div>
 
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Mesej Anda</label>
-                            <textarea id="message" name="message" rows="6" 
+                            <textarea id="message" name="message" rows="6"
                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200 resize-none"
                                       placeholder="Tulis mesej anda di sini..."></textarea>
                         </div>
 
                         <div class="flex items-center justify-between pt-2">
                             <p class="text-sm text-gray-500 hidden md:block">* Kami akan membalas dalam 3 hari bekerja.</p>
-                            <button type="button" onclick="alert('Mesej anda telah diterima. Kami akan menghubungi anda semula.')" 
+                            <button type="button" onclick="alert('Mesej anda telah diterima. Kami akan menghubungi anda semula.')"
                                     class="w-full md:w-auto px-8 py-3.5 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2">
                                 <span>Hantar Mesej</span>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
@@ -146,7 +158,7 @@
                         </div>
                     </form>
                 </div>
-                
+
                 <div class="mt-8 grid sm:grid-cols-2 gap-4">
                     <div class="bg-blue-50 border border-blue-100 p-4 rounded-lg flex items-start gap-3">
                         <svg class="w-6 h-6 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
