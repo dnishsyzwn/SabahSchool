@@ -6,6 +6,10 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
+Route::get('/keahlian', function () {
+    return view('pages.keahlian');
+});
+
 Route::get('/login', function () {
     return view('pages.login');
 });
