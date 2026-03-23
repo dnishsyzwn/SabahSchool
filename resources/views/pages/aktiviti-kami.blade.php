@@ -50,37 +50,37 @@
                     {{-- Category label --}}
                     <span class="inline-flex items-center gap-2 px-3 py-1 bg-secondary/10 text-[#001a6e] rounded-full font-mono text-xs tracking-[0.15em] uppercase mb-6 border border-secondary/20">
                         <span class="w-1.5 h-1.5 bg-secondary rounded-full"></span>
-                        Featured — 2024
+                        Featured — 2025
                     </span>
 
                     {{-- Headline --}}
                     <h2 class="text-4xl md:text-5xl font-extrabold text-[#001a6e] tracking-tight leading-[1.1] mb-6">
-                        Konvensyen<br>Pendidikan<br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-green to-[#016b61]">Sabah ke-12</span>
+                        Manfaat Perlindungan<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-green to-[#016b61]">Penyakit Kritikal</span>
                     </h2>
 
                     {{-- Stats --}}
                     <div class="flex gap-10 mb-8">
                         <div class="text-center">
-                            <span class="font-mono text-3xl font-bold text-[#001a6e] block">500+</span>
-                            <span class="text-sm text-gray-400 tracking-wide">Peserta</span>
+                            <span class="font-mono text-3xl font-bold text-[#001a6e] block">RM 80k</span>
+                            <span class="text-sm text-gray-400 tracking-wide">Pampasan</span>
                         </div>
                         <div class="text-center">
-                            <span class="font-mono text-3xl font-bold text-[#001a6e] block">25</span>
-                            <span class="text-sm text-gray-400 tracking-wide">Sekolah</span>
+                            <span class="font-mono text-3xl font-bold text-[#001a6e] block">Telupid</span>
+                            <span class="text-sm text-gray-400 tracking-wide">Daerah</span>
                         </div>
                         <div class="text-center">
-                            <span class="font-mono text-3xl font-bold text-[#001a6e] block">3</span>
-                            <span class="text-sm text-gray-400 tracking-wide">Hari</span>
+                            <span class="font-mono text-3xl font-bold text-[#001a6e] block">2025</span>
+                            <span class="text-sm text-gray-400 tracking-wide">Tahun</span>
                         </div>
                     </div>
 
                     <p class="text-gray-500 leading-relaxed mb-8 max-w-lg">
-                        Konvensyen tahunan terbesar STU yang menghimpunkan pendidik dari seluruh Sabah. Fokus kepada pedagogi abad ke-21, kepimpinan pendidikan, dan kesejahteraan guru.
+                        Penyerahan tuntutan manfaat penyakit kritikal kepada Encik Nur Arif Shah bin Ramli di SK Pekan Telupid. Bantuan ini bertujuan untuk menyokong kos rawatan dan keperluan perubatan beliau bagi mengharungi fasa pemulihan.
                     </p>
 
                     <a href="#" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#001a6e] hover:bg-[#000d36] text-white font-bold rounded-2xl shadow-[0_8px_20px_rgba(0,26,110,0.25)] hover:shadow-[0_12px_28px_rgba(0,26,110,0.35)] transition-all duration-300 transform hover:-translate-y-0.5 uppercase tracking-wider text-sm border border-white/10">
-                        <span>Baca Laporan</span>
+                        <span>Lihat Butiran</span>
                         <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
@@ -89,8 +89,8 @@
 
                 {{-- Image side --}}
                 <div class="relative overflow-hidden rounded-3xl aspect-[4/3] lg:aspect-square shadow-[0_20px_60px_-15px_rgba(0,26,110,0.15)] border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1544531585-9847b68c8c86?q=80&w=2070&auto=format&fit=crop"
-                         alt="Konvensyen Pendidikan Sabah"
+                    <img src="{{ asset('images/activity3.png') }}"
+                         alt="Manfaat Perlindungan Penyakit Kritikal"
                          class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                     {{-- Accent top border --}}
                     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#001a6e] via-secondary to-green"></div>
@@ -118,18 +118,24 @@
             </div>
 
             {{-- Grid --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div id="activity-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 
                 {{-- Activity Card 1 --}}
                 <div class="group bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#001a6e]/20 transition-all duration-500 flex flex-col">
-                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">15 OKT 2024</div>
-                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">Latihan</span>
+                    <div class="relative h-48 mb-6 overflow-hidden rounded-2xl group-hover:shadow-lg transition-all duration-500">
+                        <img src="{{ asset('images/aktiviti1.png') }}" 
+                             alt="Penyerahan Pampasan Kematian Ahli KGS" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">28 NOV 2023</div>
+                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">KEBAJIKAN</span>
                     <h3 class="text-xl font-bold text-[#001a6e] leading-tight mb-3 group-hover:text-green transition-colors duration-300">
-                        Bengkel STEM<br>untuk Guru
+                        Penyerahan Pampasan<br>Kematian Ahli KGS
                     </h3>
-                    <div class="font-mono text-xs text-gray-400 mb-3">SMK Sanzac • 45 peserta</div>
+                    <div class="font-mono text-xs text-gray-400 mb-3">SK Karamunting, Sandakan • RM 10,000.00</div>
                     <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
-                        Program pembangunan profesional dalam pedagogi STEM dengan fokus kepada pembelajaran berasaskan projek.
+                        Penyerahan pampasan kepada Che Farhani binti Che Jaffar, waris kepada Allahyarham Zulkifli Ahmad bin Jusoh sebagai tanda keprihatinan dan bantuan kebajikan ahli Kesatuan Guru-Guru Sabah (KGS).
                     </p>
                     <div class="mt-auto pt-4 border-t border-gray-50">
                         <button class="inline-flex items-center gap-2 text-[#001a6e] hover:text-green text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
@@ -141,41 +147,22 @@
                     </div>
                 </div>
 
-                {{-- Activity Card 2 - Featured --}}
-                <div class="group bg-[#001a6e] rounded-[2rem] p-6 md:p-8 shadow-[0_8px_30px_rgba(0,26,110,0.2)] flex flex-col relative overflow-hidden">
-                    {{-- Decorative glow --}}
-                    <div class="absolute top-0 right-0 w-48 h-48 bg-secondary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                    <span class="absolute -top-px left-6 bg-secondary text-[#001a6e] font-mono text-xs px-4 py-1 uppercase tracking-wider rounded-b-lg font-bold">Featured</span>
-
-                    <div class="font-mono text-xs tracking-[0.15em] text-secondary/70 mb-3 mt-4">8 OKT 2024</div>
-                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-secondary font-semibold mb-3 bg-secondary/10 px-2 py-0.5 rounded-md w-fit border border-secondary/20">Mesyuarat</span>
-                    <h3 class="text-xl font-bold text-white leading-tight mb-3">
-                        Mesyuarat Agung<br>Tahunan STU
-                    </h3>
-                    <div class="font-mono text-xs text-secondary/60 mb-3">Dewan Masyarakat • 120 wakil</div>
-                    <p class="text-white/60 text-sm leading-relaxed mb-6 flex-grow">
-                        Perhimpunan tahunan untuk membincangkan hala tuju organisasi dan pemilihan kepimpinan baharu.
-                    </p>
-                    <div class="mt-auto pt-4 border-t border-white/10">
-                        <button class="inline-flex items-center gap-2 text-secondary hover:text-white text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
-                            <span>Butiran</span>
-                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                {{-- Activity Card 3 --}}
+                {{-- Activity Card 2 --}}
                 <div class="group bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#001a6e]/20 transition-all duration-500 flex flex-col">
-                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">2 OKT 2024</div>
-                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">Komuniti</span>
+                    <div class="relative h-48 mb-6 overflow-hidden rounded-2xl group-hover:shadow-lg transition-all duration-500">
+                        <img src="{{ asset('images/activity2.png') }}" 
+                             alt="Penyerahan Pampasan Kematian Anak Ahli" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">27 SEPT 2025</div>
+                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">KEBAJIKAN</span>
                     <h3 class="text-xl font-bold text-[#001a6e] leading-tight mb-3 group-hover:text-green transition-colors duration-300">
-                        Gotong-Royong<br>Bersama Komuniti
+                        Penyerahan Pampasan<br>Kematian Anak Ahli
                     </h3>
-                    <div class="font-mono text-xs text-gray-400 mb-3">Kampung Likas • 80 relawan</div>
+                    <div class="font-mono text-xs text-gray-400 mb-3">SMK Kelana Putra Lenggeng • RM 40,000.00</div>
                     <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
-                        Aktiviti membersihkan kawasan sekolah dan komuniti sebagai sebahagian program khidmat masyarakat.
+                        Penyerahan pampasan kepada Norfazila binti Md Lajin atas pemergian anakanda tercinta, Abdul Fattah bin Khairol. Sumbangan ini diharap dapat meringankan beban keluarga dalam menghadapi dugaan ini.
                     </p>
                     <div class="mt-auto pt-4 border-t border-gray-50">
                         <button class="inline-flex items-center gap-2 text-[#001a6e] hover:text-green text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
@@ -186,17 +173,25 @@
                         </button>
                     </div>
                 </div>
+
+
 
                 {{-- Activity Card 4 --}}
                 <div class="group bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#001a6e]/20 transition-all duration-500 flex flex-col">
-                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">25 SEP 2024</div>
-                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">Latihan</span>
+                    <div class="relative h-48 mb-6 overflow-hidden rounded-2xl group-hover:shadow-lg transition-all duration-500">
+                        <img src="{{ asset('images/activity4.png') }}" 
+                             alt="Penyerahan Tuntutan Penyakit Kritikal" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">12 JUN 2024</div>
+                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-blue-600 font-semibold mb-3 bg-blue-50 px-2 py-0.5 rounded-md w-fit font-mono">KESIHATAN</span>
                     <h3 class="text-xl font-bold text-[#001a6e] leading-tight mb-3 group-hover:text-green transition-colors duration-300">
-                        Kursus<br>Kepimpinan Guru
+                        Penyerahan Tuntutan<br>Penyakit Kritikal
                     </h3>
-                    <div class="font-mono text-xs text-gray-400 mb-3">IPG Kampus Kent • 60 peserta</div>
+                    <div class="font-mono text-xs text-gray-400 mb-3">SK Kolapis, Beluran • RM 60,000.00</div>
                     <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
-                        Modul kepimpinan untuk guru muda yang berpotensi menjadi pemimpin sekolah masa hadapan.
+                        Tuntutan manfaat penyakit kritikal yang berjaya diproses dan diserahkan kepada Puan Rohayu binti Kandar. Program perlindungan ini merupakan komitmen kesatuan dalam menjaga kebajikan kesihatan setiap ahli.
                     </p>
                     <div class="mt-auto pt-4 border-t border-gray-50">
                         <button class="inline-flex items-center gap-2 text-[#001a6e] hover:text-green text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
@@ -210,14 +205,20 @@
 
                 {{-- Activity Card 5 --}}
                 <div class="group bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#001a6e]/20 transition-all duration-500 flex flex-col">
-                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">18 SEP 2024</div>
-                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-[#001a6e] font-semibold mb-3 bg-blue-50 px-2 py-0.5 rounded-md w-fit">Majlis</span>
+                    <div class="relative h-48 mb-6 overflow-hidden rounded-2xl group-hover:shadow-lg transition-all duration-500">
+                        <img src="{{ asset('images/activity5.png') }}" 
+                             alt="Penyerahan Pampasan Kematian Ahli KGS" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">03 MAC 2022</div>
+                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">KEBAJIKAN</span>
                     <h3 class="text-xl font-bold text-[#001a6e] leading-tight mb-3 group-hover:text-green transition-colors duration-300">
-                        Malam Apresiasi<br>Guru Cemerlang
+                        Penyerahan Pampasan<br>Kematian Ahli KGS
                     </h3>
-                    <div class="font-mono text-xs text-gray-400 mb-3">Hotel Pacific Sutera • 200 hadirin</div>
+                    <div class="font-mono text-xs text-gray-400 mb-3">SK Kinabutan Besar, Tawau • RM 64,000.00</div>
                     <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
-                        Majlis penghargaan untuk guru-guru yang mencapai kecemerlangan dalam akademik dan kokurikulum.
+                        Penyerahan pampasan kepada waris, Encik Muhamad Solihin bin Ishak, susulan pemergian Puan Aishah binti Sayude. Sumbangan ini merangkumi pampasan asas dan manfaat tambahan ahli.
                     </p>
                     <div class="mt-auto pt-4 border-t border-gray-50">
                         <button class="inline-flex items-center gap-2 text-[#001a6e] hover:text-green text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
@@ -231,14 +232,101 @@
 
                 {{-- Activity Card 6 --}}
                 <div class="group bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#001a6e]/20 transition-all duration-500 flex flex-col">
-                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">10 SEP 2024</div>
-                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">Komuniti</span>
+                    <div class="relative h-48 mb-6 overflow-hidden rounded-2xl group-hover:shadow-lg transition-all duration-500">
+                        <img src="{{ asset('images/activity6.png') }}" 
+                             alt="Penyampaian Faedah Skim Insurans KGS" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">28 OGOS 2018</div>
+                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">KEBAJIKAN</span>
                     <h3 class="text-xl font-bold text-[#001a6e] leading-tight mb-3 group-hover:text-green transition-colors duration-300">
-                        Program Bimbingan<br>Murid Orang Asli
+                        Penyampaian Faedah<br>Skim Insurans KGS
                     </h3>
-                    <div class="font-mono text-xs text-gray-400 mb-3">SK Pulau Mantanani • 35 murid</div>
+                    <div class="font-mono text-xs text-gray-400 mb-3">SK Kem Tentera, Sandakan • RM 42,083.00</div>
                     <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
-                        Inisiatif STU membantu murid komuniti maritim dalam literasi dan numerasi asas.
+                        Penyerahan manfaat insurans kepada Encik Endrah bin Ahmad, suami kepada Allahyarhamah Jumrah binti Nordin. KGS sentiasa memastikan kebajikan waris ahli terbela melalui skim perlindungan yang disediakan.
+                    </p>
+                    <div class="mt-auto pt-4 border-t border-gray-50">
+                        <button class="inline-flex items-center gap-2 text-[#001a6e] hover:text-green text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
+                            <span>Butiran</span>
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                {{-- Activity Card 7 --}}
+                <div class="group bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#001a6e]/20 transition-all duration-500 flex flex-col">
+                    <div class="relative h-48 mb-6 overflow-hidden rounded-2xl group-hover:shadow-lg transition-all duration-500">
+                        <img src="{{ asset('images/activity7.png') }}" 
+                             alt="Penyerahan Pampasan Kematian Ahli" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">29 JUN 2021</div>
+                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">KEBAJIKAN</span>
+                    <h3 class="text-xl font-bold text-[#001a6e] leading-tight mb-3 group-hover:text-green transition-colors duration-300">
+                        Penyerahan Pampasan<br>Kematian Ahli
+                    </h3>
+                    <div class="font-mono text-xs text-gray-400 mb-3">SMK Convent St. Cecilia • RM 32,000.00</div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                        Penyerahan pampasan kepada Encik Mohd Hamdan bin Salleh, waris kepada Allahyarhamah Rosnah binti Udin. Bantuan ini merupakan bentuk penghargaan dan sokongan terakhir kesatuan buat ahli dan keluarga.
+                    </p>
+                    <div class="mt-auto pt-4 border-t border-gray-50">
+                        <button class="inline-flex items-center gap-2 text-[#001a6e] hover:text-green text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
+                            <span>Butiran</span>
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                {{-- Activity Card 8 --}}
+                <div class="group bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#001a6e]/20 transition-all duration-500 flex flex-col">
+                    <div class="relative h-48 mb-6 overflow-hidden rounded-2xl group-hover:shadow-lg transition-all duration-500">
+                        <img src="{{ asset('images/activity8.png') }}" 
+                             alt="Manfaat Perlindungan Takaful Ahli" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">02 NOV 2021</div>
+                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">KEBAJIKAN</span>
+                    <h3 class="text-xl font-bold text-[#001a6e] leading-tight mb-3 group-hover:text-green transition-colors duration-300">
+                        Manfaat Perlindungan<br>Takaful Ahli
+                    </h3>
+                    <div class="font-mono text-xs text-gray-400 mb-3">SMK Muhibbah, Sandakan • RM 62,000.00</div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                        Penyerahan cek pampasan kepada Puan Zaidah binti Abdul Wahab, waris kepada Allahyarham Mohd Zairi bin Mohamed Hassim. Bukti keberkesanan perlindungan takaful yang disertai oleh ahli kesatuan.
+                    </p>
+                    <div class="mt-auto pt-4 border-t border-gray-50">
+                        <button class="inline-flex items-center gap-2 text-[#001a6e] hover:text-green text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
+                            <span>Butiran</span>
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                {{-- Activity Card 9 --}}
+                <div class="group bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#001a6e]/20 transition-all duration-500 flex flex-col">
+                    <div class="relative h-48 mb-6 overflow-hidden rounded-2xl group-hover:shadow-lg transition-all duration-500">
+                        <img src="{{ asset('images/activity9.png') }}" 
+                             alt="Penyerahan Bantuan Kebajikan Ahli" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3">08 NOV 2021</div>
+                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">KEBAJIKAN</span>
+                    <h3 class="text-xl font-bold text-[#001a6e] leading-tight mb-3 group-hover:text-green transition-colors duration-300">
+                        Penyerahan Bantuan<br>Kebajikan Ahli
+                    </h3>
+                    <div class="font-mono text-xs text-gray-400 mb-3">SK Rancangan Sungai Manila • RM 32,000.00</div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                        Penyerahan manfaat pampasan kepada Encik Ramlan bin Mohammad Basir susulan pemergian Allahyarhamah Siti Norhadijah binti Musa sebagai tanda setiakawan dan bantuan buat ahli KGS.
                     </p>
                     <div class="mt-auto pt-4 border-t border-gray-50">
                         <button class="inline-flex items-center gap-2 text-[#001a6e] hover:text-green text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
@@ -254,9 +342,9 @@
     </div>
 
     {{-- Load More --}}
-    <div class="bg-[#f8fafc] border-t border-gray-200">
+    <div id="load-more-container" class="bg-[#f8fafc] border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-14 flex justify-center">
-            <button class="group relative inline-flex items-center justify-center gap-3 px-10 py-4 bg-white hover:bg-[#001a6e] text-[#001a6e] hover:text-white font-bold rounded-2xl shadow-sm border border-[#001a6e]/20 hover:shadow-[0_8px_25px_rgba(0,26,110,0.25)] transition-all duration-300 transform hover:-translate-y-0.5 uppercase tracking-wider text-sm">
+            <button id="load-more-btn" class="group relative inline-flex items-center justify-center gap-3 px-10 py-4 bg-white hover:bg-[#001a6e] text-[#001a6e] hover:text-white font-bold rounded-2xl shadow-sm border border-[#001a6e]/20 hover:shadow-[0_8px_25px_rgba(0,26,110,0.25)] transition-all duration-300 transform hover:-translate-y-0.5 uppercase tracking-wider text-sm">
                 <span>Muat Lagi Aktiviti</span>
                 <svg class="w-4 h-4 rotate-90 transform group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -332,4 +420,51 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const grid = document.getElementById('activity-grid');
+            if (!grid) return;
+            
+            const cards = grid.children;
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            const loadMoreContainer = document.getElementById('load-more-container');
+            let visibleCount = 6;
+
+            function updateCards() {
+                for (let i = 0; i < cards.length; i++) {
+                    if (i < visibleCount) {
+                        cards[i].classList.remove('hidden');
+                        // Optional: Add a simple fade-in effect
+                        cards[i].style.opacity = '1';
+                    } else {
+                        cards[i].classList.add('hidden');
+                        cards[i].style.opacity = '0';
+                    }
+                }
+                
+                // Hide the entire container if no more cards to show
+                if (visibleCount >= cards.length) {
+                    loadMoreBtn.classList.add('hidden');
+                    loadMoreContainer.classList.add('hidden');
+                }
+            }
+
+            // Initialize
+            updateCards();
+
+            loadMoreBtn.addEventListener('click', function () {
+                visibleCount += 6;
+                updateCards();
+                
+                // Slight scroll to the newly loaded content
+                const firstNewCard = cards[visibleCount - 6];
+                if (firstNewCard) {
+                    firstNewCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
+    @endpush
 @endsection
