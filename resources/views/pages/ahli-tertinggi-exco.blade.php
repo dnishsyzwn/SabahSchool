@@ -20,14 +20,14 @@
     </div>
 </div>
 
-<div class="bg-white py-20">
+<div class="bg-white py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         @include('partials.ahli-tertinggi-exco.ajk-tertinggi')
 
-        <hr class="border-gray-300 mb-32">
+        <!-- <hr class="border-gray-300 mb-32"> -->
 
-        @include('partials.ahli-tertinggi-exco.exco-bahagian')
+        
 
     </div>
 </div>

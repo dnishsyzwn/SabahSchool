@@ -1,41 +1,31 @@
 @php
     $president = [
-        'name' => 'TUAN HAJI SAHILEH BIN HAJI BAKAR',
+        'name' => 'TUAN SHAHRIL LIWANGSA',
         'role' => 'PRESIDEN',
         'image' => 'images/lelaki-pending.png',
         'posY' => '0'
     ];
 
     $timbalan = [
-        'name' => 'TUAN HJ. MOHD. NAJIB BIN HJ. MOHAMAD',
+        'name' => 'TUAN ADENAN EMPI',
         'role' => 'TIMBALAN PRESIDEN',
         'image' => 'images/lelaki-pending.png',
         'posY' => '0'
     ];
 
     $naibPresidents = [
-        ['name' => 'TUAN HJ. JAINI BIN HJ. TUKIMAN', 'role' => 'NAIB PRESIDEN I', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
-        ['name' => 'TUAN HJ. ABD. RAZAK BIN HJ. ABD. LATIP', 'role' => 'NAIB PRESIDEN II', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
-        ['name' => 'PUAN HJH. SITI KHADIJAH BINTI HJ. IBRAHIM', 'role' => 'NAIB PRESIDEN III', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
+        ['name' => 'TUAN YUSDY ROSLE', 'role' => 'SETIAUSAHA AGUNG', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
+        ['name' => 'PUAN DG. JUANITA', 'role' => 'BENDAHARI AGUNG', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
+        
     ];
 
-    $setiausahaAgung = [
-        'name' => 'TUAN HJ. MOHD. NAJIB BIN HJ. MOHAMAD',
-        'role' => 'SETIAUSAHA AGUNG',
-        'image' => 'images/lelaki-pending.png',
-        'posY' => '0'
-    ];
 
-    $penolongSetiausahas = [
-        ['name' => 'TUAN HJ. MOHD. NAJIB BIN HJ. MOHAMAD', 'role' => 'PENOLONG SETIAUSAHA I', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
-        ['name' => 'TUAN HJ. ISMAIL BIN HJ. SALLEH', 'role' => 'PENOLONG SETIAUSAHA II', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
-        ['name' => 'PUAN HJH. NORLIZA BINTI HJ. OTHMAN', 'role' => 'PENOLONG SETIAUSAHA III', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
+    $Setiausahas = [
+        
     ];
 
     $bendaharis = [
-        ['name' => 'TUAN HJ. MOHD. NAJIB BIN HJ. MOHAMAD', 'role' => 'BENDAHARI AGUNG', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
-        ['name' => 'TUAN HJ. ISMAIL BIN HJ. SALLEH', 'role' => 'PENOLONG BENDAHARI I', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
-        ['name' => 'PUAN HJH. NORLIZA BINTI HJ. OTHMAN', 'role' => 'PENOLONG BENDAHARI II', 'image' => 'images/lelaki-pending.png', 'posY' => '0'],
+        
     ];
 @endphp
 
@@ -71,7 +61,7 @@
     </div>
 
     <!-- Vice Presidents (Grid) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 animate-fade-in-up delay-100">
+    <div class="{{ count($naibPresidents) == 3 ? 'grid grid-cols-3' : 'flex flex-row flex-nowrap justify-center' }} {{ count($naibPresidents) == 2 ? 'md:justify-between max-w-4xl mx-auto' : '' }} gap-2 md:gap-16 lg:gap-24 animate-fade-in-up delay-100">
         @foreach($naibPresidents as $naib)
             <x-member-card 
                 :name="$naib['name']" 
@@ -83,20 +73,11 @@
         @endforeach
     </div>
 
-     <!-- SETIAUSAHA AGUNG (Centered) -->
-    <div class="flex justify-center mt-16 mb-20 animate-fade-in-up">
-        <x-member-card 
-            :name="$setiausahaAgung['name']" 
-            :role="$setiausahaAgung['role']" 
-            :image="$setiausahaAgung['image']"
-            posX="center"
-            :posY="$setiausahaAgung['posY']"
-        />
-    </div>
+    
 
-    <!-- Penolong Setiausaha (Grid) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 mt-16 animate-fade-in-up delay-200">
-        @foreach($penolongSetiausahas as $penolong)
+    <!--  Setiausaha (Grid) -->
+    <div class="{{ count($Setiausahas) == 3 ? 'grid grid-cols-3' : 'flex flex-row flex-nowrap justify-center' }} {{ count($Setiausahas) == 2 ? 'md:justify-between max-w-4xl mx-auto' : '' }} gap-2 md:gap-16 lg:gap-24 mt-16 animate-fade-in-up delay-200">
+        @foreach($Setiausahas as $penolong)
             <x-member-card 
                 :name="$penolong['name']" 
                 :role="$penolong['role']" 
@@ -107,16 +88,5 @@
         @endforeach
     </div>
 
-    <!-- Bendaharis (Grid) -->
-     <div class="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 mt-16 animate-fade-in-up delay-200">
-        @foreach($bendaharis as $bendahari)
-            <x-member-card 
-                :name="$bendahari['name']" 
-                :role="$bendahari['role']" 
-                :image="$bendahari['image']"
-                posX="center"
-                :posY="$bendahari['posY']"
-            />
-        @endforeach
-    </div>
+    
 </div>

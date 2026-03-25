@@ -33,7 +33,7 @@
                 <x-navbar.nav-dropdown title="PROFIL STU">
                     <x-navbar.nav-dropdown-link :href="url('/mengenai-stu')">MENGENAI STU</x-navbar.nav-dropdown-link>
                     <x-navbar.nav-dropdown-link :href="url('/ahli-tertinggi-exco')" :bordered="true">AHLI TERTINGGI & EXCO</x-navbar.nav-dropdown-link>
-                    <x-navbar.nav-dropdown-link :href="url('/pengurusan')" :bordered="true">PENGURUSAN</x-navbar.nav-dropdown-link>
+                    <!-- <x-navbar.nav-dropdown-link :href="url('/pengurusan')" :bordered="true">PENGURUSAN</x-navbar.nav-dropdown-link> -->
                 </x-navbar.nav-dropdown>
 
                 <!-- MEDIA & AKTIVITI Dropdown -->

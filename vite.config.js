@@ -8,8 +8,8 @@ export default defineConfig({
             input: [
                 "resources/css/app.css", 
                 "resources/js/app.js",
-                "resources/css/**",
-                "resources/js/**",
+                "resources/css/pages/keahlian.css",
+                "resources/js/pages/keahlian.js",
             ],
             refresh: [
                 "resources/views/**",
