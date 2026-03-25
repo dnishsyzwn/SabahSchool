@@ -10,9 +10,6 @@ Route::get('/keahlian', function () {
     return view('pages.keahlian');
 });
 
-Route::get('/login', function () {
-    return view('pages.login');
-});
 
 Route::get('/aktiviti-kami', function () {
     return view('pages.aktiviti-kami');
@@ -61,5 +58,26 @@ Route::get('/kerjaya/detail', function () {
     return view('pages.kerjaya-detail');
 });
 
+// ==========================================
+// AUTH ROUTES
+// ==========================================
 
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [\App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])->name('login.post');
+});
 
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
+});
+
+// ==========================================
+// ADMIN ROUTES
+// ==========================================
+
+Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function () {
+    // Temporary Dashboard Route
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+});

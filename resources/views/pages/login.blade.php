@@ -22,9 +22,19 @@
             <p class="text-white/60 text-sm font-medium uppercase tracking-widest">Akses Keamanan Kesatuan</p>
         </div>
 
+        @if ($errors->any())
+            <div class="bg-red-500/10 border border-red-500/50 text-white p-4 rounded-xl mb-6 text-sm backdrop-blur-md">
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <!-- Glassmorphism Card -->
         <div class="bg-white/10 backdrop-blur-2xl rounded-[2.5rem] p-8 md:p-10 border border-white/20 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)]">
-            <form action="#" method="POST" class="space-y-6">
+            <form action="{{ route('login.post') }}" method="POST" class="space-y-6">
                 @csrf
                 
                 <!-- Email Field -->
