@@ -40,15 +40,9 @@ Route::get('/bukti-tuntutan', function () {
     return view('pages.bukti-tuntutan-alternate');
 });
 
-Route::get('/berita', function () {
-    return view('pages.berita');
-});
-
-
-
-Route::get('/berita/{id}', function ($id) {
-    return view('pages.berita-detail', ['id' => $id]);
-});
+// Berita (public — powered by DB)
+Route::get('/berita', [\App\Http\Controllers\NewsPublicController::class, 'index'])->name('berita.index');
+Route::get('/berita/{slug}', [\App\Http\Controllers\NewsPublicController::class, 'show'])->name('berita.show');
 
 Route::get('/kerjaya', function () {
     return view('pages.kerjaya');
@@ -76,6 +70,8 @@ Route::middleware('auth')->group(function () {
 // ==========================================
 
 Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function () {
-    // Temporary Dashboard Route
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
+    Route::post('/news-image/upload', [\App\Http\Controllers\Admin\NewsImageController::class, 'upload'])->name('news.image.upload');
+    Route::delete('/news-image', [\App\Http\Controllers\Admin\NewsImageController::class, 'destroy'])->name('news.image.destroy');
 });
