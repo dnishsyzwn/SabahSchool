@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\NewsImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class NewsImageController extends Controller
 {
@@ -19,7 +20,7 @@ class NewsImageController extends Controller
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp,gif', 'max:5120'],
         ]);
 
-        $path = $request->file('image')->store('news/content-images', 'public');
+        $path = $request->file('image')->store('news/temp', 'public');
 
         return response()->json([
             'url' => Storage::url($path),
@@ -33,13 +34,25 @@ class NewsImageController extends Controller
     {
         $request->validate(['url' => ['required', 'string']]);
 
-        // Convert public URL back to storage path
-        $path = str_replace('/storage/', '', parse_url($request->url, PHP_URL_PATH));
+        // Get the path from the URL accurately
+        $urlPath = parse_url($request->url, PHP_URL_PATH);
+        
+        // Remove /storage/ or storage/ prefix to get the relative path to the public disk
+        $path = $urlPath;
+        if (strpos($path, '/storage/') === 0) {
+            $path = substr($path, 9);
+        } elseif (strpos($path, 'storage/') === 0) {
+            $path = substr($path, 8);
+        }
+
+        // Clean any leading slashes
+        $path = ltrim($path, '/');
 
         if (Storage::disk('public')->exists($path)) {
             Storage::disk('public')->delete($path);
+            return response()->json(['ok' => true, 'deleted' => $path]);
         }
 
-        return response()->json(['ok' => true]);
+        return response()->json(['ok' => false, 'message' => 'File not found', 'path' => $path], 404);
     }
 }

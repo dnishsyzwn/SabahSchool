@@ -84,7 +84,17 @@ class ContentRenderer
     {
         $url     = $d['file']['url'] ?? $d['url'] ?? '';
         $caption = $d['caption'] ?? '';
-        $html    = "<figure class='my-8'><img src='" . e($url) . "' alt='" . e($caption) . "' class='w-full rounded-2xl shadow-md'>";
+        $width   = $d['width'] ?? '100';
+        $align   = $d['align'] ?? 'center';
+
+        $wStyle = (int)$width < 100 ? "max-width: {$width}%;" : "width: 100%;";
+        $aStyle = match($align) {
+            'left'   => 'text-align: left;',
+            'right'  => 'text-align: right;',
+            default  => 'text-align: center;',
+        };
+
+        $html = "<figure class='my-8' style='{$aStyle}'><div style='display: inline-block; {$wStyle}'><img src='" . e($url) . "' alt='" . e($caption) . "' class='w-full rounded-2xl shadow-md'></div>";
         if ($caption) $html .= "<figcaption class='text-center text-sm text-gray-500 mt-3 italic'>" . e($caption) . "</figcaption>";
         return $html . '</figure>';
     }
@@ -94,13 +104,16 @@ class ContentRenderer
         $images = $d['images'] ?? [];
         if (empty($images)) return '';
         $cols    = (int)($d['columns'] ?? 2);
+        $ratio   = $d['aspectRatio'] ?? '16/9';
         $colCls  = match($cols) { 1 => 'grid-cols-1', 3 => 'grid-cols-1 md:grid-cols-3', default => 'grid-cols-1 md:grid-cols-2' };
+        $arStyle = $ratio === 'auto' ? "height: auto;" : "aspect-ratio: {$ratio}; object-fit: cover;";
+
         $html    = "<div class='grid {$colCls} gap-4 my-8'>";
         foreach ($images as $img) {
             $url = $img['url'] ?? '';
             $cap = $img['caption'] ?? '';
             $html .= "<figure class='gallery-trigger group relative overflow-hidden rounded-2xl shadow-md bg-gray-100'>";
-            $html .= "<img src='" . e($url) . "' alt='" . e($cap) . "' class='w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500'>";
+            $html .= "<img src='" . e($url) . "' alt='" . e($cap) . "' class='w-full transition-transform duration-500 group-hover:scale-105' style='{$arStyle}'>";
             if ($cap) $html .= "<figcaption class='absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-white text-xs font-medium'>" . e($cap) . "</figcaption>";
             $html .= "</figure>";
         }

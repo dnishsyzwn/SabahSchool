@@ -12,11 +12,10 @@ class StoreNewsRequest extends FormRequest
     {
         return [
             'title'       => ['required', 'string', 'max:255'],
-            'category_id' => ['nullable', 'exists:news_categories,id'],
-            'content'     => ['required', 'string'],
-            'excerpt'     => ['nullable', 'string', 'max:500'],
-            'thumbnail'   => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:3072'],
-            'status'      => ['required', 'in:draft,published,archived'],
+            'category_id'   => ['nullable', 'exists:news_categories,id'],
+            'content'       => ['required', 'string'],
+            'thumbnail_url' => ['nullable', 'string'],
+            'status'        => ['required', 'in:draft,published,archived'],
         ];
     }
 }

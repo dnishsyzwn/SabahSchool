@@ -74,4 +74,9 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
     Route::post('/news-image/upload', [\App\Http\Controllers\Admin\NewsImageController::class, 'upload'])->name('news.image.upload');
     Route::delete('/news-image', [\App\Http\Controllers\Admin\NewsImageController::class, 'destroy'])->name('news.image.destroy');
+
+    // Categories
+    Route::get('/news-categories', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'index'])->name('news.categories.index');
+    Route::post('/news-categories', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'store'])->name('news.categories.store');
+    Route::delete('/news-categories/{category}', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'destroy'])->name('news.categories.destroy');
 });
