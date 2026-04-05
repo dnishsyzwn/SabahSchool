@@ -82,7 +82,7 @@
     @csrf
     <input type="hidden" id="content-input" name="content" value="{{ old('content') }}">
 
-    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 items-start">
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-10 xl:gap-8 items-start">
 
         {{-- Left: Content --}}
         <div class="xl:col-span-2 space-y-6">
@@ -120,7 +120,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="relative z-[50] bg-white rounded-2xl shadow-sm border border-gray-100">
                 <div class="px-8 py-4 border-b border-gray-50 bg-gray-50/30 flex justify-between items-center">
                     <div>
                         <p class="text-xs font-bold text-gray-700 uppercase tracking-wider">Kandungan Utama</p>
@@ -134,13 +134,51 @@
 
         {{-- Right: Settings (Sticky) --}}
         <div class="space-y-6 xl:sticky xl:top-8">
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+            <div class="relative z-[30] bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Klasifikasi Kategori</p>
+                
+                {{-- Custom Searchable Dropdown --}}
+                <div class="relative" id="cat-dropdown-container">
+                    <button type="button" onclick="toggleCatDropdown(event)" id="cat-trigger" 
+                            class="w-full flex items-center justify-between px-4 py-3 text-sm border {{ $errors->has('category_id') ? 'border-red-300 bg-red-50/30' : 'border-gray-100 bg-gray-50/50' }} rounded-xl hover:bg-white hover:border-blue-200 transition text-left group">
+                        <span id="cat-label" class="{{ $errors->has('category_id') ? 'text-red-600 font-bold' : 'text-gray-600 font-medium' }} italic">
+                            {{ $errors->has('category_id') ? 'Sila Pilih Kategori' : '-- Pilih Kategori --' }}
+                        </span>
+                        <svg class="w-4 h-4 {{ $errors->has('category_id') ? 'text-red-400' : 'text-gray-400' }} group-hover:text-blue-500 transition-transform" id="cat-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+
+                    <div id="cat-dropdown-menu" class="absolute z-[100] mt-2 w-full bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div class="p-3 border-b border-gray-50">
+                            <div class="relative">
+                                <input type="text" id="cat-search" placeholder="Cari kategori..." 
+                                       class="w-full pl-9 pr-4 py-2 text-xs border border-gray-100 bg-gray-50/50 rounded-lg focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition">
+                                <svg class="absolute left-3 top-2.5 w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                            </div>
+                        </div>
+                        
+                        <div id="cat-options" class="max-h-60 overflow-y-auto p-2 space-y-0.5 custom-scrollbar">
+                            {{-- Inject via JS --}}
+                        </div>
+
+                        <div class="p-2 border-t border-gray-50 bg-gray-50/50">
+                            <button type="button" onclick="openCategoryModal(event)" class="w-full py-2 text-[10px] font-bold text-blue-600 hover:bg-white rounded-lg transition uppercase tracking-wider flex items-center justify-center gap-2">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"/></svg>
+                                Urus Kategori
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="category_id" id="category_id_val" value="{{ old('category_id') }}">
+                @error('category_id') <p class="text-red-500 text-[10px] mt-2 font-medium">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="relative z-[20] bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Status Penerbitan</p>
                 <div class="grid grid-cols-2 gap-3">
                     @foreach(['draft'=>['Draf','Simpan Dulu','text-amber-600 bg-amber-50'],'published'=>['Terbit','Siarkan','text-emerald-600 bg-emerald-50']] as $val=>[$lbl,$desc,$cls])
                     <div class="relative">
                         <input type="radio" name="status" value="{{ $val }}" {{ old('status','draft')===$val?'checked':'' }} class="sr-only" id="st-{{$val}}">
-                        <label for="st-{{$val}}" class="status-card flex flex-col items-center gap-2 cursor-pointer p-4 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/10 transition group relative">
+                        <label for="st-{{$val}}" class="status-card flex flex-col items-center gap-2 cursor-pointer p-4 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/10 transition group relative text-center">
                             <div class="status-icon w-10 h-10 rounded-full {{ $cls }} flex items-center justify-center transition duration-300">
                                 @if($val === 'draft')
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
@@ -160,44 +198,8 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Klasifikasi Kategori</p>
-                
-                {{-- Custom Searchable Dropdown --}}
-                <div class="relative" id="cat-dropdown-container">
-                    <button type="button" onclick="toggleCatDropdown()" id="cat-trigger" 
-                            class="w-full flex items-center justify-between px-4 py-3 text-sm border border-gray-100 bg-gray-50/50 rounded-xl hover:bg-white hover:border-blue-200 transition text-left group">
-                        <span id="cat-label" class="text-gray-600 font-medium">-- Pilih Kategori --</span>
-                        <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-transform" id="cat-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-
-                    <div id="cat-dropdown-menu" class="absolute z-[50] mt-2 w-full bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                        <div class="p-3 border-b border-gray-50">
-                            <div class="relative">
-                                <input type="text" id="cat-search" placeholder="Cari kategori..." 
-                                       class="w-full pl-9 pr-4 py-2 text-xs border border-gray-100 bg-gray-50/50 rounded-lg focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition">
-                                <svg class="absolute left-3 top-2.5 w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                            </div>
-                        </div>
-                        
-                        <div id="cat-options" class="max-h-60 overflow-y-auto p-2 space-y-0.5 custom-scrollbar">
-                            {{-- Inject via JS --}}
-                        </div>
-
-                        <div class="p-2 border-t border-gray-50 bg-gray-50/50">
-                            <button type="button" onclick="openCategoryModal()" class="w-full py-2 text-[10px] font-bold text-blue-600 hover:bg-white rounded-lg transition uppercase tracking-wider flex items-center justify-center gap-2">
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"/></svg>
-                                Urus Kategori
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <input type="hidden" name="category_id" id="category_id_val" value="{{ old('category_id') }}">
-                @error('category_id') <p class="text-red-500 text-[10px] mt-2 font-medium">{{ $message }}</p> @enderror
-            </div>
-
             <button type="button" id="btn-save"
-                    class="w-full py-4 bg-blue-600 text-white font-extrabold rounded-2xl hover:bg-blue-700 active:scale-[0.98] transition shadow-xl shadow-blue-200 uppercase tracking-widest text-xs">
+                    class="relative z-[10] w-full py-4 bg-blue-600 text-white font-extrabold rounded-2xl hover:bg-blue-700 active:scale-[0.98] transition shadow-xl shadow-blue-200 uppercase tracking-widest text-xs">
                 Simpan Draf
             </button>
         </div>
@@ -565,7 +567,8 @@ const editor=new EditorJS({
 // ══ Category Management ══
 let allCategories = [];
 
-function toggleCatDropdown() {
+function toggleCatDropdown(e) {
+    if(e) e.stopPropagation();
     const menu = document.getElementById('cat-dropdown-menu');
     const arrow = document.getElementById('cat-arrow');
     const isOpen = menu.classList.contains('open');
@@ -585,11 +588,13 @@ function toggleCatDropdown() {
 document.addEventListener('click', e => {
     if(!document.getElementById('cat-dropdown-container').contains(e.target)) {
         document.getElementById('cat-dropdown-menu').classList.remove('open');
-        document.getElementById('cat-arrow').style.transform = 'rotate(0deg)';
+        const arrow = document.getElementById('cat-arrow');
+        if(arrow) arrow.style.transform = 'rotate(0deg)';
     }
 });
 
-function openCategoryModal() { 
+function openCategoryModal(e) { 
+    if(e) e.stopPropagation();
     document.getElementById('cat-dropdown-menu').classList.remove('open');
     document.getElementById('cat-modal').classList.add('open');
     document.getElementById('modal-add-section').classList.add('hidden');
@@ -661,8 +666,9 @@ function renderCategoryOptions(cats) {
 function selectCategory(id, name) {
     document.getElementById('category_id_val').value = id;
     document.getElementById('cat-label').textContent = name;
-    document.getElementById('cat-label').classList.remove('text-gray-400');
+    document.getElementById('cat-label').classList.remove('text-red-600', 'text-gray-400');
     document.getElementById('cat-label').classList.add('text-blue-600', 'font-bold');
+    document.getElementById('cat-trigger').classList.remove('border-red-300', 'bg-red-50/30');
     document.getElementById('cat-dropdown-menu').classList.remove('open');
     document.getElementById('cat-arrow').style.transform = 'rotate(0deg)';
 }

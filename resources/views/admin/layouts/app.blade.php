@@ -13,10 +13,26 @@
 
     <div x-data="{ sidebarOpen: false }" class="flex h-screen overflow-hidden">
         
+        <!-- Backdrop Overlay -->
+        <div x-show="sidebarOpen" 
+             @click="sidebarOpen = false" 
+             class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm xl:hidden transition-opacity duration-300"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0">
+        </div>
+
         <!-- Sidebar -->
-        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white transition-transform duration-300 lg:translate-x-0 lg:static lg:inset-0 flex flex-col">
-            <div class="flex items-center justify-center p-6 border-b border-gray-800">
+        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white transition-transform duration-300 xl:translate-x-0 xl:static xl:inset-0 flex flex-col">
+            <div class="flex items-center justify-between p-6 border-b border-gray-800">
                 <span class="text-2xl font-bold font-serif whitespace-nowrap">STU Admin</span>
+                <!-- Close Button (Mobile only) -->
+                <button @click="sidebarOpen = false" class="xl:hidden text-gray-400 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
             
             <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
@@ -86,7 +102,7 @@
             
             <!-- Navbar -->
             <header class="flex items-center justify-between h-16 px-6 bg-white border-b border-gray-200 shadow-sm z-10 w-full">
-                <button @click="sidebarOpen = !sidebarOpen" class="text-gray-500 lg:hidden focus:outline-none">
+                <button @click="sidebarOpen = !sidebarOpen" class="text-gray-500 xl:hidden focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
                 
@@ -117,13 +133,13 @@
             </header>
 
             <!-- Main Scrollable Area -->
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 px-6 py-10 sm:px-10 xl:px-12">
                 <!-- Page Title -->
-                <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <h2 class="text-2xl font-bold text-gray-900 leading-tight">
                         @yield('header')
                     </h2>
-                    <div class="mt-4 sm:mt-0">
+                    <div class="md:mt-0">
                         @yield('actions')
                     </div>
                 </div>

@@ -12,7 +12,14 @@ class ContentRenderer
         if (str_starts_with($trimmed, '{')) {
             $data = json_decode($trimmed, true);
             if (json_last_error() === JSON_ERROR_NONE && isset($data['blocks'])) {
-                return implode('', array_map([static::class, 'renderBlock'], $data['blocks']));
+                $html = implode('', array_map([static::class, 'renderBlock'], $data['blocks']));
+                
+                // Ensure all links open in a new tab for security and UX
+                return preg_replace(
+                    '/<a /i', 
+                    '<a target="_blank" rel="noopener noreferrer" class="hover:underline" ', 
+                    $html
+                );
             }
         }
 
@@ -43,7 +50,7 @@ class ContentRenderer
     {
         $data = $block['data'] ?? [];
         return match ($block['type'] ?? '') {
-            'paragraph' => '<p class="mb-4 text-gray-600 leading-relaxed">' . ($data['text'] ?? '') . '</p>',
+            'paragraph' => '<p>' . ($data['text'] ?? '') . '</p>',
             'header'    => static::renderHeader($data),
             'quote'     => static::renderQuote($data),
             'list'      => static::renderList($data),
@@ -56,28 +63,21 @@ class ContentRenderer
     protected static function renderHeader(array $d): string
     {
         $l = $d['level'] ?? 2;
-        $cls = match((int)$l) {
-            1 => 'text-3xl font-extrabold text-primary mt-10 mb-4',
-            2 => 'text-2xl font-bold text-primary mt-8 mb-3',
-            3 => 'text-xl font-bold text-gray-800 mt-6 mb-2',
-            default => 'text-lg font-semibold text-gray-800 mt-4 mb-2',
-        };
-        return "<h{$l} class='{$cls}'>{$d['text']}</h{$l}>";
+        return "<h{$l}>{$d['text']}</h{$l}>";
     }
 
     protected static function renderQuote(array $d): string
     {
-        $html = "<blockquote class='border-l-4 border-secondary bg-primary/5 p-6 rounded-r-2xl my-8 italic text-gray-600 text-lg'>{$d['text']}";
-        if (!empty($d['caption'])) $html .= "<footer class='mt-3 text-sm font-semibold text-gray-500 not-italic'>— {$d['caption']}</footer>";
+        $html = "<blockquote>{$d['text']}";
+        if (!empty($d['caption'])) $html .= "<cite>{$d['caption']}</cite>";
         return $html . '</blockquote>';
     }
 
     protected static function renderList(array $d): string
     {
         $tag  = ($d['style'] ?? 'unordered') === 'ordered' ? 'ol' : 'ul';
-        $cls  = $tag === 'ol' ? 'list-decimal' : 'list-disc';
         $items = implode('', array_map(fn($i) => "<li>" . (is_array($i) ? ($i['content'] ?? '') : $i) . "</li>", $d['items'] ?? []));
-        return "<{$tag} class='{$cls} list-inside space-y-1 my-4 pl-4 text-gray-600'>{$items}</{$tag}>";
+        return "<{$tag}>{$items}</{$tag}>";
     }
 
     protected static function renderImage(array $d): string

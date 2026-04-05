@@ -25,8 +25,12 @@ class NewsPublicController extends Controller
             $query->where('category_id', $category);
         }
 
-        $posts      = $query->paginate(9);
+        $posts      = $query->paginate(9)->withQueryString();
         $categories = NewsCategory::withCount(['posts' => fn($q) => $q->where('status', 'published')])->get();
+
+        if ($request->ajax()) {
+            return view('pages.partials.news-grid', compact('posts'))->render();
+        }
 
         return view('pages.berita', compact('posts', 'categories'));
     }

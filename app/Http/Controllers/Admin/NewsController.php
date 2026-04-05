@@ -14,11 +14,40 @@ use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
-        $posts = NewsPost::with(['category', 'author'])
-            ->latest()
-            ->paginate(15);
+        $query = NewsPost::with(['category', 'author']);
+
+        // Search
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('content', 'like', "%{$search}%");
+            });
+        }
+
+        // Filter by Status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // Sorting
+        $sort = $request->input('sort', 'created_at');
+        $direction = $request->input('direction', 'desc');
+        $allowedSorts = ['title', 'status', 'created_at'];
+        
+        if (in_array($sort, $allowedSorts)) {
+            $query->orderBy($sort, $direction === 'asc' ? 'asc' : 'desc');
+        } else {
+            $query->latest();
+        }
+
+        $posts = $query->paginate(15)->withQueryString();
+
+        if ($request->ajax()) {
+            return view('admin.news.partials.table', compact('posts'))->render();
+        }
 
         return view('admin.news.index', compact('posts'));
     }
