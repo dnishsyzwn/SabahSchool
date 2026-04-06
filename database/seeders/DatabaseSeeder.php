@@ -31,6 +31,10 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        $this->call([
+            ActivitySeeder::class,
+        ]);
+
         $this->command->info('✅ Superadmin and Admin accounts created.');
         $this->command->info('   superadmin@stu.my / Admin@1234');
         $this->command->info('   admin@stu.my / Admin@1234');

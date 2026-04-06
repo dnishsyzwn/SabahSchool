@@ -11,9 +11,7 @@ Route::get('/keahlian', function () {
 });
 
 
-Route::get('/aktiviti-kami', function () {
-    return view('pages.aktiviti-kami');
-});
+Route::get('/aktiviti-kami', [\App\Http\Controllers\PublicActivityController::class, 'index'])->name('aktiviti-kami.index');
 Route::get('/borang/muat-turun', function () {
     return view('pages.muat-turun');
 });
@@ -74,6 +72,10 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
     Route::post('/news-image/upload', [\App\Http\Controllers\Admin\NewsImageController::class, 'upload'])->name('news.image.upload');
     Route::delete('/news-image', [\App\Http\Controllers\Admin\NewsImageController::class, 'destroy'])->name('news.image.destroy');
+
+    // Activities
+    Route::resource('activities', \App\Http\Controllers\Admin\ActivityController::class);
+    Route::post('/activities/image/upload', [\App\Http\Controllers\Admin\ActivityImageController::class, 'upload'])->name('activities.image.upload');
 
     // Categories
     Route::get('/news-categories', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'index'])->name('news.categories.index');

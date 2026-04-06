@@ -32,7 +32,7 @@
                     Berita
                 </a>
                 
-                <a href="#" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition text-gray-300">
+                <a href="{{ route('admin.activities.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.activities.*') ? 'bg-gray-800 text-blue-400' : 'text-gray-300' }}">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     Aktiviti
                 </a>
