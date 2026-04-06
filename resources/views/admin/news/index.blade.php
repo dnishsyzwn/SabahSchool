@@ -12,99 +12,184 @@
 @endsection
 
 @section('content')
-<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+<div class="bg-white rounded-2xl shadow-xl shadow-gray-100/50 border border-gray-100 overflow-hidden transition-all duration-500">
     
-    {{-- Filter / Search Bar --}}
-    <div class="p-4 border-b border-gray-100 bg-gray-50/50 flex flex-col sm:flex-row items-center gap-3">
-        <form method="GET" action="{{ route('admin.news.index') }}" class="flex flex-1 gap-3 w-full">
-            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari artikel..."
-                   class="flex-1 px-4 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
-            <select name="status" class="px-4 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
-                <option value="">Semua Status</option>
-                <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>Published</option>
-                <option value="draft"     {{ request('status') === 'draft'     ? 'selected' : '' }}>Draft</option>
-                <option value="archived"  {{ request('status') === 'archived'  ? 'selected' : '' }}>Archived</option>
-            </select>
-            <button type="submit" class="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition">Cari</button>
-            @if(request('search') || request('status'))
-                <a href="{{ route('admin.news.index') }}" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-200 transition">Reset</a>
+    {{-- Advanced Filter Bar --}}
+    <div class="p-6 border-b border-gray-50 bg-gray-50/30 flex flex-col lg:flex-row items-center gap-6">
+        <div class="flex-1 w-full">
+            <h2 class="text-sm font-black text-gray-800 uppercase tracking-widest mb-1">Cari & Tapis</h2>
+            <p class="text-[10px] text-gray-400 font-medium">Urus dan tapis senarai artikel berita anda dengan pantas</p>
+        </div>
+
+        <form id="filter-form" method="GET" action="{{ route('admin.news.index') }}" class="flex flex-col sm:flex-row flex-[2] gap-3 w-full">
+            {{-- Dynamic Search --}}
+            <div class="relative flex-1 group">
+                <input type="text" name="search" id="search-input" value="{{ request('search') }}" 
+                       placeholder="Cari tajuk atau kandungan..."
+                       class="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-100 bg-white rounded-xl focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all duration-300">
+                <svg class="absolute left-3.5 top-3 w-4 h-4 text-gray-300 group-focus-within:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+
+            {{-- Status Filter --}}
+            <div class="sm:w-48 group">
+                <select name="status" id="status-filter" 
+                        class="w-full px-4 py-2.5 text-sm border border-gray-100 bg-white rounded-xl focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all appearance-none cursor-pointer">
+                    <option value="">Semua Status</option>
+                    <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>Terbit (Published)</option>
+                    <option value="draft"     {{ request('status') === 'draft'     ? 'selected' : '' }}>Draf (Draft)</option>
+                    <option value="archived"  {{ request('status') === 'archived'  ? 'selected' : '' }}>Arkib (Archived)</option>
+                </select>
+            </div>
+
+            <input type="hidden" name="sort" id="sort-input" value="{{ request('sort', 'created_at') }}">
+            <input type="hidden" name="direction" id="direction-input" value="{{ request('direction', 'desc') }}">
+
+            <button type="submit" class="hidden">Cari</button>
+
+            @if(request('search') || request('status') || request('sort'))
+                <a href="{{ route('admin.news.index') }}" 
+                   class="px-5 py-2.5 bg-gray-100 text-gray-600 text-xs font-black rounded-xl hover:bg-gray-200 transition uppercase tracking-widest flex items-center justify-center">
+                    Reset
+                </a>
             @endif
         </form>
     </div>
 
-    <div class="overflow-x-auto">
-        <table class="min-w-full text-left text-sm">
-            <thead class="bg-gray-50 text-xs text-gray-500 uppercase tracking-wider">
-                <tr>
-                    <th class="px-4 py-3 w-16">Gambar</th>
-                    <th class="px-4 py-3">Tajuk / Kategori</th>
-                    <th class="px-4 py-3">Penulis</th>
-                    <th class="px-4 py-3">Status</th>
-                    <th class="px-4 py-3">Tarikh</th>
-                    <th class="px-4 py-3 text-right">Tindakan</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100">
-                @forelse($posts as $post)
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="px-4 py-3">
-                        @if($post->thumbnail)
-                            <img src="{{ Storage::url($post->thumbnail) }}" class="w-14 h-14 object-cover rounded-lg shadow-sm border border-gray-200">
-                        @else
-                            <div class="w-14 h-14 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 border border-gray-200">
-                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            </div>
-                        @endif
-                    </td>
-                    <td class="px-4 py-3 max-w-xs">
-                        <p class="font-semibold text-gray-900 line-clamp-2">{{ $post->title }}</p>
-                        <p class="text-xs text-gray-500 mt-1">{{ $post->category?->name ?? '—' }}</p>
-                    </td>
-                    <td class="px-4 py-3 text-gray-600 whitespace-nowrap">{{ $post->author?->name ?? '—' }}</td>
-                    <td class="px-4 py-3">
-                        @php
-                            $badge = match($post->status) {
-                                'published' => 'bg-green-100 text-green-700',
-                                'draft'     => 'bg-yellow-100 text-yellow-700',
-                                'archived'  => 'bg-gray-100 text-gray-600',
-                                default     => 'bg-gray-100 text-gray-600',
-                            };
-                        @endphp
-                        <span class="inline-block px-2.5 py-0.5 text-xs font-semibold rounded-full {{ $badge }} capitalize">
-                            {{ $post->status }}
-                        </span>
-                    </td>
-                    <td class="px-4 py-3 text-gray-500 whitespace-nowrap text-xs">
-                        {{ $post->created_at->format('d M Y') }}
-                    </td>
-                    <td class="px-4 py-3 text-right">
-                        <div class="flex items-center justify-end gap-2">
-                            <a href="{{ route('admin.news.edit', $post) }}" class="px-3 py-1.5 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg hover:bg-blue-100 transition">Edit</a>
-                            <form method="POST" action="{{ route('admin.news.destroy', $post) }}" onsubmit="return confirm('Padam artikel ini? Tindakan ini tidak boleh dibatalkan.')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="px-3 py-1.5 bg-red-50 text-red-600 text-xs font-semibold rounded-lg hover:bg-red-100 transition">Padam</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="6" class="px-4 py-16 text-center text-gray-500">
-                        <svg class="w-14 h-14 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
-                        <p class="font-semibold">Tiada artikel dijumpai</p>
-                        <a href="{{ route('admin.news.create') }}" class="text-sm text-blue-500 hover:text-blue-700 mt-1 inline-block">+ Tambah artikel pertama</a>
-                    </td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
+    {{-- AJAX Table Container --}}
+    <div id="table-container">
+        @include('admin.news.partials.table')
     </div>
-
-    @if($posts->hasPages())
-        <div class="px-6 py-4 border-t border-gray-100">
-            {{ $posts->withQueryString()->links() }}
-        </div>
-    @endif
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    let searchTimeout;
+
+    // ══ AJAX Table Core ══
+    async function fetchTable(url) {
+        const container = document.getElementById('table-container');
+        const loader = document.getElementById('table-loader');
+        
+        // Show loader
+        if(loader) {
+            loader.style.opacity = '1';
+            loader.style.pointerEvents = 'auto';
+        }
+
+        try {
+            const response = await fetch(url, {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            });
+            
+            if (!response.ok) throw new Error('Network response was not ok');
+            
+            const html = await response.text();
+            container.innerHTML = html;
+            
+            // Re-bind pagination and sorting
+            bindDynamicEvents();
+            
+            // Update URL
+            window.history.pushState(null, '', url);
+        } catch (error) {
+            console.error('Fetch error:', error);
+            Swal.fire({ icon: 'error', title: 'Ralat', text: 'Gagal memuatkan data. Sila cuba lagi.' });
+        } finally {
+            if(loader) {
+                loader.style.opacity = '0';
+                loader.style.pointerEvents = 'none';
+            }
+        }
+    }
+
+    function buildUrl() {
+        const form = document.getElementById('filter-form');
+        const formData = new FormData(form);
+        const params = new URLSearchParams(formData);
+        return `${form.action}?${params.toString()}`;
+    }
+
+    function bindDynamicEvents() {
+        // Handle pagination links
+        document.querySelectorAll('.table-pagination a').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                fetchTable(link.href);
+            });
+        });
+    }
+
+    // ══ Sorting ══
+    function sort(column) {
+        const sortInput = document.getElementById('sort-input');
+        const dirInput = document.getElementById('direction-input');
+        
+        if (sortInput.value === column) {
+            dirInput.value = dirInput.value === 'asc' ? 'desc' : 'asc';
+        } else {
+            sortInput.value = column;
+            dirInput.value = 'asc';
+        }
+        
+        fetchTable(buildUrl());
+    }
+
+    // ══ Filter Listeners ══
+    document.getElementById('search-input').addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            fetchTable(buildUrl());
+        }, 500); // 500ms debounce
+    });
+
+    document.getElementById('status-filter').addEventListener('change', () => {
+        fetchTable(buildUrl());
+    });
+
+    document.getElementById('filter-form').addEventListener('submit', e => {
+        e.preventDefault();
+        fetchTable(buildUrl());
+    });
+
+    // ══ Browser Back Button ══
+    window.addEventListener('popstate', () => {
+        location.reload(); // Simplest way to handle back/forward correctly for now
+    });
+
+    // ══ Delete Confirmation (Standardized) ══
+    function confirmDelete(id, title) {
+        Swal.fire({
+            title: 'Padam Artikel?',
+            html: `Adakah anda pasti ingin memadam artikel <strong>"${title}"</strong>? Tindakan ini tidak boleh dibatalkan.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#64748b',
+            confirmButtonText: 'Ya, Padam!',
+            cancelButtonText: 'Batal',
+            reverseButtons: true,
+            customClass: {
+                popup: 'rounded-2xl shadow-2xl',
+                confirmButton: 'rounded-lg px-6 py-2.5 text-xs uppercase font-black tracking-widest',
+                cancelButton: 'rounded-lg px-6 py-2.5 text-xs uppercase font-black tracking-widest'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const form = document.getElementById('delete-form');
+                form.action = `/admin/news/${id}`;
+                form.submit();
+            }
+        });
+    }
+
+    // Initial binding
+    document.addEventListener('DOMContentLoaded', bindDynamicEvents);
+</script>
+
+<form id="delete-form" method="POST" class="hidden">
+    @csrf
+    @method('DELETE')
+</form>
+@endpush

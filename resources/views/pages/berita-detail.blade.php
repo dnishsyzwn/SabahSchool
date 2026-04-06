@@ -16,18 +16,20 @@
 
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12">
             <div class="max-w-3xl">
-                <a href="{{ route('berita.index') }}" class="inline-flex items-center gap-2 text-secondary hover:text-white transition-colors mb-8 group">
-                    <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                    <span class="font-bold text-sm tracking-wide uppercase">Kembali ke Senarai Berita</span>
-                </a>
-                
-                @if($post->category)
-                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary/20 text-secondary rounded-lg mb-6 border border-secondary/30 backdrop-blur-sm">
-                        <span class="text-xs font-bold tracking-wider uppercase">{{ $post->category->name }}</span>
-                    </div>
-                @endif
+                <div class="flex flex-wrap items-center gap-4 mb-8">
+                    <a href="{{ route('berita.index') }}" class="inline-flex items-center gap-2 text-secondary hover:text-white transition-colors group">
+                        <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                        <span class="font-bold text-sm tracking-wide uppercase">Kembali ke Senarai Berita</span>
+                    </a>
+                    
+                    @if($post->category)
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary/20 text-secondary rounded-lg border border-secondary/30 backdrop-blur-sm">
+                            <span class="text-xs font-bold tracking-wider uppercase">{{ $post->category->name }}</span>
+                        </div>
+                    @endif
+                </div>
                 
                 <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
                     {{ $post->title }}
