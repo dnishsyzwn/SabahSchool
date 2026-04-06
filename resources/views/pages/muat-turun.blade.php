@@ -47,42 +47,43 @@
 
     <!-- Forms Grid -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @php
-                $borangs = [
-                    ['title' => 'Borang Keahlian STU', 'desc' => 'Borang permohonan menjadi ahli rasmi Sabah Teachers Union.', 'file' => 'BorangKeahlian.pdf', 'size' => '14.8 KB'],
-                    ['title' => 'Borang Tuntutan Kebajikan', 'desc' => 'Borang untuk tuntutan khairat kematian atau bantuan bencana.', 'file' => 'BorangKebajikan.pdf', 'size' => '25.3 KB'],
-                    ['title' => 'Borang Tuntutan Perjalanan', 'desc' => 'Borang tuntutan elaun perjalanan bagi aktiviti kesatuan.', 'file' => 'BorangPerjalanan.pdf', 'size' => '18.1 KB'],
-                    ['title' => 'Borang Pesanan Buku', 'desc' => 'Borang tempahan buku panduan guru dan rujukan pendidikan.', 'file' => 'BorangBuku.pdf', 'size' => '12.4 KB'],
-                    ['title' => 'Borang Permohonan Cuti', 'desc' => 'Borang permohonan cuti penggal atau urusan peribadi guru.', 'file' => 'BorangCuti.pdf', 'size' => '10.5 KB'],
-                    ['title' => 'Borang Pendaftaran Kursus', 'desc' => 'Borang pendaftaran bagi kursus kecemerlangan guru STU.', 'file' => 'BorangKursus.pdf', 'size' => '22.9 KB'],
-                ];
-            @endphp
-
-            @foreach($borangs as $index => $borang)
-                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 animate-fade-in-up" style="animation-delay: {{ ($index + 1) * 0.1 }}s">
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-red-400 group-hover:text-red-500 transition-colors">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">{{ $borang['size'] }}</span>
-                    </div>
-                    
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $borang['title'] }}</h3>
-                    <p class="text-gray-500 text-sm mb-8 leading-relaxed">{{ $borang['desc'] }}</p>
-                    
-                    <a href="{{ asset('pdf/' . $borang['file']) }}" download 
-                       class="flex items-center justify-center gap-2 w-full py-3.5 bg-gray-900 hover:bg-primary text-white font-bold rounded-xl transition-all duration-300 group">
-                        <svg class="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                        Muat Turun
-                    </a>
+        @if($borangs->isEmpty())
+            <div class="text-center py-20 bg-white rounded-3xl border border-dashed border-gray-200 animate-fade-in-up">
+                <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
                 </div>
-            @endforeach
-        </div>
+                <h3 class="text-lg font-bold text-gray-900">Tiada Borang Dijumpai</h3>
+                <p class="text-gray-500">Sila semak semula dalam masa terdekat.</p>
+            </div>
+        @else
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($borangs as $index => $borang)
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 animate-fade-in-up" style="animation-delay: {{ ($index + 1) * 0.1 }}s">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-red-400 group-hover:text-red-500 transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">{{ $borang->file_size }}</span>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $borang->title }}</h3>
+                        <p class="text-gray-500 text-sm mb-8 leading-relaxed">{{ $borang->description }}</p>
+                        
+                        <a href="{{ asset('storage/' . $borang->file_path) }}" download 
+                           class="flex items-center justify-center gap-2 w-full py-3.5 bg-gray-900 hover:bg-primary text-white font-bold rounded-xl transition-all duration-300 group">
+                            <svg class="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Muat Turun
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        @endif
 
         <!-- Help Section -->
         <div class="mt-20 bg-primary/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 animate-fade-in-up delay-700">

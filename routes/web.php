@@ -12,9 +12,7 @@ Route::get('/keahlian', function () {
 
 
 Route::get('/aktiviti-kami', [\App\Http\Controllers\PublicActivityController::class, 'index'])->name('aktiviti-kami.index');
-Route::get('/borang/muat-turun', function () {
-    return view('pages.muat-turun');
-});
+Route::get('/borang/muat-turun', [\App\Http\Controllers\BorangController::class, 'index'])->name('borang.muat-turun');
 
 Route::get('/borang/hantar', function () {
     return view('pages.hantar-borang');
@@ -81,4 +79,7 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     Route::get('/news-categories', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'index'])->name('news.categories.index');
     Route::post('/news-categories', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'store'])->name('news.categories.store');
     Route::delete('/news-categories/{category}', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'destroy'])->name('news.categories.destroy');
+
+    // Borang Pintar
+    Route::resource('borang-pintar', \App\Http\Controllers\Admin\BorangController::class)->except(['show', 'edit', 'update', 'create']);
 });
