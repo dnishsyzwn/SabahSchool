@@ -5,6 +5,7 @@ function wmToggle(header) {
     header.classList.toggle('open', !isOpen);
     body.classList.toggle('open', !isOpen);
 }
+window.wmToggle = wmToggle;
 
 /* ── Global body-level tooltip (bypasses overflow:hidden) ── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -55,3 +56,4 @@ function addRipple(e) {
     circle.style.top  = (e.clientY - rect.top)  + 'px';
     setTimeout(() => circle.remove(), 600);
 }
+window.addRipple = addRipple;

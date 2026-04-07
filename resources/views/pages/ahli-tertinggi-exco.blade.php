@@ -20,17 +20,90 @@
     </div>
 </div>
 
-<div class="bg-white py-8">
+<div class="bg-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        @include('partials.ahli-tertinggi-exco.ajk-tertinggi')
 
-        <!-- <hr class="border-gray-300 mb-32"> -->
+        @php
+            $colMap = [
+                1 => 'grid-cols-1',
+                2 => 'grid-cols-2',
+                3 => 'grid-cols-3',
+            ];
+        @endphp
 
-        
+        {{-- ══ Peringkat Tertinggi ══ --}}
+        @if($topRows->count() > 0)
+        <div class="mb-24">
+            <div class="text-center mb-16">
+                <h2 class="text-2xl md:text-3xl font-black text-primary uppercase tracking-widest inline-block border-b-4 border-secondary pb-2">
+                    AHLI JAWATANKUASA TERTINGGI
+                </h2>
+            </div>
+            <div class="space-y-20">
+                @foreach($topRowConfigs as $rowIdx => $rowCfg)
+                    @php
+                        $members = $topRows->get((int)$rowIdx, collect());
+                        $cols    = (int) ($rowCfg['cols'] ?? 1);
+                        $gridCls = $colMap[$cols] ?? 'grid-cols-1';
+                        $isFirst = ($rowIdx == 0);
+                    @endphp
+                    @if($members->count() > 0)
+                    <div class="grid {{ $gridCls }} gap-4 md:gap-20 justify-items-center animate-fade-in-up">
+                    @foreach($members as $i => $member)
+                            @php
+                                $imgSrc      = $member->image_path ? Storage::url($member->image_path) : asset('images/lelaki-pending.png');
+                                $isHighlight = (bool) $member->is_highlight;
+                            @endphp
+                            <x-member-card
+                                :name="$member->name"
+                                :role="$member->position"
+                                :image-src="$imgSrc"
+                                :highlight="$isHighlight"
+                                posX="center"
+                                posY="center"
+                            />
+                        @endforeach
+                    </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        @endif
 
-    </div>
-</div>
+        {{-- ══ Exco Bahagian ══ --}}
+        @if($excoRows->count() > 0)
+        <hr class="border-gray-100 mb-24">
+        <div class="mb-16">
+            <div class="text-center mb-16">
+                <h2 class="text-2xl md:text-3xl font-black text-primary uppercase tracking-widest inline-block border-b-4 border-secondary pb-2">
+                    EXCO BAHAGIAN
+                </h2>
+            </div>
+            <div class="space-y-16">
+                @foreach($excoRowConfigs as $rowIdx => $rowCfg)
+                    @php
+                        $members = $excoRows->get((int)$rowIdx, collect());
+                        $cols    = (int) ($rowCfg['cols'] ?? 3);
+                        $gridCls = $colMap[$cols] ?? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
+                    @endphp
+                    @if($members->count() > 0)
+                    <div class="grid {{ $gridCls }} gap-4 md:gap-16 justify-items-center animate-fade-in-up">
+                        @foreach($members as $member)
+                            @php $imgSrc = $member->image_path ? Storage::url($member->image_path) : asset('images/lelaki-pending.png'); @endphp
+                            <x-member-card
+                                :name="$member->name"
+                                :role="$member->position"
+                                :image-src="$imgSrc"
+                                posX="center"
+                                posY="center"
+                            />
+                        @endforeach
+                    </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        @endif
 
     </div>
 </div>

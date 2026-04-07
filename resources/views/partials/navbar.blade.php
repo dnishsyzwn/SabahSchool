@@ -5,7 +5,7 @@
     <!-- Logo -->
     <div class="flex-shrink-0 flex items-center justify-center">
         <a href="{{ url('/') }}">
-            <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" class="h-20 w-auto" onerror="this.src='https://via.placeholder.com/60?text=LOGO'">
+            <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" class="h-20 w-auto" onerror="this.src='https://placehold.co/60?text=LOGO'">
         </a>
     </div>
 
@@ -86,7 +86,7 @@
         <!-- Mobile Logo -->
         <div class="mb-8 flex justify-center">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" class="h-16 w-auto" onerror="this.src='https://via.placeholder.com/60?text=LOGO'">
+                <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" class="h-16 w-auto" onerror="this.src='https://placehold.co/60?text=LOGO'">
             </a>
         </div>
 

@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ActivitySeeder::class,
+            CommitteeMemberSeeder::class,
         ]);
 
         $this->command->info('✅ Superadmin and Admin accounts created.');

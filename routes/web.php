@@ -25,9 +25,7 @@ Route::get('/mengenai-stu', function(){
     return view('pages.mengenai-stu');
 });
 
-Route::get('/ahli-tertinggi-exco', function(){
-    return view('pages.ahli-tertinggi-exco');
-});
+Route::get('/ahli-tertinggi-exco', [\App\Http\Controllers\CommitteePublicController::class, 'index'])->name('ahli-tertinggi-exco');
 
 // page showing evidence of donations / organization efforts
 // (alternate layout is now the primary version)
@@ -62,6 +60,13 @@ Route::middleware('auth')->group(function () {
 Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
+    Route::post('committee/reorder',         [\App\Http\Controllers\Admin\CommitteeController::class, 'reorder'])->name('committee.reorder');
+    Route::post('committee/move-member',     [\App\Http\Controllers\Admin\CommitteeController::class, 'moveMember'])->name('committee.move-member');
+    Route::post('committee/settings',        [\App\Http\Controllers\Admin\CommitteeController::class, 'saveSettings'])->name('committee.settings');
+    Route::post('committee/add-row',         [\App\Http\Controllers\Admin\CommitteeController::class, 'addRow'])->name('committee.add-row');
+    Route::post('committee/delete-row',      [\App\Http\Controllers\Admin\CommitteeController::class, 'deleteRow'])->name('committee.delete-row');
+    Route::post('committee/update-row-cols', [\App\Http\Controllers\Admin\CommitteeController::class, 'updateRowCols'])->name('committee.update-row-cols');
+    Route::resource('committee', \App\Http\Controllers\Admin\CommitteeController::class);
     Route::post('/news-image/upload', [\App\Http\Controllers\Admin\NewsImageController::class, 'upload'])->name('news.image.upload');
     Route::delete('/news-image', [\App\Http\Controllers\Admin\NewsImageController::class, 'destroy'])->name('news.image.destroy');
 

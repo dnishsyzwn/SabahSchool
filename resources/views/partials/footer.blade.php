@@ -4,7 +4,7 @@
             <!-- Column 1: Info -->
             <div class="space-y-6">
                 <div class="flex items-center space-x-3">
-                    <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" class="h-16 w-auto " onerror="this.src='https://via.placeholder.com/60?text=LOGO'">
+                    <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" class="h-16 w-auto " onerror="this.src='https://placehold.co/60?text=LOGO'">
                     <div>
                         <h2 class="font-bold text-lg leading-tight uppercase">Sabah Teachers' Union</h2>
                         <p class="text-xs opacity-80 mt-1 uppercase tracking-wider">(STU)</p>
@@ -80,7 +80,7 @@
                     <span class="absolute -bottom-2 left-0 w-12 h-1 bg-secondary rounded-full"></span>
                 </h3>
                 <div class="rounded-2xl overflow-hidden bg-white/5 h-48 relative group border border-white/10">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-110 transition-transform duration-700" style="background-image: url('https://via.placeholder.com/400x300?text=Map+Preview');"></div>
+                    <div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-110 transition-transform duration-700" style="background-image: url('https://placehold.co/400x300/1e293b/white?text=Map+Preview');"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
                         <a href="https://maps.google.com" target="_blank" class="bg-white text-primary px-4 py-2 rounded-full text-xs font-bold hover:bg-secondary transition-colors duration-300 shadow-xl flex items-center space-x-2">
                             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
