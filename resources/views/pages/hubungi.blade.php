@@ -106,51 +106,65 @@
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8 lg:p-10">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">Hantar Mesej</h2>
 
-                    <form class="space-y-6">
+                    @if(session('success'))
+                        <div class="mb-6 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg flex items-center gap-3 animate-fade-in-up">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <p class="text-sm font-medium">{{ session('success') }}</p>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('hubungi.store') }}" method="POST" class="space-y-6">
+                        @csrf
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Penuh</label>
-                                <input type="text" id="name" name="name"
+                                <input type="text" id="name" name="name" required
                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                       placeholder="Nama anda">
+                                       placeholder="Nama anda" value="{{ old('name') }}">
+                                @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
                             <div>
                                 <label for="ic" class="block text-sm font-medium text-gray-700 mb-2">No. IC</label>
                                 <input type="text" id="ic" name="ic"
                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                       placeholder="000000-00-0000">
+                                       placeholder="000000-00-0000" value="{{ old('ic') }}">
+                                @error('ic') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
                             <div>
                                 <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">No. HP</label>
                                 <input type="tel" id="phone" name="phone"
                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                       placeholder="012-3456789">
+                                       placeholder="012-3456789" value="{{ old('phone') }}">
+                                @error('phone') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
                             <div>
                                 <label for="school" class="block text-sm font-medium text-gray-700 mb-2">Nama Sekolah</label>
                                 <input type="text" id="school" name="school"
                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                       placeholder="Contoh: SMK Contoh">
+                                       placeholder="Contoh: SMK Contoh" value="{{ old('school') }}">
+                                @error('school') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
                         </div>
 
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Alamat Email</label>
-                            <input type="email" id="email" name="email"
+                            <input type="email" id="email" name="email" required
                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                   placeholder="email@contoh.com">
+                                   placeholder="email@contoh.com" value="{{ old('email') }}">
+                            @error('email') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                         </div>
 
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Mesej Anda</label>
-                            <textarea id="message" name="message" rows="6"
+                            <textarea id="message" name="message" rows="6" required
                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200 resize-none"
-                                      placeholder="Tulis mesej anda di sini..."></textarea>
+                                      placeholder="Tulis mesej anda di sini...">{{ old('message') }}</textarea>
+                            @error('message') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                         </div>
 
                         <div class="flex items-center justify-between pt-2">
                             <p class="text-sm text-gray-500 hidden md:block">* Kami akan membalas dalam 3 hari bekerja.</p>
-                            <button type="button" onclick="alert('Mesej anda telah diterima. Kami akan menghubungi anda semula.')"
+                            <button type="submit"
                                     class="w-full md:w-auto px-8 py-3.5 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2">
                                 <span>Hantar Mesej</span>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>

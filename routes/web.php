@@ -18,9 +18,8 @@ Route::get('/borang/hantar', function () {
     return view('pages.hantar-borang');
 });
 
-Route::get('/hubungi', function () {
-    return view('pages.hubungi');
-});
+Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index'])->name('hubungi.index');
+Route::post('/hubungi', [\App\Http\Controllers\ContactController::class, 'store'])->name('hubungi.store');
 
 Route::get('/mengenai-stu', function(){
     return view('pages.mengenai-stu');
@@ -40,13 +39,8 @@ Route::get('/bukti-tuntutan', function () {
 Route::get('/berita', [\App\Http\Controllers\NewsPublicController::class, 'index'])->name('berita.index');
 Route::get('/berita/{slug}', [\App\Http\Controllers\NewsPublicController::class, 'show'])->name('berita.show');
 
-Route::get('/kerjaya', function () {
-    return view('pages.kerjaya');
-});
-
-Route::get('/kerjaya/detail', function () {
-    return view('pages.kerjaya-detail');
-});
+Route::get('/kerjaya', [\App\Http\Controllers\JobController::class, 'index'])->name('kerjaya.index');
+Route::get('/kerjaya/{slug}', [\App\Http\Controllers\JobController::class, 'show'])->name('kerjaya.show');
 
 // ==========================================
 // AUTH ROUTES
@@ -80,6 +74,12 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     Route::post('/news-categories', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'store'])->name('news.categories.store');
     Route::delete('/news-categories/{category}', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'destroy'])->name('news.categories.destroy');
 
+    // Kerjaya
+    Route::resource('kerjaya', \App\Http\Controllers\Admin\JobController::class);
+
     // Borang Pintar
     Route::resource('borang-pintar', \App\Http\Controllers\Admin\BorangController::class)->except(['show', 'edit', 'update', 'create']);
+
+    // Hubungi Kami (Mesej)
+    Route::resource('contact-messages', \App\Http\Controllers\Admin\ContactMessageController::class)->only(['index', 'show', 'destroy']);
 });

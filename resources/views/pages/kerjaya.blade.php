@@ -63,8 +63,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">Kekosongan Jawatan</h3>
-                <p class="text-gray-600 text-lg italic">Klik pada jawatan untuk maklumat lanjut permohonan.</p>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2 italic">Kekosongan Jawatan</h3>
+                <p class="text-gray-600 text-lg">Klik pada jawatan untuk maklumat lanjut permohonan.</p>
             </div>
             <div class="flex items-center gap-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-full border border-gray-200">
                 <span class="relative flex h-2 w-2">
@@ -75,105 +75,76 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @php
-                $jobs = [
-                    [
-                        'title' => 'Pegawai Pentadbiran',
-                        'location' => 'Kota Kinabalu (Ibu Pejabat)',
-                        'type' => 'Sepenuh Masa',
-                        'salary' => 'RM 2,500 - RM 3,500',
-                        'deadline' => '15 Feb 2026',
-                        'icon_bg' => 'bg-blue-100 text-blue-600',
-                        'desc' => 'Menguruskan operasi harian pejabat, dokumentasi kesatuan, dan penyelarasan program ahli.'
-                    ],
-                    [
-                        'title' => 'Kerani Kewangan',
-                        'location' => 'Kota Kinabalu',
-                        'type' => 'Sepenuh Masa',
-                        'salary' => 'RM 1,800 - RM 2,400',
-                        'deadline' => '20 Feb 2026',
-                        'icon_bg' => 'bg-blue-100 text-blue-600',
-                        'desc' => 'Mengendalikan transaksi kewangan, tuntutan keahlian, dan penyediaan laporan bulanan.'
-                    ],
-                    [
-                        'title' => 'Pembantu Operasi',
-                        'location' => 'Sandakan (Pejabat Cawangan)',
-                        'type' => 'Kontrak',
-                        'salary' => 'RM 1,500 - RM 1,900',
-                        'deadline' => '10 Feb 2026',
-                        'icon_bg' => 'bg-blue-100 text-blue-600',
-                        'desc' => 'Menyokong aktiviti cawangan, pengedaran borang, dan urusan logistik acara kesatuan.'
-                    ],
-                    [
-                        'title' => 'Eksekutif Komunikasi & Media',
-                        'location' => 'Kota Kinabalu',
-                        'type' => 'Sepenuh Masa',
-                        'salary' => 'RM 2,800 - RM 4,000',
-                        'deadline' => '28 Feb 2026',
-                        'icon_bg' => 'bg-blue-100 text-blue-600',
-                        'desc' => 'Menguruskan media sosial STU, bulletin bulanan, dan hubungan media luar.'
-                    ],
-                    [
-                        'title' => 'Penyelaras Pendidikan',
-                        'location' => 'Tawau',
-                        'type' => 'Sepenuh Masa',
-                        'salary' => 'RM 2,800 - RM 4,000',
-                        'deadline' => '05 Mac 2026',
-                        'icon_bg' => 'bg-blue-100 text-blue-600',
-                        'desc' => 'Merangka program pembangunan profesional untuk guru-guru ahli di kawasan pantai timur.'
-                    ],
-                ];
-            @endphp
-
-            @foreach($jobs as $index => $job)
-                <div class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden animate-fade-in-up" style="animation-delay: {{ ($index + 1) * 0.1 }}s">
-                    <div class="p-8">
-                        <div class="flex items-start justify-between mb-6">
-                            <div class="w-12 h-12 {{ $job['icon_bg'] }} rounded-xl flex items-center justify-center">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded-full uppercase tracking-wider">
-                                {{ $job['type'] }}
-                            </span>
-                        </div>
-
-                        <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors italic">
-                            {{ $job['title'] }}
-                        </h4>
-
-                        <div class="flex items-center gap-2 text-gray-500 text-sm mb-4">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            {{ $job['location'] }}
-                        </div>
-
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-2">
-                            {{ $job['desc'] }}
-                        </p>
-
-                        <div class="pt-6 border-t border-gray-50 flex items-center justify-between">
-                            <div>
-                                <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Gaji Tawaran</p>
-                                <p class="text-sm font-bold text-gray-900">{{ $job['salary'] }}</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-1">Tarikh Tutup</p>
-                                <p class="text-sm font-medium text-red-500">{{ $job['deadline'] }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <a href="/kerjaya/detail" 
-                            class="w-full py-4 bg-gray-50 hover:bg-primary hover:text-white text-gray-600 font-bold text-sm transition-all duration-300 border-t border-gray-100 flex items-center justify-center gap-2">
-                        Mohon Sekarang
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                    </a>
-
+        @if($jobs->isEmpty())
+            <div class="text-center py-24 bg-white rounded-3xl border-2 border-dashed border-gray-100 animate-fade-in-up">
+                <div class="w-20 h-20 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-gray-200">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
                 </div>
-            @endforeach
-        </div>
+                <h3 class="text-xl font-bold text-gray-900">Tiada Kekosongan Jawatan</h3>
+                <p class="text-gray-500 max-w-sm mx-auto mt-2">Sila semak semula dalam masa terdekat atau ikuti kami di media sosial untuk pengumuman peluang kerjaya baharu.</p>
+            </div>
+        @else
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($jobs as $index => $job)
+                    @php
+                        $typeLabel = match($job->type) {
+                            'full_time' => 'Sepenuh Masa',
+                            'part_time' => 'Sambilan',
+                            'contract' => 'Kontrak',
+                            'internship' => 'Latihan Amali',
+                            default => $job->type
+                        };
+                    @endphp
+                    <div class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden animate-fade-in-up" style="animation-delay: {{ ($index + 1) * 0.1 }}s">
+                        <div class="p-8">
+                            <div class="flex items-start justify-between mb-6">
+                                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center border border-blue-100/50 shadow-sm transition-transform group-hover:scale-110">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <span class="px-3 py-1 bg-gray-50 text-gray-400 text-[10px] font-black rounded-lg border border-gray-100 uppercase tracking-wider">
+                                    {{ $typeLabel }}
+                                </span>
+                            </div>
+
+                            <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors italic">
+                                {{ $job->title }}
+                            </h4>
+
+                            <div class="flex items-center gap-2 text-gray-400 text-[10px] font-black uppercase tracking-widest mb-4">
+                                <svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                {{ $job->location }}
+                            </div>
+
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-2">
+                                {{ $job->description }}
+                            </p>
+
+                            <div class="pt-6 border-t border-gray-50 flex items-center justify-between">
+                                <div class="flex flex-col">
+                                    <p class="text-[10px] text-gray-400 uppercase font-black tracking-widest mb-1">Gaji Tawaran</p>
+                                    <p class="text-xs font-black text-gray-900 tracking-tight">{{ $job->salary_range ?: '—' }}</p>
+                                </div>
+                                <div class="flex flex-col text-right">
+                                    <p class="text-[10px] text-gray-400 uppercase font-black tracking-widest mb-1">Tarikh Tutup</p>
+                                    <p class="text-xs font-black text-red-500 tracking-tight uppercase">{{ $job->deadline->format('d M Y') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="{{ route('kerjaya.show', $job->slug) }}" 
+                                class="w-full py-4 bg-gray-50 hover:bg-primary hover:text-white text-gray-600 font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 border-t border-gray-100 flex items-center justify-center gap-2">
+                            Mohon Sekarang
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+    </div>v>
 
         {{-- Application Info --}}
         <div class="mt-20 bg-primary/5 rounded-3xl p-8 md:p-12 border border-primary/10 animate-fade-in-up delay-400">

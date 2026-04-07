@@ -70,19 +70,19 @@
                     Borang Pintar
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition text-gray-300">
+                <a href="{{ route('admin.kerjaya.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.kerjaya.*') ? 'bg-gray-800 text-blue-400' : 'text-gray-300' }}">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     Kerjaya
                 </a>
 
-                <a href="#" class="flex items-center justify-between px-4 py-2 rounded-lg hover:bg-gray-800 transition text-gray-300">
+                <a href="{{ route('admin.contact-messages.index') }}" class="flex items-center justify-between px-4 py-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.contact-messages.*') ? 'bg-gray-800 text-blue-400' : 'text-gray-300' }}">
                     <div class="flex items-center gap-3">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         Hubungi
                     </div>
                     @php $unread = \App\Models\ContactMessage::where('is_read', false)->count() @endphp
                     @if($unread > 0)
-                        <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">{{ $unread }}</span>
+                        <span class="bg-red-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-lg shadow-red-500/30">{{ $unread }}</span>
                     @endif
                 </a>
 
