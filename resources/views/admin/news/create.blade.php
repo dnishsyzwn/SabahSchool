@@ -51,6 +51,9 @@
     .gallery-caption-inp { width: 100%; padding: 6px 10px; font-size: 11px; border: none; border-top: 1px solid #f3f4f6; background: white; outline: none; color: #4b5563; font-style: italic; }
     .gallery-hdr-controls { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 
+    /* ── Custom List Drag Selection ── */
+    .cdx-nested-list__item-content.custom-selected-list-item { background-color: #e8f0fe !important; border-radius: 3px; }
+
     /* ── Modals ── */
     #crop-modal, #preview-modal, #cat-modal { display: none; }
     #crop-modal.open, #preview-modal.open, #cat-modal.open { display: flex; }
@@ -120,21 +123,44 @@
                 </div>
             </div>
 
-            <div class="relative z-[50] bg-white rounded-2xl shadow-sm border border-gray-100">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 mb-6">
+                <!-- Formatting Tip -->
+                <div class="bg-blue-50/70 border-b border-blue-100 p-4 flex items-start gap-4 rounded-t-2xl">
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0 text-blue-600 shadow-sm border border-blue-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-extrabold text-blue-900 mb-0.5">Tips Menghias Kandungan</h4>
+                        <p class="text-xs text-blue-700 leading-relaxed">
+                            <strong>Highlight/Pilih Tulisan</strong> untuk menukar warna, tebal (bold), atau menambah garis bawah. 
+                            Gunakan <code class="bg-white px-1.5 py-0.5 rounded border border-blue-200 font-bold mx-0.5">Cmd/Ctrl + Shift + V</code> untuk menampal sebagai teks biasa (*plain text*).
+                        </p>
+                    </div>
+                </div>
+
                 <div class="px-8 py-4 border-b border-gray-50 bg-gray-50/30 flex justify-between items-center">
                     <div>
                         <p class="text-xs font-bold text-gray-700 uppercase tracking-wider">Kandungan Utama</p>
                         <p class="text-[10px] text-gray-400 mt-0.5">Gunakan toolbar <span class="bg-white px-1 border rounded text-gray-600">+</span> untuk menambah elemen</p>
                     </div>
+                    <div class="flex items-center gap-1.5 bg-white p-1 rounded-lg border border-gray-100 shadow-[0_2px_4px_rgba(0,0,0,0.02)]">
+                        <button type="button" id="btn-undo" class="flex items-center justify-center p-1.5 rounded transition text-gray-400 hover:text-blue-600 hover:bg-blue-50 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-400 disabled:cursor-not-allowed" title="Undo / Undur (Cmd+Z)">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
+                        </button>
+                        <div class="w-px h-4 bg-gray-200"></div>
+                        <button type="button" id="btn-redo" class="flex items-center justify-center p-1.5 rounded transition text-gray-400 hover:text-blue-600 hover:bg-blue-50 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-400 disabled:cursor-not-allowed" title="Redo / Maju (Cmd+Y)">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 10h-10a8 8 0 00-8 8v2M21 10l-6 6m6-6l-6-6"></path></svg>
+                        </button>
+                    </div>
                 </div>
-                <div id="editorjs" class="px-8 py-6"></div>
+                <div id="editorjs" class="px-8 py-6 relative z-10"></div>
                 @error('content') <p class="text-red-500 text-xs px-8 pb-4 font-medium">{{ $message }}</p> @enderror
             </div>
         </div>
 
         {{-- Right: Settings (Sticky) --}}
         <div class="space-y-6 xl:sticky xl:top-8">
-            <div class="relative z-[30] bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Klasifikasi Kategori</p>
                 
                 {{-- Custom Searchable Dropdown --}}
@@ -172,7 +198,7 @@
                 @error('category_id') <p class="text-red-500 text-[10px] mt-2 font-medium">{{ $message }}</p> @enderror
             </div>
 
-            <div class="relative z-[20] bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Status Penerbitan</p>
                 <div class="grid grid-cols-2 gap-3">
                     @foreach(['draft'=>['Draf','Simpan Dulu','text-amber-600 bg-amber-50'],'published'=>['Terbit','Siarkan','text-emerald-600 bg-emerald-50']] as $val=>[$lbl,$desc,$cls])
@@ -313,6 +339,13 @@
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.7/dist/header.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/nested-list@1.4.2/dist/nested-list.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@2.7.4/dist/quote.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/underline@1.1.0/dist/bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@1.4.0/dist/bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/text-color@2.0.2/dist/bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/table@2.3.0/dist/table.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/strikethrough@1.0.1/dist/bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@1.5.0/dist/bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editorjs-undo@2.0.28/dist/bundle.min.js"></script>
 <script>
 const UPLOAD_URL = '{{ route("admin.news.image.upload") }}';
 const CSRF_TOKEN = '{{ csrf_token() }}';
@@ -428,7 +461,8 @@ class AlignTune{
         wrap.appendChild(row); return wrap;
     }
     wrap(c){this._root=c; c.style.textAlign=this.data.align||'left'; return c;}
-    save(){return this.data;}
+    save(){return JSON.parse(JSON.stringify(this.data));}
+    updated(data){ this.data=JSON.parse(JSON.stringify(data)); if(this._root) this._root.style.textAlign=this.data.align||'left'; }
 }
 
 class CustomImageBlock{
@@ -495,7 +529,8 @@ class CustomImageBlock{
         w.appendChild(tb); w.appendChild(iW); w.appendChild(cp); this.wrapper.appendChild(w);
     }
     _die(){ setTimeout(()=>{ try{const i=editor.blocks.getCurrentBlockIndex(); if(i>=0)editor.blocks.delete(i);}catch{this.wrapper.innerHTML='';} },85); }
-    save(){return this.data;}
+    save(){return JSON.parse(JSON.stringify(this.data));}
+    updated(data){ this.data=JSON.parse(JSON.stringify(data)); this._build(); }
 }
 
 class ImageGalleryTool{
@@ -545,21 +580,232 @@ class ImageGalleryTool{
         });
         this.wrapper.appendChild(pick);
     }
-    save(){return this.data;}
+    save(){return JSON.parse(JSON.stringify(this.data));}
+    updated(data){ this.data=JSON.parse(JSON.stringify(data)); this._draw(); }
 }
 
 // ══ Init ══
-const editor=new EditorJS({
-    holder:'editorjs', placeholder:'Mula berkarya di sini...', inlineToolbar:['bold','italic','link'],
-    data:{!! old('content','null') !!},
-    tools:{
-        alignTune:AlignTune,
-        header:{class:Header, config:{levels:[2,3,4], defaultLevel:2}, tunes:['alignTune']},
-        list:{class:NestedList, inlineToolbar:true},
-        quote:{class:Quote, inlineToolbar:true, config:{quotePlaceholder:'Kata-kata hikmah...', captionPlaceholder:'Penulis'}},
-        image:{class:CustomImageBlock},
-        gallery:{class:ImageGalleryTool},
-        paragraph:{tunes:['alignTune']}
+let editor;
+
+try {
+    const editorConfig = {
+        holder: 'editorjs',
+        placeholder: 'Mula berkarya di sini...',
+        inlineToolbar: true,
+        data: {!! old('content', 'null') !!},
+        tools: {
+            alignTune: typeof AlignTune !== 'undefined' ? AlignTune : null,
+            header: {
+                class: typeof Header !== 'undefined' ? Header : null,
+                config: { levels: [2, 3, 4], defaultLevel: 2 },
+                tunes: ['alignTune'],
+                inlineToolbar: true,
+                shortcut: 'CMD+SHIFT+H',
+                paste: {
+                    tags: ['H2', 'H3', 'H4'],
+                    patterns: {
+                        header: /^#+ .+/
+                    }
+                }
+            },
+            list: { 
+                class: typeof NestedList !== 'undefined' ? NestedList : null, 
+                inlineToolbar: true,
+                config: { defaultStyle: 'unordered hover:text-slate-900 transition-colors' },
+                paste: {
+                    tags: ['OL', 'UL', 'LI'],
+                    patterns: {
+                        list: /^(?:[\*\-]|[\d]+\.) .+/
+                    }
+                }
+            },
+            quote: { 
+                class: typeof Quote !== 'undefined' ? Quote : null, 
+                inlineToolbar: true, 
+                config: { quotePlaceholder: 'Kata-kata hikmah...', captionPlaceholder: 'Penulis' },
+                paste: { tags: ['BLOCKQUOTE'] }
+            },
+            image: typeof CustomImageBlock !== 'undefined' ? CustomImageBlock : null,
+            gallery: typeof ImageGalleryTool !== 'undefined' ? ImageGalleryTool : null,
+            underline: typeof Underline !== 'undefined' ? Underline : null,
+            strikethrough: typeof Strikethrough !== 'undefined' ? Strikethrough : null,
+            marker: { 
+                class: typeof Marker !== 'undefined' ? Marker : null, 
+                shortcut: 'CMD+SHIFT+M' 
+            },
+            color: { 
+                class: (typeof ColorPlugin !== 'undefined' ? ColorPlugin : (typeof Color !== 'undefined' ? Color : null)), 
+                config: { 
+                    colorCollections: ['#1e293b', '#2563eb', '#db2777', '#059669', '#d97706', '#dc2626', '#7c3aed'], 
+                    defaultColor: '#1e293b', 
+                    type: 'text' 
+                } 
+            },
+            inlineCode: typeof InlineCode !== 'undefined' ? InlineCode : null,
+            table: { 
+                class: typeof Table !== 'undefined' ? Table : null, 
+                inlineToolbar: true, 
+                config: { rows: 2, cols: 3 } 
+            }
+        },
+        onReady: () => {
+            if (typeof Undo !== 'undefined') {
+                const btnUndo = document.getElementById('btn-undo');
+                const btnRedo = document.getElementById('btn-redo');
+                let editorUndo;
+                
+                const updateUndoButtons = () => {
+                    if (!btnUndo || !btnRedo || !editorUndo) return;
+                    
+                    setTimeout(() => {
+                        try {
+                            // Property discovery based on editorjs-undo source code
+                            const pos = editorUndo.position;
+                            const stack = editorUndo.stack || [];
+                            
+                            const canUndo = pos > 0;
+                            const canRedo = pos < (stack.length - 1);
+
+                            btnUndo.disabled = !canUndo;
+                            btnRedo.disabled = !canRedo;
+
+                            // UI: Lit up blue if active, gray if disabled
+                            if (canUndo) {
+                                btnUndo.classList.remove('text-gray-400');
+                                btnUndo.classList.add('text-blue-600', 'bg-blue-50/50');
+                            } else {
+                                btnUndo.classList.add('text-gray-400');
+                                btnUndo.classList.remove('text-blue-600', 'bg-blue-50/50');
+                            }
+
+                            if (canRedo) {
+                                btnRedo.classList.remove('text-gray-400');
+                                btnRedo.classList.add('text-blue-600', 'bg-blue-50/50');
+                            } else {
+                                btnRedo.classList.add('text-gray-400');
+                                btnRedo.classList.remove('text-blue-600', 'bg-blue-50/50');
+                            }
+                        } catch (e) {
+                            btnUndo.disabled = false;
+                            btnRedo.disabled = false;
+                        }
+                    }, 50);
+                };
+
+                editorUndo = new Undo({ 
+                    editor, 
+                    onUpdate: () => { updateUndoButtons(); }
+                });
+
+                if (btnUndo) btnUndo.addEventListener('click', () => { editorUndo.undo(); });
+                if (btnRedo) btnRedo.addEventListener('click', () => { editorUndo.redo(); });
+
+                // Initial check
+                updateUndoButtons();
+            }
+        }
+    };
+
+    // Remove tools that failed to load
+    Object.keys(editorConfig.tools).forEach(key => {
+        let t = editorConfig.tools[key];
+        if (t === null || (typeof t === 'object' && t.class === null)) delete editorConfig.tools[key];
+    });
+
+    if (typeof EditorJS !== 'undefined') {
+        editor = new EditorJS(editorConfig);
+    }
+} catch (e) {
+    console.error('EditorJS Paste-Enhanced Init Error:', e);
+}
+
+// ══ Bulk Formatting Support ══
+document.addEventListener('keydown', async (e) => {
+    // Only trigger on Cmd/Ctrl + B, U, or I
+    const isFormatKey = (e.ctrlKey || e.metaKey) && ['b', 'u', 'i'].includes(e.key.toLowerCase());
+    if (!isFormatKey) return;
+
+    // Detection Method 1: Formal EditorJS Block Selection
+    let selectedBlocks = Array.from(document.querySelectorAll('.ce-block--selected'));
+    
+    // Detection Method 2: Standard Browser Text Selection across multiple blocks
+    if (selectedBlocks.length <= 1) {
+        const selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            const allBlocks = Array.from(document.querySelectorAll('.ce-block'));
+            selectedBlocks = allBlocks.filter(block => range.intersectsNode(block));
+        }
+    }
+
+    // Detection Method 3: Custom Drag-Selected List Items
+    const customListItems = document.querySelectorAll('.custom-selected-list-item');
+    if (customListItems.length > 1) {
+        e.preventDefault();
+        const tag = e.key.toLowerCase() === 'b' ? 'bold' : (e.key.toLowerCase() === 'u' ? 'underline' : (e.key.toLowerCase() === 'i' ? 'italic' : null));
+        if (!tag) return;
+
+        const sel = window.getSelection();
+        const origRanges = [];
+        for (let i = 0; i < sel.rangeCount; i++) origRanges.push(sel.getRangeAt(i));
+
+        customListItems.forEach(el => {
+            const r = document.createRange();
+            r.selectNodeContents(el);
+            sel.removeAllRanges();
+            sel.addRange(r);
+            document.execCommand(tag, false);
+        });
+
+        // Trigger change
+        try { document.getElementById('editorjs').dispatchEvent(new Event('input', { bubbles: true })); } catch(err) {}
+
+        sel.removeAllRanges();
+        origRanges.forEach(r => sel.addRange(r));
+        return;
+    }
+
+    if (selectedBlocks.length <= 1) return; // Still only 1 or 0? Do nothing (let native handle it)
+
+    e.preventDefault();
+    const tag = e.key.toLowerCase() === 'b' ? 'b' : (e.key.toLowerCase() === 'u' ? 'u' : 'i');
+    const blocksList = Array.from(document.querySelectorAll('.ce-block'));
+    
+    for (let el of selectedBlocks) {
+        const index = blocksList.indexOf(el);
+        if (index === -1) continue;
+
+        try {
+            const block = await editor.blocks.getBlockByIndex(index);
+            if (!block) continue;
+            
+            const data = await block.save();
+            let changed = false;
+
+            if (data.data.text !== undefined) {
+                // Handle Paragraph, Header, Quote
+                data.data.text = `<${tag}>${data.data.text}</${tag}>`;
+                changed = true;
+            } else if (data.data.items !== undefined) {
+                // Handle List
+                data.data.items = data.data.items.map(function formatItem(item) {
+                    if (typeof item === 'string') return `<${tag}>${item}</${tag}>`;
+                    if (typeof item === 'object' && item !== null) {
+                        if (item.content !== undefined) item.content = `<${tag}>${item.content}</${tag}>`;
+                        if (item.items && Array.isArray(item.items)) item.items = item.items.map(formatItem);
+                        return item; // Keep object structure
+                    }
+                    return item;
+                });
+                changed = true;
+            }
+
+            if (changed) {
+                await editor.blocks.update(data.id, data.data);
+            }
+        } catch (err) {
+            console.error('Bulk format update failed:', err);
+        }
     }
 });
 
@@ -786,6 +1032,50 @@ document.querySelectorAll('.preview-device-btn').forEach(btn=>{
         const f=document.getElementById('preview-frame'), w=btn.dataset.width;
         f.style.maxWidth=w==='full'?'100%':w+'px';
     });
+});
+
+// ══ Custom Cross-List-Item Selection Logic ══
+let dragStartList = null;
+let isDraggingList = false;
+
+document.addEventListener('mousedown', (e) => {
+    const li = e.target.closest('.cdx-nested-list__item-content');
+    if (li) {
+        isDraggingList = true;
+        dragStartList = li;
+        document.querySelectorAll('.custom-selected-list-item').forEach(el => el.classList.remove('custom-selected-list-item'));
+        li.classList.add('custom-selected-list-item');
+    } else {
+        document.querySelectorAll('.custom-selected-list-item').forEach(el => el.classList.remove('custom-selected-list-item'));
+    }
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isDraggingList || !dragStartList) return;
+    const currentLi = e.target.closest('.cdx-nested-list__item-content');
+    if (!currentLi) return;
+
+    const block = currentLi.closest('.ce-block');
+    if (!block || block !== dragStartList.closest('.ce-block')) return;
+
+    const allItems = Array.from(block.querySelectorAll('.cdx-nested-list__item-content'));
+    const startIdx = allItems.indexOf(dragStartList);
+    const endIdx = allItems.indexOf(currentLi);
+
+    const min = Math.min(startIdx, endIdx);
+    const max = Math.max(startIdx, endIdx);
+
+    allItems.forEach((el, idx) => {
+        if (idx >= min && idx <= max) {
+            el.classList.add('custom-selected-list-item');
+        } else {
+            el.classList.remove('custom-selected-list-item');
+        }
+    });
+});
+
+document.addEventListener('mouseup', () => {
+    isDraggingList = false;
 });
 </script>
 @endpush

@@ -8,6 +8,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {{-- EditorJS Toolbar Fix --}}
+    <style>
+        .ce-inline-toolbar { z-index: 9999 !important; }
+        .ce-toolbar__content, .ce-toolbar__actions { z-index: 9999 !important; }
+        .ce-block--selected .ce-block__content { background: rgba(59, 130, 246, 0.05); }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans antialiased text-gray-900">
 
@@ -26,7 +32,7 @@
         </div>
 
         <!-- Sidebar -->
-        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white transition-transform duration-300 xl:translate-x-0 xl:static xl:inset-0 flex flex-col">
+        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white transition-transform duration-300 -translate-x-full xl:translate-x-0 xl:static xl:inset-0 flex flex-col">
             <div class="flex items-center justify-between p-6 border-b border-gray-800">
                 <span class="text-2xl font-bold font-serif whitespace-nowrap">STU Admin</span>
                 <!-- Close Button (Mobile only) -->

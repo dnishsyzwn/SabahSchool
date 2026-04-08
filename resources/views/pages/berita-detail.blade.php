@@ -86,7 +86,12 @@
                                     prose-blockquote:border-secondary prose-blockquote:bg-primary/5 prose-blockquote:rounded-r-2xl
                                     prose-img:rounded-2xl prose-img:shadow-md
                                     prose-a:text-secondary prose-a:font-semibold
-                                    prose-ul:text-gray-600 prose-li:marker:text-secondary">
+                                    prose-ul:text-gray-600 prose-li:marker:text-secondary
+                                    [&_mark]:bg-secondary/30 [&_mark]:text-primary [&_mark]:px-1 [&_mark]:rounded-sm
+                                    [&_u]:decoration-secondary [&_u]:underline-offset-4
+                                    [&_table]:border-collapse [&_table]:w-full
+                                    [&_th]:bg-gray-50 [&_th]:text-primary [&_th]:font-bold [&_th]:px-4 [&_th]:py-3
+                                    [&_td]:px-4 [&_td]:py-4 [&_td]:border-b [&_td]:border-gray-50">
                             {!! \App\Helpers\ContentRenderer::render($post->content) !!}
                         </div>
 

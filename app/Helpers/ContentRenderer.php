@@ -56,8 +56,32 @@ class ContentRenderer
             'list'      => static::renderList($data),
             'image'     => static::renderImage($data),
             'gallery'   => static::renderGallery($data),
+            'table'     => static::renderTable($data),
             default     => '',
         };
+    }
+
+    protected static function renderTable(array $d): string
+    {
+        $content = $d['content'] ?? [];
+        if (empty($content)) return '';
+        
+        $withHeadings = $d['withHeadings'] ?? false;
+        $html = '<div class="overflow-x-auto my-8 border border-gray-100 rounded-xl shadow-sm">';
+        $html .= '<table class="w-full text-sm text-left text-gray-700">';
+        
+        foreach ($content as $rowIdx => $row) {
+            $isHeader = ($rowIdx === 0 && $withHeadings);
+            $html .= '<tr class="' . ($isHeader ? 'bg-gray-50 border-b border-gray-100' : 'border-b border-gray-50 last:border-0') . '">';
+            foreach ($row as $cell) {
+                $tag = $isHeader ? 'th' : 'td';
+                $cls = $isHeader ? 'px-4 py-3 font-bold uppercase tracking-wider text-xs' : 'px-4 py-4';
+                $html .= "<{$tag} class='{$cls}'>{$cell}</{$tag}>";
+            }
+            $html .= '</tr>';
+        }
+        
+        return $html . '</table></div>';
     }
 
     protected static function renderHeader(array $d): string
