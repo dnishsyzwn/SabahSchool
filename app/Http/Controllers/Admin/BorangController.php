@@ -42,14 +42,15 @@ class BorangController extends Controller
         return redirect()->route('admin.borang-pintar.index')->with('success', 'Borang berjaya dimuat naik!');
     }
 
-    public function destroy(Borang $borang)
+    public function destroy(Borang $borang_pintar)
     {
-        if (Storage::disk('public')->exists($borang->file_path)) {
-            Storage::disk('public')->delete($borang->file_path);
+        if ($borang_pintar->file_path && Storage::disk('public')->exists($borang_pintar->file_path)) {
+            Storage::disk('public')->delete($borang_pintar->file_path);
         }
 
-        ActivityLog::record('delete', "Borang dipadam: {$borang->title}", $borang);
-        $borang->delete();
+        ActivityLog::record('delete', "Borang dipadam: {$borang_pintar->title}", $borang_pintar);
+        //$borang_pintar->delete();
+        $borang_pintar->delete();
 
         return redirect()->route('admin.borang-pintar.index')->with('success', 'Borang berjaya dipadam!');
     }

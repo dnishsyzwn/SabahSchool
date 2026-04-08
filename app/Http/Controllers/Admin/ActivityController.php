@@ -99,7 +99,7 @@ class ActivityController extends Controller
             // Delete images not in new set
             $oldImages = $activity->images()->get();
             foreach ($oldImages as $oldImage) {
-                if (!in_array($oldImage->image_path, $newPaths)) {
+                if ($oldImage->image_path && !in_array($oldImage->image_path, $newPaths)) {
                     Storage::disk('public')->delete($oldImage->image_path);
                     $oldImage->delete();
                 }
@@ -122,7 +122,9 @@ class ActivityController extends Controller
     public function destroy(Activity $activity)
     {
         foreach ($activity->images as $image) {
-            Storage::disk('public')->delete($image->image_path);
+            if ($image->image_path) {
+                Storage::disk('public')->delete($image->image_path);
+            }
         }
         $activity->images()->delete();
 

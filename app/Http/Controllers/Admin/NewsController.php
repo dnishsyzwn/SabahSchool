@@ -137,12 +137,12 @@ class NewsController extends Controller
             foreach ($content['blocks'] as $block) {
                 if ($block['type'] === 'image' && isset($block['data']['url'])) {
                     $path = str_replace('/storage/', '', parse_url($block['data']['url'], PHP_URL_PATH));
-                    Storage::disk('public')->delete($path);
+                    if ($path) Storage::disk('public')->delete($path);
                 }
                 if ($block['type'] === 'gallery' && isset($block['data']['images'])) {
                     foreach ($block['data']['images'] as $img) {
                         $path = str_replace('/storage/', '', parse_url($img['url'], PHP_URL_PATH));
-                        Storage::disk('public')->delete($path);
+                        if ($path) Storage::disk('public')->delete($path);
                     }
                 }
             }
