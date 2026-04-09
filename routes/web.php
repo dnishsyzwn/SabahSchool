@@ -16,7 +16,8 @@ Route::get('/borang/muat-turun', [\App\Http\Controllers\BorangController::class,
 
 Route::get('/borang/hantar', function () {
     return view('pages.hantar-borang');
-});
+})->name('borang.hantar-view');
+Route::post('/borang/hantar', [\App\Http\Controllers\BorangController::class, 'store'])->name('borang.hantar');
 
 Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index'])->name('hubungi.index');
 Route::post('/hubungi', [\App\Http\Controllers\ContactController::class, 'store'])->name('hubungi.store');
@@ -38,6 +39,7 @@ Route::get('/berita', [\App\Http\Controllers\NewsPublicController::class, 'index
 Route::get('/berita/{slug}', [\App\Http\Controllers\NewsPublicController::class, 'show'])->name('berita.show');
 
 Route::get('/kerjaya', [\App\Http\Controllers\JobController::class, 'index'])->name('kerjaya.index');
+Route::post('/kerjaya', [\App\Http\Controllers\JobController::class, 'store'])->name('kerjaya.store');
 Route::get('/kerjaya/{slug}', [\App\Http\Controllers\JobController::class, 'show'])->name('kerjaya.show');
 
 // ==========================================
@@ -79,12 +81,22 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     Route::post('/news-categories', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'store'])->name('news.categories.store');
     Route::delete('/news-categories/{category}', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'destroy'])->name('news.categories.destroy');
 
-    // Kerjaya
-    Route::resource('kerjaya', \App\Http\Controllers\Admin\JobController::class);
 
     // Borang Pintar
     Route::resource('borang-pintar', \App\Http\Controllers\Admin\BorangController::class)->except(['show', 'edit', 'update', 'create']);
 
     // Hubungi Kami (Mesej)
     Route::resource('contact-messages', \App\Http\Controllers\Admin\ContactMessageController::class)->only(['index', 'show', 'destroy']);
+
+    // Kerjaya (Permohonan)
+    Route::get('/kerjaya', [\App\Http\Controllers\Admin\JobApplicationController::class, 'index'])->name('kerjaya.index');
+    Route::get('/kerjaya/{jobApplication}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'show'])->name('kerjaya.show');
+    Route::patch('/kerjaya/{jobApplication}/status', [\App\Http\Controllers\Admin\JobApplicationController::class, 'updateStatus'])->name('kerjaya.update-status');
+    Route::delete('/kerjaya/{jobApplication}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'destroy'])->name('kerjaya.destroy');
+
+    // Form Submissions (Penghantaran Borang)
+    Route::get('/form-submissions', [\App\Http\Controllers\Admin\FormSubmissionController::class, 'index'])->name('form-submissions.index');
+    Route::get('/form-submissions/{formSubmission}', [\App\Http\Controllers\Admin\FormSubmissionController::class, 'show'])->name('form-submissions.show');
+    Route::patch('/form-submissions/{formSubmission}/status', [\App\Http\Controllers\Admin\FormSubmissionController::class, 'updateStatus'])->name('form-submissions.update-status');
+    Route::delete('/form-submissions/{formSubmission}', [\App\Http\Controllers\Admin\FormSubmissionController::class, 'destroy'])->name('form-submissions.destroy');
 });

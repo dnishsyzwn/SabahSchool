@@ -7,20 +7,20 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
     
     <!-- Widget: Borang Terkini -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex items-center transition hover:shadow-md">
-        <div class="p-3 bg-blue-50 text-blue-600 rounded-lg">
+    <a href="{{ route('admin.form-submissions.index') }}" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex items-center transition hover:shadow-md group">
+        <div class="p-3 bg-blue-50 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
         </div>
         <div class="ml-4">
-            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Permohonan Borang</p>
+            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Borang Masuk</p>
             <p class="text-3xl font-bold text-gray-900">{{ $pendingForms }}</p>
             <p class="text-xs text-blue-500 mt-1 font-medium">Pending Kelulusan</p>
         </div>
-    </div>
+    </a>
 
     <!-- Widget: Permohonan Kerjaya -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex items-center transition hover:shadow-md">
-        <div class="p-3 bg-indigo-50 text-indigo-600 rounded-lg">
+    <a href="{{ route('admin.kerjaya.index') }}" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex items-center transition hover:shadow-md group">
+        <div class="p-3 bg-indigo-50 text-indigo-600 rounded-lg group-hover:bg-indigo-600 group-hover:text-white transition-colors">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
         </div>
         <div class="ml-4">
@@ -28,11 +28,11 @@
             <p class="text-3xl font-bold text-gray-900">{{ $pendingJobs }}</p>
             <p class="text-xs text-indigo-500 mt-1 font-medium">Calon Baru Menunggu</p>
         </div>
-    </div>
+    </a>
 
     <!-- Widget: Mesej Hubungi Belum Baca -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex items-center transition hover:shadow-md">
-        <div class="p-3 bg-red-50 text-red-600 rounded-lg">
+    <a href="{{ route('admin.contact-messages.index') }}" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex items-center transition hover:shadow-md group">
+        <div class="p-3 bg-red-50 text-red-600 rounded-lg group-hover:bg-red-600 group-hover:text-white transition-colors">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
         </div>
         <div class="ml-4">
@@ -40,7 +40,7 @@
             <p class="text-3xl font-bold text-gray-900">{{ $unreadMessages }}</p>
             <p class="text-xs text-red-500 mt-1 font-medium">Belum Dibaca</p>
         </div>
-    </div>
+    </a>
 
     <!-- Widget: Akses Pantas -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col justify-center">

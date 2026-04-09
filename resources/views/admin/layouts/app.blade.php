@@ -76,9 +76,26 @@
                     Borang Pintar
                 </a>
 
-                <a href="{{ route('admin.kerjaya.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.kerjaya.*') ? 'bg-gray-800 text-blue-400' : 'text-gray-300' }}">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    Kerjaya
+                <a href="{{ route('admin.form-submissions.index') }}" class="flex items-center justify-between px-4 py-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.form-submissions.*') ? 'bg-gray-800 text-blue-400' : 'text-gray-300' }}">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Borang Masuk
+                    </div>
+                    @php $pendingSubmissions = \App\Models\FormSubmission::where('status', 'pending')->count() @endphp
+                    @if($pendingSubmissions > 0)
+                        <span class="bg-teal-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-lg shadow-teal-500/30">{{ $pendingSubmissions }}</span>
+                    @endif
+                </a>
+
+                <a href="{{ route('admin.kerjaya.index') }}" class="flex items-center justify-between px-4 py-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.kerjaya.*') ? 'bg-gray-800 text-blue-400' : 'text-gray-300' }}">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        Kerjaya
+                    </div>
+                    @php $pendingApps = \App\Models\JobApplication::where('status', 'pending')->count() @endphp
+                    @if($pendingApps > 0)
+                        <span class="bg-indigo-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-lg shadow-indigo-500/30">{{ $pendingApps }}</span>
+                    @endif
                 </a>
 
                 <a href="{{ route('admin.contact-messages.index') }}" class="flex items-center justify-between px-4 py-2 rounded-lg hover:bg-gray-800 transition {{ request()->routeIs('admin.contact-messages.*') ? 'bg-gray-800 text-blue-400' : 'text-gray-300' }}">

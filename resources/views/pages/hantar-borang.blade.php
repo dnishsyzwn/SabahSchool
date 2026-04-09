@@ -45,7 +45,17 @@
                     <p class="text-gray-600">Isi maklumat dan lampirkan borang yang telah dilengkapkan</p>
                 </div>
 
-                <form class="space-y-6">
+                @if(session('success'))
+                    <div class="mb-8 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded-r-xl">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <p class="font-medium">{{ session('success') }}</p>
+                        </div>
+                    </div>
+                @endif
+
+                <form action="{{ route('borang.hantar') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    @csrf
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
                             Alamat Email <span class="text-red-500">*</span>
@@ -53,6 +63,7 @@
                         <input type="email" id="email" name="email" required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
                                 placeholder="email@gmail.com">
+                        @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
                     <div>
@@ -70,6 +81,7 @@
                             <option value="Borang Pendaftaran Kursus">Borang Pendaftaran Kursus</option>
                             <option value="Lain-lain">Lain-lain</option>
                         </select>
+                        @error('form_type') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
                     <div>
@@ -79,6 +91,7 @@
                         <input type="text" id="subject" name="subject" required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
                                 placeholder="Contoh: Permohonan Keahlian Baharu STU">
+                        @error('subject') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
                     <div>
@@ -106,6 +119,7 @@
                         </div>
                         <div id="file-preview" class="mt-4 hidden">
                             </div>
+                        @error('file') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
                     <div>
@@ -118,7 +132,7 @@
                     </div>
 
                     <div class="pt-4">
-                        <button type="button" onclick="showComingSoon()"
+                        <button type="submit"
                                 class="w-full py-3.5 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors duration-200">
                             Hantar Borang
                         </button>
@@ -212,9 +226,6 @@
         document.getElementById('file-preview').classList.add('hidden');
     }
 
-    function showComingSoon() {
-        alert('Fungsi penghantaran sedang dalam penyediaan. Sila cuba lagi nanti.');
-    }
 </script>
 @endpush
 @endsection

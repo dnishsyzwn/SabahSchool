@@ -59,108 +59,128 @@
         </div>
     </div>
 
-    {{-- Jobs Grid --}}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2 italic">Kekosongan Jawatan</h3>
-                <p class="text-gray-600 text-lg">Klik pada jawatan untuk maklumat lanjut permohonan.</p>
-            </div>
-            <div class="flex items-center gap-2 text-sm font-medium text-gray-500 bg-white px-4 py-2 rounded-full border border-gray-200">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                Kemas kini: {{ date('d M Y') }}
-            </div>
-        </div>
-
-        @if($jobs->isEmpty())
-            <div class="text-center py-24 bg-white rounded-3xl border-2 border-dashed border-gray-100 animate-fade-in-up">
-                <div class="w-20 h-20 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-gray-200">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900">Tiada Kekosongan Jawatan</h3>
-                <p class="text-gray-500 max-w-sm mx-auto mt-2">Sila semak semula dalam masa terdekat atau ikuti kami di media sosial untuk pengumuman peluang kerjaya baharu.</p>
-            </div>
-        @else
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($jobs as $index => $job)
-                    @php
-                        $typeLabel = match($job->type) {
-                            'full_time' => 'Sepenuh Masa',
-                            'part_time' => 'Sambilan',
-                            'contract' => 'Kontrak',
-                            'internship' => 'Latihan Amali',
-                            default => $job->type
-                        };
-                    @endphp
-                    <div class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden animate-fade-in-up" style="animation-delay: {{ ($index + 1) * 0.1 }}s">
-                        <div class="p-8">
-                            <div class="flex items-start justify-between mb-6">
-                                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center border border-blue-100/50 shadow-sm transition-transform group-hover:scale-110">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                    </svg>
+    {{-- Application Form --}}
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-3xl shadow-2xl shadow-primary/5 border border-gray-100 overflow-hidden">
+            <div class="grid md:grid-cols-5">
+                <div class="md:col-span-2 bg-primary p-8 md:p-12 text-white flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">Hantar Permohonan</h3>
+                        <p class="text-white/80 leading-relaxed mb-8">
+                            Berminat untuk menyertai warga Sabah Teachers Union? Sila lengkapkan borang di sebelah dan sertakan resume anda.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                                 </div>
-                                <span class="px-3 py-1 bg-gray-50 text-gray-400 text-[10px] font-black rounded-lg border border-gray-100 uppercase tracking-wider">
-                                    {{ $typeLabel }}
-                                </span>
-                            </div>
-
-                            <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors italic">
-                                {{ $job->title }}
-                            </h4>
-
-                            <div class="flex items-center gap-2 text-gray-400 text-[10px] font-black uppercase tracking-widest mb-4">
-                                <svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                {{ $job->location }}
-                            </div>
-
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-2">
-                                {{ $job->description }}
-                            </p>
-
-                            <div class="pt-6 border-t border-gray-50 flex items-center justify-between">
-                                <div class="flex flex-col">
-                                    <p class="text-[10px] text-gray-400 uppercase font-black tracking-widest mb-1">Gaji Tawaran</p>
-                                    <p class="text-xs font-black text-gray-900 tracking-tight">{{ $job->salary_range ?: '—' }}</p>
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-wider text-white/60">Emel Kami</p>
+                                    <p class="font-medium">hr@stu.org.my</p>
                                 </div>
-                                <div class="flex flex-col text-right">
-                                    <p class="text-[10px] text-gray-400 uppercase font-black tracking-widest mb-1">Tarikh Tutup</p>
-                                    <p class="text-xs font-black text-red-500 tracking-tight uppercase">{{ $job->deadline->format('d M Y') }}</p>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-wider text-white/60">Lokasi</p>
+                                    <p class="font-medium">Kota Kinabalu, Sabah</p>
                                 </div>
                             </div>
                         </div>
-                        
-                        <a href="{{ route('kerjaya.show', $job->slug) }}" 
-                                class="w-full py-4 bg-gray-50 hover:bg-primary hover:text-white text-gray-600 font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 border-t border-gray-100 flex items-center justify-center gap-2">
-                            Mohon Sekarang
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                        </a>
                     </div>
-                @endforeach
-            </div>
-        @endif
-    </div>v>
 
-        {{-- Application Info --}}
-        <div class="mt-20 bg-primary/5 rounded-3xl p-8 md:p-12 border border-primary/10 animate-fade-in-up delay-400">
-            <div class="max-w-3xl">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4 italic">Prosedur Permohonan</h2>
-                <div class="space-y-4 text-gray-700 leading-relaxed">
-                    <p>Calon yang berminat dinasihatkan untuk menghantar dokumen-dokumen berikut melalui email ke <span class="font-bold text-primary underline">info@stu.org</span>:</p>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li>Resume / Curriculum Vitae (CV) yang terkini.</li>
-                        <li>Salinan Sijil Akademik (SPM/Diploma/Ijazah).</li>
-                        <li>Salinan Kad Pengenalan.</li>
-                        <li>Gambar bersaiz passport (Softcopy).</li>
-                    </ul>
-                    <p class="mt-6 p-4 bg-white/50 rounded-lg text-sm border-2 border-secondary">
-                        Hanya calon yang disenarai pendek (shortlisted) sahaja akan dipanggil untuk sesi temuduga di Ibu Pejabat STU, Kota Kinabalu.
-                    </p>
+                    <div class="mt-12 pt-12 border-t border-white/10 italic text-sm text-white/60">
+                        * Calon yang disenarai pendek akan dihubungi untuk temuduga.
+                    </div>
+                </div>
+
+                <div class="md:col-span-3 p-8 md:p-12">
+                    @if(session('success'))
+                        <div class="mb-8 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded-r-xl animate-fade-in-up">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <p class="font-medium">{{ session('success') }}</p>
+                            </div>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('kerjaya.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                        @csrf
+                        <div class="grid grid-cols-1 gap-6">
+                            {{-- Name --}}
+                            <div>
+                                <label for="name" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Penuh</label>
+                                <input type="text" name="name" id="name" required
+                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+                                    placeholder="Masukkan nama penuh anda">
+                                @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                            </div>
+
+                            {{-- IC No --}}
+                            <div>
+                                <label for="ic_no" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">No. Kad Pengenalan</label>
+                                <input type="text" name="ic_no" id="ic_no" required
+                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+                                    placeholder="Contoh: 900101125544">
+                                @error('ic_no') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {{-- Email --}}
+                                <div>
+                                    <label for="email" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">E-mel</label>
+                                    <input type="email" name="email" id="email" required
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+                                        placeholder="nama@contoh.com">
+                                    @error('email') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                                </div>
+
+                                {{-- Phone --}}
+                                <div>
+                                    <label for="phone" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">No. Telefon</label>
+                                    <input type="tel" name="phone" id="phone" required
+                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+                                        placeholder="012-3456789">
+                                    @error('phone') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                                </div>
+                            </div>
+
+                            {{-- Resume Upload --}}
+                            <div>
+                                <label for="resume" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Muat Naik Resume (PDF/DOC)</label>
+                                <div class="relative">
+                                    <input type="file" name="resume" id="resume" required
+                                        class="hidden"
+                                        accept=".pdf,.doc,.docx"
+                                        onchange="document.getElementById('file-name').textContent = this.files[0].name">
+                                    <label for="resume" class="flex items-center justify-between w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
+                                        <span id="file-name" class="text-gray-500 italic">Pilih fail...</span>
+                                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                                    </label>
+                                </div>
+                                <p class="mt-1 text-[10px] text-gray-400">Format: PDF, DOC atau DOCX. Saiz maksimum: 10MB</p>
+                                @error('resume') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                            </div>
+
+                            {{-- Message --}}
+                            <div>
+                                <label for="message" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Mesej Tambahan (Pilihan)</label>
+                                <textarea name="message" id="message" rows="4"
+                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none"
+                                    placeholder="Beritahu kami sedikit tentang diri anda..."></textarea>
+                                @error('message') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                            </div>
+                        </div>
+
+                        <button type="submit" 
+                                class="w-full py-4 bg-primary hover:bg-primary-dark text-white font-black text-sm uppercase tracking-[0.2em] rounded-xl transition-all duration-300 shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
+                            Hantar Permohonan
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
