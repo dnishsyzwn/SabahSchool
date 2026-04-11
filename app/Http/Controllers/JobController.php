@@ -23,7 +23,7 @@ class JobController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'ic_no' => 'required|string|max:20',
+            'alamat' => 'required|string',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
             'resume' => 'required|file|mimes:pdf,doc,docx|max:10240', // Max 10MB

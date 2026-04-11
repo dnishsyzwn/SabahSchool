@@ -4,8 +4,9 @@
 Anda telah menerima penghantaran borang baru melalui laman web STU.
 
 **Maklumat Pengirim:**
-- **Nama/Emel:** {{ $submission->name }}
+- **Nama:** {{ $submission->name }}
 - **Emel:** {{ $submission->email }}
+- **No. Telefon:** {{ $submission->phone }}
 - **Jenis Borang:** {{ $submission->formType ? $submission->formType->name : 'N/A' }}
 - **Subjek:** {{ $submission->subject }}
 
@@ -16,7 +17,7 @@ Anda telah menerima penghantaran borang baru melalui laman web STU.
 Dokumen borang telah dilampirkan bersama emel ini.
 @endif
 
-<x-mail::button :url="url('/admin/borang-pintar/' . $submission->id)">
+<x-mail::button :url="url('/admin/form-submissions/' . $submission->id)">
 Lihat di Admin Panel
 </x-mail::button>
 

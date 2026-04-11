@@ -40,6 +40,7 @@
                         <div class="w-2 h-2 bg-primary rounded-full"></div>
                     </div>
 
+<<<<<<< HEAD
                     <div class="w-full lg:w-1/2 {{ $isEven ? 'lg:pr-24 text-right' : 'lg:pl-24 lg:order-last text-left' }}">
                         <div class="transition-all duration-500 transform group-hover:translate-y-[-5px]">
                             <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
@@ -52,6 +53,32 @@
                             <p class="text-gray-600 text-lg leading-relaxed mb-6">
                                 {{ $it->description }}
                             </p>
+=======
+                    <p class="text-gray-500 leading-relaxed mb-8 max-w-lg">
+                        {{ $featured->description }}
+                    </p>
+
+                    <!-- <a href="#" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#001a6e] hover:bg-[#000d36] text-white font-bold rounded-2xl shadow-[0_8px_20px_rgba(0,26,110,0.25)] hover:shadow-[0_12px_28px_rgba(0,26,110,0.35)] transition-all duration-300 transform hover:-translate-y-0.5 uppercase tracking-wider text-sm border border-white/10">
+                        <span>Lihat Butiran</span>
+                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a> -->
+                </div>
+
+                {{-- Image side --}}
+                <div class="relative overflow-hidden rounded-3xl aspect-[4/3] lg:aspect-square shadow-[0_20px_60px_-15px_rgba(0,26,110,0.15)] border border-gray-100 bg-gray-50">
+                    @if($featured->featured_image)
+                        <img src="{{ Storage::url($featured->featured_image) }}"
+                             alt="{{ $featured->title }}"
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    @else
+                        <div class="w-full h-full flex flex-col items-center justify-center gap-4 text-gray-300">
+                            <svg class="w-16 h-16 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-xs font-mono tracking-widest uppercase">no image</span>
+>>>>>>> 5c7aac2e127503c42300c1cd8470dea5a5d48851
                         </div>
                     </div>
 
@@ -66,8 +93,33 @@
                                 <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
                                 <p class="text-slate-900 font-bold text-sm">Projek Selesai</p>
                             </div>
+<<<<<<< HEAD
                         </div>
                     </div>
+=======
+                        @endif
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3 uppercase">{{ $activity->event_date?->format('d M Y') ?? 'TIADA TARIKH' }}</div>
+                    @if($activity->category)
+                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">{{ $activity->category }}</span>
+                    @endif
+                    <h3 class="text-xl font-bold text-[#001a6e] leading-tight mb-3 group-hover:text-green transition-colors duration-300">
+                        {!! str_replace(['<br>', '\n'], '<br>', e($activity->title)) !!}
+                    </h3>
+                    <div class="font-mono text-xs text-gray-400 mb-3">{{ $activity->location }} @if($activity->amount) • {{ $activity->amount }} @endif</div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
+                        {{ $activity->description }}
+                    </p>
+                    <!-- <div class="mt-auto pt-4 border-t border-gray-50">
+                        <button class="inline-flex items-center gap-2 text-[#001a6e] hover:text-green text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
+                            <span>Butiran</span>
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div> -->
+>>>>>>> 5c7aac2e127503c42300c1cd8470dea5a5d48851
                 </div>
                 @endforeach
 

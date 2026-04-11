@@ -119,13 +119,13 @@
                                 @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
 
-                            {{-- IC No --}}
+                            {{-- Alamat --}}
                             <div>
-                                <label for="ic_no" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">No. Kad Pengenalan</label>
-                                <input type="text" name="ic_no" id="ic_no" required
-                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
-                                    placeholder="Contoh: 900101125544">
-                                @error('ic_no') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                                <label for="alamat" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Alamat Menetap</label>
+                                <textarea name="alamat" id="alamat" rows="2" required
+                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none"
+                                    placeholder="Masukkan alamat penuh anda"></textarea>
+                                @error('alamat') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

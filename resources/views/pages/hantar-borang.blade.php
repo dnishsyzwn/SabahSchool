@@ -57,13 +57,35 @@
                 <form action="{{ route('borang.hantar') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                     @csrf
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            Alamat Email <span class="text-red-500">*</span>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                            Nama Penuh <span class="text-red-500">*</span>
                         </label>
-                        <input type="email" id="email" name="email" required
+                        <input type="text" id="name" name="name" required
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                placeholder="email@gmail.com">
-                        @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                                placeholder="Masukkan nama penuh anda">
+                        @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                Alamat Email <span class="text-red-500">*</span>
+                            </label>
+                            <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                    placeholder="email@gmail.com">
+                            @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                                No. Telefon <span class="text-red-500">*</span>
+                            </label>
+                            <input type="tel" id="phone" name="phone" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                    placeholder="012-3456789">
+                            @error('phone') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                        </div>
                     </div>
 
                     <div>
@@ -71,14 +93,11 @@
                             Jenis Borang <span class="text-red-500">*</span>
                         </label>
                         <select id="form_type" name="form_type" required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200 bg-white">
+                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200 bg-white">
                             <option value="" disabled selected>Pilih jenis borang</option>
-                            <option value="Borang Keahlian STU">Borang Keahlian STU</option>
-                            <option value="Borang Tuntutan Kebajikan">Borang Tuntutan Kebajikan</option>
-                            <option value="Borang Tuntutan Perjalanan">Borang Tuntutan Perjalanan</option>
-                            <option value="Borang Pesanan Buku">Borang Pesanan Buku</option>
-                            <option value="Borang Permohonan Cuti">Borang Permohonan Cuti</option>
-                            <option value="Borang Pendaftaran Kursus">Borang Pendaftaran Kursus</option>
+                            @foreach($borangs as $borang)
+                                <option value="{{ $borang->title }}">{{ $borang->title }}</option>
+                            @endforeach
                             <option value="Lain-lain">Lain-lain</option>
                         </select>
                         @error('form_type') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
