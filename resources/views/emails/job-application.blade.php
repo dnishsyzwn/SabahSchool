@@ -5,7 +5,7 @@ Anda telah menerima permohonan kerjaya baru melalui laman web STU.
 
 **Maklumat Pemohon:**
 - **Nama:** {{ $application->name }}
-- **No. IC:** {{ $application->ic_no }}
+- **Alamat:** {{ $application->alamat ?: 'Tiada' }}
 - **Emel:** {{ $application->email }}
 - **No. Telefon:** {{ $application->phone }}
 - **Jawatan:** {{ $application->job ? $application->job->title : 'Permohonan Umum' }}

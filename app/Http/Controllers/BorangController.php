@@ -19,10 +19,18 @@ class BorangController extends Controller
         return view('pages.muat-turun', compact('borangs'));
     }
 
+    public function hantar()
+    {
+        $borangs = Borang::latest()->get();
+        return view('pages.hantar-borang', compact('borangs'));
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
             'form_type' => 'required|string',
             'subject' => 'required|string|max:255',
             'file' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:10240',
@@ -30,6 +38,7 @@ class BorangController extends Controller
         ]);
 
         // Find or create the form type ID based on the selection
+        // Since file_path is nullable now, we can just use firstOrCreate
         $formType = FormType::firstOrCreate(['name' => $request->form_type]);
 
         $filePath = null;
@@ -39,8 +48,9 @@ class BorangController extends Controller
 
         $submission = FormSubmission::create([
             'form_type_id' => $formType->id,
-            'name' => $request->name ?? $request->email, // The view didn't have a name field, using email as fallback
+            'name' => $validated['name'],
             'email' => $validated['email'],
+            'phone' => $validated['phone'],
             'subject' => $validated['subject'],
             'message' => $validated['message'],
             'file_path' => $filePath,

@@ -14,9 +14,7 @@ Route::get('/keahlian', function () {
 Route::get('/aktiviti-kami', [\App\Http\Controllers\PublicActivityController::class, 'index'])->name('aktiviti-kami.index');
 Route::get('/borang/muat-turun', [\App\Http\Controllers\BorangController::class, 'index'])->name('borang.muat-turun');
 
-Route::get('/borang/hantar', function () {
-    return view('pages.hantar-borang');
-})->name('borang.hantar-view');
+Route::get('/borang/hantar', [\App\Http\Controllers\BorangController::class, 'hantar'])->name('borang.hantar-view');
 Route::post('/borang/hantar', [\App\Http\Controllers\BorangController::class, 'store'])->name('borang.hantar');
 
 Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index'])->name('hubungi.index');

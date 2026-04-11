@@ -39,6 +39,10 @@
                     <p class="text-sm font-bold text-gray-800">{{ $formSubmission->email }}</p>
                 </div>
                 <div>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">No. Telefon</label>
+                    <p class="text-sm font-bold text-gray-800">{{ $formSubmission->phone ?: 'N/A' }}</p>
+                </div>
+                <div>
                     <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">Subjek</label>
                     <p class="text-sm font-bold text-gray-800">{{ $formSubmission->subject }}</p>
                 </div>

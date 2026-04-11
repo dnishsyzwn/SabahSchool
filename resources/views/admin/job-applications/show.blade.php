@@ -30,9 +30,9 @@
                     <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">Nama Penuh</label>
                     <p class="text-sm font-bold text-gray-800">{{ $jobApplication->name }}</p>
                 </div>
-                <div>
-                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">No. Kad Pengenalan</label>
-                    <p class="text-sm font-bold text-gray-800">{{ $jobApplication->ic_no }}</p>
+                <div class="sm:col-span-2">
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">Alamat Menetap</label>
+                    <p class="text-sm font-bold text-gray-800 leading-relaxed">{{ $jobApplication->alamat ?: 'Tiada maklumat alamat.' }}</p>
                 </div>
                 <div>
                     <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2">E-mel</label>
