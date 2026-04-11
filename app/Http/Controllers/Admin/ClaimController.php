@@ -3,30 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreActivityRequest;
-use App\Http\Requests\Admin\UpdateActivityRequest;
-use App\Models\Activity;
+use App\Http\Requests\Admin\StoreClaimRequest;
+use App\Http\Requests\Admin\UpdateClaimRequest;
+use App\Models\Claim;
 use App\Models\ActivityLog;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class ActivityController extends Controller
+class ClaimController extends Controller
 {
     public function index()
     {
-        $activities = Activity::with('images')->latest()->paginate(15);
-        return view('admin.activities.index', compact('activities'));
+        $claims = Claim::with('images')->latest()->paginate(15);
+        return view('admin.claims.index', compact('claims'));
     }
 
     public function create()
     {
-        return view('admin.activities.create');
+        return view('admin.claims.create');
     }
 
-    public function store(StoreActivityRequest $request)
+    public function store(StoreClaimRequest $request)
     {
         $data = $request->validated();
+        $data['title'] = $data['title'] ?? $data['member_name'];
         $data['slug'] = Str::slug($data['title']) . '-' . time();
         $data['created_by'] = Auth::id();
 
@@ -34,22 +35,14 @@ class ActivityController extends Controller
             $data['published_at'] = now();
         }
 
-        // Handle featured activity
-        if ($request->boolean('is_featured')) {
-            Activity::where('is_featured', true)->update(['is_featured' => false]);
-            $data['is_featured'] = true;
-        } else {
-            $data['is_featured'] = false;
-        }
-
-        $activity = Activity::create($data);
+        $claim = Claim::create($data);
 
         // Handle multiple images
         if ($request->has('image_urls')) {
             foreach ($request->image_urls as $index => $url) {
                 $path = $this->finalizeImage($url);
                 if ($path) {
-                    $activity->images()->create([
+                    $claim->images()->create([
                         'image_path' => $path,
                         'sort_order' => $index + 1
                     ]);
@@ -57,34 +50,26 @@ class ActivityController extends Controller
             }
         }
 
-        ActivityLog::record('create', "Aktiviti baru dicipta: {$activity->title}", $activity);
+        ActivityLog::record('create', "Bukti Tuntutan baru dicipta: {$claim->title}", $claim);
 
-        return redirect()->route('admin.activities.index')->with('success', 'Aktiviti berjaya ditambah!');
+        return redirect()->route('admin.claims.index')->with('success', 'Bukti Tuntutan berjaya ditambah!');
     }
 
-    public function edit(Activity $activity)
+    public function edit(Claim $claim)
     {
-        return view('admin.activities.edit', compact('activity'));
+        return view('admin.claims.edit', compact('claim'));
     }
 
-    public function update(UpdateActivityRequest $request, Activity $activity)
+    public function update(UpdateClaimRequest $request, Claim $claim)
     {
         $data = $request->validated();
 
-        if ($data['status'] === 'published' && !$activity->published_at) {
+        if ($data['status'] === 'published' && !$claim->published_at) {
             $data['published_at'] = now();
         }
 
-        // Handle featured activity
-        if ($request->boolean('is_featured')) {
-            Activity::where('is_featured', true)->where('id', '!=', $activity->id)->update(['is_featured' => false]);
-            $data['is_featured'] = true;
-        } else {
-            $data['is_featured'] = false;
-        }
-
         $data['updated_by'] = Auth::id();
-        $activity->update($data);
+        $claim->update($data);
 
         // Sync multiple images
         if ($request->has('image_urls')) {
@@ -97,7 +82,7 @@ class ActivityController extends Controller
             }
 
             // Delete images not in new set
-            $oldImages = $activity->images()->get();
+            $oldImages = $claim->images()->get();
             foreach ($oldImages as $oldImage) {
                 if ($oldImage->image_path && !in_array($oldImage->image_path, $newPaths)) {
                     Storage::disk('public')->delete($oldImage->image_path);
@@ -107,31 +92,31 @@ class ActivityController extends Controller
 
             // Update/Create new images
             foreach ($newPaths as $index => $path) {
-                $activity->images()->updateOrCreate(
+                $claim->images()->updateOrCreate(
                     ['image_path' => $path],
                     ['sort_order' => $index + 1]
                 );
             }
         }
 
-        ActivityLog::record('update', "Aktiviti dikemaskini: {$activity->title}", $activity);
+        ActivityLog::record('update', "Bukti Tuntutan dikemaskini: {$claim->title}", $claim);
 
-        return redirect()->route('admin.activities.index')->with('success', 'Aktiviti berjaya dikemaskini!');
+        return redirect()->route('admin.claims.index')->with('success', 'Bukti Tuntutan berjaya dikemaskini!');
     }
 
-    public function destroy(Activity $activity)
+    public function destroy(Claim $claim)
     {
-        foreach ($activity->images as $image) {
+        foreach ($claim->images as $image) {
             if ($image->image_path) {
                 Storage::disk('public')->delete($image->image_path);
             }
         }
-        $activity->images()->delete();
+        $claim->images()->delete();
 
-        ActivityLog::record('delete', "Aktiviti dipadam: {$activity->title}", $activity);
-        $activity->delete();
+        ActivityLog::record('delete', "Bukti Tuntutan dipadam: {$claim->title}", $claim);
+        $claim->delete();
 
-        return redirect()->route('admin.activities.index')->with('success', 'Aktiviti berjaya dipadam!');
+        return redirect()->route('admin.claims.index')->with('success', 'Bukti Tuntutan berjaya dipadam!');
     }
 
     private function finalizeImage($url)
@@ -141,17 +126,17 @@ class ActivityController extends Controller
         $path = parse_url($url, PHP_URL_PATH);
         
         // If it's already a clean path (no /storage/), just return it
-        if (!str_contains($path, '/storage/activities/temp/')) {
+        if (!str_contains($path, '/storage/claims/temp/')) {
             return ltrim(str_replace('/storage/', '', $path), '/');
         }
 
         $filename = basename($path);
-        $oldPath = 'activities/temp/' . $filename;
-        $newPath = 'activities/main/' . $filename;
+        $oldPath = 'claims/temp/' . $filename;
+        $newPath = 'claims/main/' . $filename;
 
         // Ensure directory exists
-        if (!Storage::disk('public')->exists('activities/main')) {
-            Storage::disk('public')->makeDirectory('activities/main');
+        if (!Storage::disk('public')->exists('claims/main')) {
+            Storage::disk('public')->makeDirectory('claims/main');
         }
 
         if (Storage::disk('public')->exists($oldPath)) {

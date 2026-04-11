@@ -30,9 +30,7 @@ Route::get('/ahli-tertinggi-exco', [\App\Http\Controllers\CommitteePublicControl
 
 // page showing evidence of donations / organization efforts
 // (alternate layout is now the primary version)
-Route::get('/bukti-tuntutan', function () {
-    return view('pages.bukti-tuntutan-alternate');
-});
+Route::get('/bukti-tuntutan', [\App\Http\Controllers\PublicClaimController::class, 'index'])->name('bukti-tuntutan.index');
 
 // Berita (public — powered by DB)
 Route::get('/berita', [\App\Http\Controllers\NewsPublicController::class, 'index'])->name('berita.index');
@@ -72,9 +70,12 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     Route::post('/news-image/upload', [\App\Http\Controllers\Admin\NewsImageController::class, 'upload'])->name('news.image.upload');
     Route::delete('/news-image', [\App\Http\Controllers\Admin\NewsImageController::class, 'destroy'])->name('news.image.destroy');
 
-    // Activities
-    Route::resource('activities', \App\Http\Controllers\Admin\ActivityController::class);
-    Route::post('/activities/image/upload', [\App\Http\Controllers\Admin\ActivityImageController::class, 'upload'])->name('activities.image.upload');
+    // Aktiviti Kami (Success Stories)
+    Route::resource('activity-stories', \App\Http\Controllers\Admin\ActivityStoryController::class);
+
+    // Bukti Tuntutan (Claims)
+    Route::resource('claims', \App\Http\Controllers\Admin\ClaimController::class);
+    Route::post('/claims/media/upload', [\App\Http\Controllers\Admin\ClaimMediaController::class, 'upload'])->name('claims.media.upload');
 
     // Categories
     Route::get('/news-categories', [\App\Http\Controllers\Admin\NewsCategoryController::class, 'index'])->name('news.categories.index');

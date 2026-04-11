@@ -5,13 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Activity extends Model
+class Claim extends Model
 {
+    protected $table = 'claims';
     use SoftDeletes;
 
     protected $fillable = [
         'title', 'slug', 'category', 'description', 'event_date',
         'location', 'amount', 'status', 'is_featured', 'published_at', 'created_by', 'updated_by',
+        'member_name', 'heir_name', 'heir_relation', 'school',
+        'disease_type', 'date_joined', 'date_incident',
+        'contribution_amount', 'compensation_amount', 'claim_type',
     ];
 
     protected $casts = [
@@ -20,7 +24,7 @@ class Activity extends Model
         'published_at' => 'datetime',
     ];
 
-    public function images() { return $this->hasMany(ActivityImage::class)->orderBy('sort_order'); }
+    public function images() { return $this->hasMany(ClaimMedia::class, 'claim_id')->orderBy('sort_order'); }
     
     public function getFeaturedImageAttribute()
     {

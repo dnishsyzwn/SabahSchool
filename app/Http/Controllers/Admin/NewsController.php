@@ -102,18 +102,21 @@ class NewsController extends Controller
             $data['published_at'] = now();
         }
 
-        if ($request->filled('thumbnail_url')) {
-            // Delete old thumbnail
-            if ($news->thumbnail) {
-                Storage::disk('public')->delete($news->thumbnail);
+        // Rule: If already published or archived, cannot go back to draft
+        if ($news->status !== 'draft' && $data['status'] === 'draft') {
+            $data['status'] = $news->status; // Revert to current status
+        }
+
+        if ($request->has('thumbnail_url')) {
+            $newPath = $request->filled('thumbnail_url') ? $this->finalizeThumbnail($request->thumbnail_url) : null;
+            
+            // Only update if the thumbnail has actually changed (new upload or removed)
+            if ($newPath !== $news->thumbnail) {
+                if ($news->thumbnail) {
+                    Storage::disk('public')->delete($news->thumbnail);
+                }
+                $data['thumbnail'] = $newPath;
             }
-            $data['thumbnail'] = $this->finalizeThumbnail($request->thumbnail_url);
-        } elseif ($request->has('thumbnail_url') && empty($request->thumbnail_url)) {
-            // User removed thumbnail
-            if ($news->thumbnail) {
-                Storage::disk('public')->delete($news->thumbnail);
-            }
-            $data['thumbnail'] = null;
         }
 
         $data['content'] = $this->finalizeEditorImages($data['content']);
@@ -163,7 +166,7 @@ class NewsController extends Controller
         if (!$contentJson) return $contentJson;
 
         // Pattern to find temp images in the JSON: /storage/news/temp/filename.ext
-        $pattern = '/\/storage\/news\/temp\/([a-zA-Z0-9_.\-]+)/';
+        $pattern = '/\/storage\/news\/temp\/([^\/\s\'"]+)/';
         
         if (preg_match_all($pattern, $contentJson, $matches)) {
             foreach ($matches[1] as $filename) {
@@ -193,7 +196,9 @@ class NewsController extends Controller
     private function finalizeThumbnail($url)
     {
         if (!$url || !str_contains($url, '/storage/news/temp/')) {
-            return str_replace('/storage/', '', parse_url($url, PHP_URL_PATH));
+            $path = parse_url($url, PHP_URL_PATH);
+            // Robust strip of /storage/ or variants
+            return preg_replace('/^.*?storage\//', '', $path);
         }
 
         $filename = basename(parse_url($url, PHP_URL_PATH));

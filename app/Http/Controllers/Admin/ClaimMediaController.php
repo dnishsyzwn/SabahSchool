@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ActivityImageController extends Controller
+class ClaimMediaController extends Controller
 {
     /**
      * Handle image upload to temp storage.
@@ -17,7 +17,7 @@ class ActivityImageController extends Controller
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp,gif', 'max:5120'],
         ]);
 
-        $path = $request->file('image')->store('activities/temp', 'public');
+        $path = $request->file('image')->store('claims/temp', 'public');
 
         return response()->json([
             'url' => Storage::url($path),

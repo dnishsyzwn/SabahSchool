@@ -46,8 +46,8 @@
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col justify-center">
         <p class="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">Akses Pantas</p>
         <div class="flex gap-2">
-            <a href="#" class="px-3 py-1.5 bg-blue-50 text-blue-700 text-xs font-semibold rounded hover:bg-blue-100 transition">Tambah Berita</a>
-            <a href="#" class="px-3 py-1.5 bg-green-50 text-green-700 text-xs font-semibold rounded hover:bg-green-100 transition">Tambah Aktiviti</a>
+            <a href="{{ route('admin.news.create') }}" class="px-3 py-1.5 bg-blue-50 text-blue-700 text-xs font-semibold rounded hover:bg-blue-100 transition">Tambah Berita</a>
+            <a href="{{ route('admin.claims.create') }}" class="px-3 py-1.5 bg-green-50 text-green-700 text-xs font-semibold rounded hover:bg-green-100 transition">Tambah Bukti Tuntutan</a>
         </div>
     </div>
 </div>

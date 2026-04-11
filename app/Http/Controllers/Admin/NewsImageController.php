@@ -37,15 +37,8 @@ class NewsImageController extends Controller
         // Get the path from the URL accurately
         $urlPath = parse_url($request->url, PHP_URL_PATH);
         
-        // Remove /storage/ or storage/ prefix to get the relative path to the public disk
-        $path = $urlPath;
-        if (strpos($path, '/storage/') === 0) {
-            $path = substr($path, 9);
-        } elseif (strpos($path, 'storage/') === 0) {
-            $path = substr($path, 8);
-        }
-
-        // Clean any leading slashes
+        // Robust strip of /storage/ or variants
+        $path = preg_replace('/^.*?storage\//', '', $urlPath);
         $path = ltrim($path, '/');
 
         if (Storage::disk('public')->exists($path)) {

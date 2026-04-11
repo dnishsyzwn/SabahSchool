@@ -224,11 +224,20 @@
 
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Status Penerbitan</p>
-                <div class="grid grid-cols-3 gap-2">
-                    @foreach(['draft'=>['Draf','text-amber-600 bg-amber-50'],'published'=>['Terbit','text-emerald-600 bg-emerald-50'],'archived'=>['Arkib','text-slate-500 bg-slate-50']] as $val=>[$lbl,$cls])
+                <div class="grid @if($news->status === 'draft') grid-cols-3 @else grid-cols-2 @endif gap-2">
+                    @php
+                        $availableStatuses = [
+                            'published' => ['Terbit', 'text-emerald-600 bg-emerald-50'],
+                            'archived'  => ['Arkib', 'text-slate-500 bg-slate-50']
+                        ];
+                        if ($news->status === 'draft') {
+                            $availableStatuses = array_merge(['draft' => ['Draf', 'text-amber-600 bg-amber-50']], $availableStatuses);
+                        }
+                    @endphp
+                    @foreach($availableStatuses as $val => [$lbl, $cls])
                     <div class="relative">
-                        <input type="radio" name="status" value="{{ $val }}" {{ old('status',$news->status)===$val?'checked':'' }} class="sr-only" id="st-{{$val}}">
-                        <label for="st-{{$val}}" class="status-card flex flex-col items-center gap-1.5 cursor-pointer p-3 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/10 transition group relative text-center">
+                        <input type="radio" name="status" value="{{ $val }}" {{ old('status', $news->status) === $val ? 'checked' : '' }} class="sr-only" id="st-{{ $val }}">
+                        <label for="st-{{ $val }}" class="status-card flex flex-col items-center gap-1.5 cursor-pointer p-3 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/10 transition group relative text-center">
                             <div class="status-icon w-8 h-8 rounded-full {{ $cls }} flex items-center justify-center transition duration-300">
                                 @if($val === 'draft')
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
@@ -238,7 +247,7 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
                                 @endif
                             </div>
-                            <p class="text-[10px] font-bold {{ explode(' ',$cls)[0] }}">{{ $lbl }}</p>
+                            <p class="text-[10px] font-bold {{ explode(' ', $cls)[0] }}">{{ $lbl }}</p>
                             <div class="status-check hidden absolute top-1 right-1">
                                 <div class="w-3 h-3 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
                                     <svg class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
