@@ -350,40 +350,7 @@
 
     </div>
 
-    {{-- Stats Section --}}
-    <div class="relative bg-[#001a6e] overflow-hidden">
-        <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
-            <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4"></div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-20 md:py-28 relative z-10">
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 text-white/70 rounded-lg mb-4 border border-white/10">
-                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-                    <span class="text-xs font-bold tracking-wider uppercase">Impak STU</span>
-                </div>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Kami Dalam Angka</h2>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
-                <div class="text-center">
-                    <span class="text-5xl md:text-6xl font-bold text-emerald-300 tracking-tight block mb-2">48</span>
-                    <p class="text-white/40 uppercase tracking-[0.1em] text-sm">Tahun Berdiri</p>
-                </div>
-                <div class="text-center">
-                    <span class="text-5xl md:text-6xl font-bold text-white tracking-tight block mb-2">12k+</span>
-                    <p class="text-white/40 uppercase tracking-[0.1em] text-sm">Ahli Berdaftar</p>
-                </div>
-                <div class="text-center">
-                    <span class="text-5xl md:text-6xl font-bold text-white tracking-tight block mb-2">{{ $claims->total() }}</span>
-                    <p class="text-white/40 uppercase tracking-[0.1em] text-sm">Bukti Tuntutan</p>
-                </div>
-                <div class="text-center">
-                    <span class="text-5xl md:text-6xl font-bold text-white tracking-tight block mb-2">25</span>
-                    <p class="text-white/40 uppercase tracking-[0.1em] text-sm">Daerah Liputan</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     {{-- CTA --}}
     <div class="relative bg-white overflow-hidden">

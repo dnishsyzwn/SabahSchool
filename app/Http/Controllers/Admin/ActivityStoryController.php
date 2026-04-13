@@ -13,9 +13,45 @@ use Illuminate\Support\Facades\Auth;
 
 class ActivityStoryController extends Controller
 {
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
-        $stories = ActivityStory::orderBy('sort_order', 'asc')->orderBy('created_at', 'desc')->get();
+        $query = ActivityStory::query();
+
+        // Search
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('tag', 'like', "%{$search}%");
+            });
+        }
+
+        // Active filter
+        if ($request->filled('status')) {
+            if ($request->status === 'active')   $query->where('is_active', true);
+            if ($request->status === 'inactive') $query->where('is_active', false);
+        }
+
+        // Determine date field
+        $dateField = ($request->status === 'active') ? 'event_date' : 'created_at';
+
+        // Filter by Date Range
+        if ($request->filled('start_date')) {
+            $query->whereDate($dateField, '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate($dateField, '<=', $request->end_date);
+        }
+
+        $stories = $query->orderBy('sort_order', 'asc')
+                         ->orderBy($dateField, 'desc')
+                         ->paginate(10)
+                         ->withQueryString();
+
+        if ($request->ajax()) {
+            return view('admin.activity-stories.partials.table', compact('stories'))->render();
+        }
+
         return view('admin.activity-stories.index', compact('stories'));
     }
 

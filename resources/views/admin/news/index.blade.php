@@ -31,27 +31,39 @@
             </div>
 
             {{-- Status Filter --}}
-            <div class="sm:w-48 group">
+            <div class="sm:w-40 group">
                 <select name="status" id="status-filter" 
-                        class="w-full px-4 py-2.5 text-sm border border-gray-100 bg-white rounded-xl focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all appearance-none cursor-pointer">
-                    <option value="">Semua Status</option>
-                    <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>Terbit (Published)</option>
-                    <option value="draft"     {{ request('status') === 'draft'     ? 'selected' : '' }}>Draf (Draft)</option>
-                    <option value="archived"  {{ request('status') === 'archived'  ? 'selected' : '' }}>Arkib (Archived)</option>
+                        class="w-full px-4 py-2.5 text-[11px] font-black uppercase tracking-widest border border-gray-100 bg-white rounded-xl focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all appearance-none cursor-pointer">
+                    <option value="">Status</option>
+                    <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>Terbit</option>
+                    <option value="draft"     {{ request('status') === 'draft'     ? 'selected' : '' }}>Draf</option>
+                    <option value="archived"  {{ request('status') === 'archived'  ? 'selected' : '' }}>Arkib</option>
                 </select>
             </div>
 
-            <input type="hidden" name="sort" id="sort-input" value="{{ request('sort', 'created_at') }}">
+            {{-- Date Range filters --}}
+            <div class="flex items-center gap-2 sm:w-auto">
+                <div class="relative group flex-1 sm:w-36">
+                    <span class="absolute left-3 top-[-8px] bg-white px-1 text-[8px] font-black text-gray-400 uppercase tracking-widest z-10 transition-colors group-focus-within:text-blue-500">Mula</span>
+                    <input type="date" name="start_date" id="start-date-filter" value="{{ request('start_date') }}"
+                           class="w-full px-3 py-2.5 text-[10px] font-bold border border-gray-100 bg-white rounded-xl focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all cursor-pointer">
+                </div>
+                <div class="relative group flex-1 sm:w-36">
+                    <span class="absolute left-3 top-[-8px] bg-white px-1 text-[8px] font-black text-gray-400 uppercase tracking-widest z-10 transition-colors group-focus-within:text-blue-500">Hingga</span>
+                    <input type="date" name="end_date" id="end-date-filter" value="{{ request('end_date') }}"
+                           class="w-full px-3 py-2.5 text-[10px] font-bold border border-gray-100 bg-white rounded-xl focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all cursor-pointer">
+                </div>
+            </div>
+
+            <input type="hidden" name="sort" id="sort-input" value="{{ request('sort') }}">
             <input type="hidden" name="direction" id="direction-input" value="{{ request('direction', 'desc') }}">
 
             <button type="submit" class="hidden">Cari</button>
 
-            @if(request('search') || request('status') || request('sort'))
-                <a href="{{ route('admin.news.index') }}" 
-                   class="px-5 py-2.5 bg-gray-100 text-gray-600 text-xs font-black rounded-xl hover:bg-gray-200 transition uppercase tracking-widest flex items-center justify-center">
-                    Reset
-                </a>
-            @endif
+            <a href="{{ route('admin.news.index') }}" id="reset-btn"
+               class="{{ (request('search') || request('status') || request('sort') || request('start_date') || request('end_date')) ? 'flex' : 'hidden' }} px-5 py-2.5 bg-gray-100 text-gray-600 text-xs font-black rounded-xl hover:bg-gray-200 transition uppercase tracking-widest items-center justify-center">
+                Reset
+            </a>
         </form>
     </div>
 
@@ -66,6 +78,23 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     let searchTimeout;
+
+    function toggleResetButton() {
+        const search = document.getElementById('search-input').value;
+        const status = document.getElementById('status-filter').value;
+        const start = document.getElementById('start-date-filter').value;
+        const end = document.getElementById('end-date-filter').value;
+        const sort = document.getElementById('sort-input').value;
+        
+        const btn = document.getElementById('reset-btn');
+        if (search || status || start || end || sort) {
+            btn.classList.remove('hidden');
+            btn.classList.add('flex');
+        } else {
+            btn.classList.remove('flex');
+            btn.classList.add('hidden');
+        }
+    }
 
     // ══ AJAX Table Core ══
     async function fetchTable(url) {
@@ -93,6 +122,9 @@
             
             // Update URL
             window.history.pushState(null, '', url);
+
+            // Sync Reset Button
+            toggleResetButton();
         } catch (error) {
             console.error('Fetch error:', error);
             Swal.fire({ icon: 'error', title: 'Ralat', text: 'Gagal memuatkan data. Sila cuba lagi.' });
@@ -138,18 +170,23 @@
 
     // ══ Filter Listeners ══
     document.getElementById('search-input').addEventListener('input', () => {
+        toggleResetButton();
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
             fetchTable(buildUrl());
         }, 500); // 500ms debounce
     });
 
-    document.getElementById('status-filter').addEventListener('change', () => {
-        fetchTable(buildUrl());
+    ['status-filter', 'start-date-filter', 'end-date-filter'].forEach(id => {
+        document.getElementById(id).addEventListener('change', () => {
+            toggleResetButton();
+            fetchTable(buildUrl());
+        });
     });
 
     document.getElementById('filter-form').addEventListener('submit', e => {
         e.preventDefault();
+        toggleResetButton();
         fetchTable(buildUrl());
     });
 
