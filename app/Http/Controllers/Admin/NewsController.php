@@ -43,7 +43,7 @@ class NewsController extends Controller
             $query->latest();
         }
 
-        $posts = $query->paginate(15)->withQueryString();
+        $posts = $query->paginate(10)->withQueryString();
 
         if ($request->ajax()) {
             return view('admin.news.partials.table', compact('posts'))->render();

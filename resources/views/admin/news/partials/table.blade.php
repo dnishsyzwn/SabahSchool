@@ -10,6 +10,7 @@
     <table class="min-w-full text-left text-sm">
         <thead class="bg-gray-50/80 text-[10px] text-gray-400 uppercase tracking-[0.2em] font-black border-b border-gray-100">
             <tr>
+                <th class="px-6 py-4 w-10 text-center text-gray-300">#</th>
                 <th class="px-6 py-4 w-20">Gambar</th>
                 <th class="px-6 py-4">
                     <button type="button" onclick="sort('title')" class="flex items-center gap-2 hover:text-blue-600 transition group">
@@ -45,6 +46,9 @@
         <tbody class="divide-y divide-gray-50">
             @forelse($posts as $post)
             <tr class="hover:bg-blue-50/30 transition group/row animate-in fade-in duration-500">
+                <td class="px-6 py-4 whitespace-nowrap text-center">
+                    <span class="text-[10px] font-black text-gray-300">{{ $posts->firstItem() + $loop->index }}</span>
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     @if($post->thumbnail)
                         <div class="relative w-14 h-14 rounded-xl overflow-hidden shadow-sm border border-gray-100 group-hover/row:scale-105 transition duration-300">
@@ -107,7 +111,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="6" class="px-6 py-24 text-center">
+                <td colspan="7" class="px-6 py-24 text-center">
                     <div class="flex flex-col items-center">
                         <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-200 mb-4 border border-dashed border-gray-200">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
