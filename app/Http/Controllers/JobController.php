@@ -43,7 +43,7 @@ class JobController extends Controller
             \Illuminate\Support\Facades\Mail::to($adminEmail)->send(new \App\Mail\JobApplicationEmail($application));
             
             $application->update(['email_notified' => true]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error("Gagal menghantar emel permohonan kerjaya: " . $e->getMessage());
         }
 

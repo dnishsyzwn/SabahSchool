@@ -62,7 +62,7 @@ class BorangController extends Controller
             Mail::to($adminEmail)->send(new FormSubmissionEmail($submission));
             
             $submission->update(['email_notified' => true]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             Log::error("Gagal menghantar emel penghantaran borang: " . $e->getMessage());
         }
 
