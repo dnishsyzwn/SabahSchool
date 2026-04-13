@@ -32,18 +32,30 @@ class NewsController extends Controller
             $query->where('status', $request->status);
         }
 
-        // Sorting
-        $sort = $request->input('sort', 'created_at');
-        $direction = $request->input('direction', 'desc');
-        $allowedSorts = ['title', 'status', 'created_at'];
-        
-        if (in_array($sort, $allowedSorts)) {
-            $query->orderBy($sort, $direction === 'asc' ? 'asc' : 'desc');
-        } else {
-            $query->latest();
+        // Determine which date field to use for range filtering and default sorting
+        $dateField = ($request->status === 'published') ? 'published_at' : 'created_at';
+
+        // Filter by Date Range
+        if ($request->filled('start_date')) {
+            $query->whereDate($dateField, '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate($dateField, '<=', $request->end_date);
         }
 
-        $posts = $query->paginate(15)->withQueryString();
+        // Sorting
+        $sort = $request->input('sort');
+        $direction = $request->input('direction', 'desc');
+        $allowedSorts = ['title', 'status', 'created_at', 'published_at'];
+        
+        if ($sort && in_array($sort, $allowedSorts)) {
+            $query->orderBy($sort, $direction === 'asc' ? 'asc' : 'desc');
+        } else {
+            // Apply dynamic default sorting
+            $query->orderBy($dateField, 'desc');
+        }
+
+        $posts = $query->paginate(10)->withQueryString();
 
         if ($request->ajax()) {
             return view('admin.news.partials.table', compact('posts'))->render();
