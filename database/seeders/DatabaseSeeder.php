@@ -21,15 +21,15 @@ class DatabaseSeeder extends Seeder
         );
 
         // Create a regular admin account
-        User::firstOrCreate(
-            ['email' => 'admin@stu.my'],
-            [
-                'name'     => 'Admin STU',
-                'password' => bcrypt('Admin@1234'),
-                'role'     => 'admin',
-                'is_active' => true,
-            ]
-        );
+        // User::firstOrCreate(
+        //     ['email' => 'admin@stu.my'],
+        //     [
+        //         'name'     => 'Admin STU',
+        //         'password' => bcrypt('Admin@1234'),
+        //         'role'     => 'admin',
+        //         'is_active' => true,
+        //     ]
+        // );
 
         $this->call([
             ActivitySeeder::class,
