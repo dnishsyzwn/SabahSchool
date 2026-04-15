@@ -12,10 +12,27 @@
             <tr class="lg:table-row">
                 <th class="px-6 py-4 w-10 text-center text-gray-300">#</th>
                 <th class="px-6 py-4 w-20">Gambar</th>
-                <th class="px-6 py-4">Nama Ahli / Sekolah</th>
+                <th class="px-6 py-4">
+                    <button type="button" onclick="sort('member_name')" class="flex items-center gap-2 hover:text-blue-600 transition group">
+                        Ahli / Sekolah
+                        <span class="inline-flex flex-col">
+                            <svg class="w-2.5 h-2.5 {{ request('sort') == 'member_name' && request('direction') == 'asc' ? 'text-blue-600' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 20 20"><path d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"/></svg>
+                            <svg class="w-2.5 h-2.5 -mt-1 {{ request('sort') == 'member_name' && request('direction') == 'desc' ? 'text-blue-600' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                        </span>
+                    </button>
+                </th>
                 <th class="px-6 py-4 w-32">Jenis</th>
                 <th class="px-6 py-4 w-32">Pampasan</th>
-                <th class="px-6 py-4 w-32">Status</th>
+                <th class="px-6 py-4 w-32">
+                    <button type="button" onclick="sort('published_at')" class="flex items-center gap-2 hover:text-blue-600 transition group">
+                        Tarikh
+                        <span class="inline-flex flex-col">
+                            <svg class="w-2.5 h-2.5 {{ (request('sort','published_at') == 'published_at' && request('direction') == 'asc') ? 'text-blue-600' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 20 20"><path d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"/></svg>
+                            <svg class="w-2.5 h-2.5 -mt-1 {{ (request('sort','published_at') == 'published_at' && request('direction') == 'desc') ? 'text-blue-600' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                        </span>
+                    </button>
+                </th>
+                <th class="px-6 py-4 w-32 text-center">Status</th>
                 <th class="px-6 py-4 text-right">Tindakan</th>
             </tr>
         </thead>
@@ -78,9 +95,19 @@
                     </div>
                 </td>
 
+                {{-- Date --}}
+                <td class="block lg:table-cell px-6 py-3 lg:py-4 border-t border-gray-50 lg:border-none">
+                    <div class="flex flex-col">
+                        <span class="lg:hidden text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Tarikh Terbit</span>
+                        @php $d = $claim->published_at ?? $claim->created_at; @endphp
+                        <span class="text-xs font-bold text-gray-700">{{ $d->format('d M Y') }}</span>
+                        <span class="text-[10px] text-gray-400 font-medium">{{ $d->format('H:i A') }}</span>
+                    </div>
+                </td>
+
                 {{-- Status --}}
-                <td class="block lg:table-cell px-6 py-2 lg:py-4 border-t border-gray-50 lg:border-none">
-                    <div class="flex flex-col lg:block">
+                <td class="block lg:table-cell px-6 py-2 lg:py-4 border-t border-gray-50 lg:border-none text-center">
+                    <div class="flex flex-col lg:items-center">
                         <span class="lg:hidden text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Status</span>
                         @php
                             $badge = match($claim->status) {
@@ -91,7 +118,7 @@
                             };
                         @endphp
                         <div>
-                            <span class="inline-flex items-center px-2 py-0.5 text-[9px] font-black rounded-md border {{ $badge }} uppercase tracking-widest">
+                            <span class="inline-flex items-center px-2.5 py-1 text-[10px] font-black rounded-lg border {{ $badge }} uppercase tracking-tighter">
                                 {{ $claim->status }}
                             </span>
                         </div>
