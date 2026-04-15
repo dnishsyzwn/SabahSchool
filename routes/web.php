@@ -100,13 +100,13 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     Route::delete('/form-submissions/{formSubmission}', [\App\Http\Controllers\Admin\FormSubmissionController::class, 'destroy'])->name('form-submissions.destroy');
 });
 
-// Deployment Routes
-Route::get('/run-migrate', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-    return "Migration completed!";
-});
+// // Deployment Routes
+// Route::get('/run-migrate', function () {
+//     \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+//     return "Migration completed!";
+// });
 
-Route::get('/run-link', function () {
-    \Illuminate\Support\Facades\Artisan::call('storage:link');
-    return "Storage linked!";
-});
+// Route::get('/run-link', function () {
+//     \Illuminate\Support\Facades\Artisan::call('storage:link');
+//     return "Storage linked!";
+// });
