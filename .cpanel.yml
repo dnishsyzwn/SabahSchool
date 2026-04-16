@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/sabahtea/public_html/
+    # Salin isi folder public ke public_html
+    - /bin/cp -R public/* $DEPLOYPATH
+    # (Opsional) Salin folder lain ke folder core Laravel anda
+    - /bin/cp -R * /home/sabahtea/stu/
