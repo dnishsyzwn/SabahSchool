@@ -11,7 +11,6 @@
         <thead class="hidden lg:table-header-group bg-gray-50/80 text-[10px] text-gray-400 uppercase tracking-[0.2em] font-black border-b border-gray-100">
             <tr class="lg:table-row">
                 <th class="px-6 py-4 w-10 text-center text-gray-300">#</th>
-                <th class="px-6 py-4 w-16 text-center">Susun</th>
                 <th class="px-6 py-4 w-20">Gambar</th>
                 <th class="px-6 py-4">
                     <button type="button" onclick="sort('title')" class="flex items-center gap-2 hover:text-blue-600 transition group">
@@ -43,17 +42,11 @@
                     <span class="text-[10px] font-black text-gray-300">{{ $stories->firstItem() + $loop->index }}</span>
                 </td>
 
-                {{-- Sort Order --}}
-                <td class="hidden lg:table-cell px-6 py-4 whitespace-nowrap text-center font-mono text-gray-400">
-                    {{ $story->sort_order }}
-                </td>
-
                 {{-- Header / Thumb + Title --}}
                 <td class="block lg:table-cell px-6 pt-6 pb-2 lg:py-4">
                     <div class="flex items-center gap-4">
                         <div class="lg:hidden flex flex-col gap-1 items-center">
                              <span class="text-[10px] font-black text-blue-600 bg-blue-50 px-2 py-1 rounded-md">#{{ $stories->firstItem() + $loop->index }}</span>
-                             <span class="text-[10px] font-mono text-gray-400">S:{{ $story->sort_order }}</span>
                         </div>
                         @if($story->image_path)
                             <div class="relative w-16 h-16 lg:w-14 lg:h-14 rounded-xl overflow-hidden shadow-sm border border-gray-100 group-hover/row:scale-105 transition duration-300">
@@ -90,9 +83,23 @@
                 <td class="block lg:table-cell px-6 py-2 lg:py-4 border-t border-gray-50 lg:border-none text-center">
                     <div class="flex flex-col lg:items-center">
                         <span class="lg:hidden text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Status Aktiviti</span>
+                        @php
+                            $badge = match($story->status) {
+                                'published' => 'text-emerald-600 bg-emerald-50 border-emerald-100',
+                                'draft'     => 'text-amber-600 bg-amber-50 border-amber-100',
+                                'archived'  => 'text-slate-500 bg-slate-50 border-slate-100',
+                                default     => $story->is_active ? 'text-emerald-600 bg-emerald-50 border-emerald-100' : 'text-slate-400 bg-slate-50 border-slate-100',
+                            };
+                            $statusLabel = match($story->status) {
+                                'published' => 'Terbit',
+                                'draft'     => 'Draf',
+                                'archived'  => 'Arkib',
+                                default     => $story->is_active ? 'Terbit' : 'Draf',
+                            };
+                        @endphp
                         <div>
-                            <span class="inline-flex items-center px-2.5 py-1 text-[10px] font-black rounded-lg border {{ $story->is_active ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-red-50 text-red-600 border-red-100' }} uppercase tracking-tighter">
-                                {{ $story->is_active ? 'Aktif' : 'Tidak Aktif' }}
+                            <span class="inline-flex items-center px-2.5 py-1 text-[10px] font-black rounded-lg border {{ $badge }} uppercase tracking-tighter">
+                                {{ $statusLabel }}
                             </span>
                         </div>
                     </div>
@@ -116,7 +123,7 @@
             </tr>
             @empty
             <tr class="block lg:table-row">
-                <td colspan="7" class="block lg:table-cell px-6 py-24 text-center">
+                <td colspan="6" class="block lg:table-cell px-6 py-24 text-center">
                     <div class="flex flex-col items-center">
                         <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-200 mb-4 border border-dashed border-gray-200">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>

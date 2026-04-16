@@ -26,10 +26,15 @@ class ActivityStoryController extends Controller
             });
         }
 
-        // Active filter
+        // Status filter
         if ($request->filled('status')) {
-            if ($request->status === 'active')   $query->where('is_active', true);
-            if ($request->status === 'inactive') $query->where('is_active', false);
+            if (in_array($request->status, ['draft', 'published', 'archived'])) {
+                $query->where('status', $request->status);
+            } elseif ($request->status === 'active') {
+                $query->where('is_active', true);
+            } elseif ($request->status === 'inactive') {
+                $query->where('is_active', false);
+            }
         }
 
         // Determine date field
@@ -64,8 +69,16 @@ class ActivityStoryController extends Controller
     {
         $data = $request->validated();
         
-        if ($request->filled('image_path')) {
-            $data['image_path'] = $this->finalizeImage($request->image_path);
+        // Handle images
+        if ($request->filled('image_urls')) {
+            $data['images'] = $this->finalizeImages($request->image_urls);
+            $data['image_path'] = $data['images'][0] ?? null;
+        }
+
+        // Set is_active and published_at based on status
+        $data['is_active'] = ($data['status'] === 'published');
+        if ($data['status'] === 'published') {
+            $data['published_at'] = now();
         }
 
         $story = ActivityStory::create($data);
@@ -84,12 +97,38 @@ class ActivityStoryController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->filled('image_path') && $request->image_path !== Storage::url($activity_story->image_path)) {
-            // Delete old image
-            if ($activity_story->image_path) {
-                Storage::disk('public')->delete($activity_story->image_path);
+        // Handle images
+        if ($request->filled('image_urls')) {
+            $data['images'] = $this->finalizeImages($request->image_urls, $activity_story->images ?? []);
+            $data['image_path'] = $data['images'][0] ?? null;
+            
+            // Cleanup deleted images from storage
+            $oldImages = $activity_story->images ?? [];
+            foreach ($oldImages as $old) {
+                if (!in_array($old, $data['images'])) {
+                    Storage::disk('public')->delete($old);
+                }
             }
-            $data['image_path'] = $this->finalizeImage($request->image_path);
+        } else {
+            // If all images removed
+            if ($activity_story->images) {
+                foreach ($activity_story->images as $img) {
+                    Storage::disk('public')->delete($img);
+                }
+            }
+            $data['images'] = [];
+            $data['image_path'] = null;
+        }
+
+        // Handle Status Transition
+        // BLOCK: Published -> Draft transition
+        if ($activity_story->status === 'published' && $data['status'] === 'draft') {
+            return back()->withErrors(['status' => 'Cerita yang telah diterbitkan tidak boleh ditukar semula kepada draf.'])->withInput();
+        }
+
+        $data['is_active'] = ($data['status'] === 'published');
+        if ($data['status'] === 'published' && !$activity_story->published_at) {
+            $data['published_at'] = now();
         }
 
         $activity_story->update($data);
@@ -101,7 +140,12 @@ class ActivityStoryController extends Controller
 
     public function destroy(ActivityStory $activity_story)
     {
-        if ($activity_story->image_path) {
+        // Cleanup all images
+        if ($activity_story->images) {
+            foreach ($activity_story->images as $img) {
+                Storage::disk('public')->delete($img);
+            }
+        } elseif ($activity_story->image_path) {
             Storage::disk('public')->delete($activity_story->image_path);
         }
 
@@ -112,27 +156,49 @@ class ActivityStoryController extends Controller
     }
 
     /**
-     * Move image from temp to permanent storage.
+     * Handle AJAX image upload (Temporary).
      */
-    private function finalizeImage($tempUrl)
+    public function uploadImage(Request $request)
     {
-        if (!$tempUrl) return null;
+        $request->validate([
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+        ]);
 
-        // If it's already a permanent URL, extract the path
-        if (Str::contains($tempUrl, '/storage/activity_stories/')) {
-            return str_replace('/storage/', '', parse_url($tempUrl, PHP_URL_PATH));
+        $path = $request->file('image')->store('activity_stories/temp', 'public');
+
+        return response()->json([
+            'url' => Storage::url($path),
+        ]);
+    }
+
+    /**
+     * Finalize images from temp to permanent storage.
+     */
+    private function finalizeImages($urls, $existingImages = [])
+    {
+        $finalPaths = [];
+
+        foreach ($urls as $url) {
+            // Already permanent if it contains the permanent folder
+            if (Str::contains($url, '/storage/activity_stories/') && !Str::contains($url, '/temp/')) {
+                $path = str_replace('/storage/', '', parse_url($url, PHP_URL_PATH));
+                $finalPaths[] = $path;
+                continue;
+            }
+
+            // Example temp path: /storage/activity_stories/temp/filename.jpg
+            $tempPath = str_replace('/storage/', '', parse_url($url, PHP_URL_PATH));
+
+            if (Storage::disk('public')->exists($tempPath)) {
+                $filename = basename($tempPath);
+                $newPath = 'activity_stories/' . $filename;
+                
+                // Move from temp to permanent
+                Storage::disk('public')->move($tempPath, $newPath);
+                $finalPaths[] = $newPath;
+            }
         }
 
-        // Example temp path: /storage/claims/temp/filename.jpg
-        $tempPath = str_replace('/storage/', '', parse_url($tempUrl, PHP_URL_PATH));
-
-        if (Storage::disk('public')->exists($tempPath)) {
-            $filename = basename($tempPath);
-            $newPath = 'activity_stories/' . $filename;
-            Storage::disk('public')->move($tempPath, $newPath);
-            return $newPath;
-        }
-
-        return null;
+        return $finalPaths;
     }
 }

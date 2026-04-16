@@ -68,8 +68,8 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
     Route::post('/news-image/upload', [\App\Http\Controllers\Admin\NewsImageController::class, 'upload'])->name('news.image.upload');
     Route::delete('/news-image', [\App\Http\Controllers\Admin\NewsImageController::class, 'destroy'])->name('news.image.destroy');
 
-    // Aktiviti Kami (Success Stories)
     Route::resource('activity-stories', \App\Http\Controllers\Admin\ActivityStoryController::class);
+    Route::post('/activity-stories/media/upload', [\App\Http\Controllers\Admin\ActivityStoryController::class, 'uploadImage'])->name('activity-stories.media.upload');
 
     // Bukti Tuntutan (Claims)
     Route::resource('claims', \App\Http\Controllers\Admin\ClaimController::class);

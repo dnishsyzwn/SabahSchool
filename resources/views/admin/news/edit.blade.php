@@ -223,59 +223,64 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Status Penerbitan</p>
-                <div class="grid @if($news->status === 'draft') grid-cols-3 @else grid-cols-2 @endif gap-2">
-                    @php
-                        $availableStatuses = [
-                            'published' => ['Terbit', 'text-emerald-600 bg-emerald-50'],
-                            'archived'  => ['Arkib', 'text-slate-500 bg-slate-50']
-                        ];
-                        if ($news->status === 'draft') {
-                            $availableStatuses = array_merge(['draft' => ['Draf', 'text-amber-600 bg-amber-50']], $availableStatuses);
-                        }
-                    @endphp
-                    @foreach($availableStatuses as $val => [$lbl, $cls])
-                    <div class="relative">
-                        <input type="radio" name="status" value="{{ $val }}" {{ old('status', $news->status) === $val ? 'checked' : '' }} class="sr-only" id="st-{{ $val }}">
-                        <label for="st-{{ $val }}" class="status-card flex flex-col items-center gap-1.5 cursor-pointer p-3 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/10 transition group relative text-center">
-                            <div class="status-icon w-8 h-8 rounded-full {{ $cls }} flex items-center justify-center transition duration-300">
-                                @if($val === 'draft')
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                                @elseif($val === 'published')
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                @else
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
-                                @endif
-                            </div>
-                            <p class="text-[10px] font-bold {{ explode(' ', $cls)[0] }}">{{ $lbl }}</p>
-                            <div class="status-check hidden absolute top-1 right-1">
-                                <div class="w-3 h-3 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                                    <svg class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Status & Visibiliti</p>
+                @php
+                    $availableStatuses = [
+                        'draft'     => ['Draf', 'amber', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'],
+                        'published' => ['Penerbitan', 'emerald', 'M5 13l4 4L19 7'],
+                        'archived'  => ['Simpanan', 'slate', 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4'],
+                    ];
+                @endphp
+                <div class="space-y-3 mb-6">
+                    @foreach($availableStatuses as $val => [$lbl, $color, $iconPath])
+                        @if($news->status === 'published' && $val === 'draft')
+                            @continue
+                        @endif
+                        <div class="relative">
+                            <input type="radio" name="status" value="{{ $val }}" 
+                                   {{ old('status', $news->status) === $val ? 'checked' : '' }} 
+                                   class="sr-only" id="st-{{ $val }}">
+                            <label for="st-{{ $val }}" 
+                                   class="status-card flex items-center justify-between cursor-pointer p-4 rounded-xl border border-gray-100 hover:border-blue-200 transition group relative">
+                                <div class="flex items-center gap-3">
+                                    <div class="status-icon w-10 h-10 rounded-xl bg-{{ $color }}-50 text-{{ $color }}-600 flex items-center justify-center transition duration-300">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $iconPath }}"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-black uppercase tracking-tight text-gray-800">{{ $lbl }}</p>
+                                        <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest">{{ $val }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
+                                <div class="status-check hidden">
+                                    <div class="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
+                                        <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
                     @endforeach
+                </div>
+
+                <div class="pt-4 border-t border-gray-50 space-y-3">
+                    <button type="button" id="btn-save" class="w-full py-4 bg-blue-600 text-white font-black text-[11px] uppercase tracking-[0.2em] rounded-xl hover:bg-blue-700 transition shadow-xl shadow-blue-100 hover:shadow-blue-200 hover:-translate-y-0.5 transition-all duration-300">
+                        Kemaskini Artikel Berita
+                    </button>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" onclick="confirmDelete()" 
+                                class="flex items-center justify-center py-4 bg-red-50 text-red-600 font-black text-[11px] uppercase tracking-[0.2em] rounded-xl hover:bg-red-100 transition border border-red-100">
+                            Padam
+                        </button>
+                        <a href="{{ route('admin.news.index') }}" class="flex items-center justify-center py-4 bg-gray-50 text-gray-400 font-black text-[11px] uppercase tracking-[0.2em] rounded-xl hover:bg-gray-100 transition border border-gray-100">
+                            Batal
+                        </a>
+                    </div>
                 </div>
             </div>
         </form>
 
-        <div class="bg-rose-50 border border-rose-100 rounded-2xl p-6">
-            <p class="text-[10px] font-black text-rose-700 uppercase tracking-widest mb-3">Zon Bahaya</p>
-            <button type="button" onclick="confirmDelete()" 
-                    class="w-full py-2.5 bg-rose-600 text-white text-xs font-black rounded-xl hover:bg-rose-700 transition uppercase tracking-widest">
-                Padam Selamanya
-            </button>
-        </div>
-
         <form id="delete-post-form" action="{{ route('admin.news.destroy', $news) }}" method="POST" class="hidden">
             @csrf @method('DELETE')
         </form>
-
-        <button type="button" id="btn-save"
-                class="relative z-[10] w-full py-4 bg-blue-600 text-white font-extrabold rounded-2xl hover:bg-blue-700 active:scale-[0.98] transition shadow-xl shadow-blue-200 uppercase tracking-widest text-xs">
-            Kemaskini Artikel
-        </button>
     </div>
 </div>
 
@@ -308,40 +313,6 @@
                 <input type="text" id="modal-cat-search" placeholder="Cari untuk padam..." 
                        class="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-100 bg-gray-50/50 rounded-xl focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition">
                 <svg class="absolute left-3.5 top-3 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            </div>
-            
-            <div id="modal-cat-list" class="space-y-1 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
-                {{-- Categories injected via JS --}}
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- Same Crop & Preview Modals as create --}}
-<div id="crop-modal" class="fixed inset-0 z-[1000] bg-black/90 backdrop-blur-md items-center justify-center p-4">
-    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-50">
-            <h3 class="font-bold text-gray-800 text-sm italic tracking-tight">Kekemasan Visual</h3>
-        </div>
-        <div class="bg-gray-100 flex items-center justify-center" style="height:380px;">
-            <img id="crop-target" src="" alt="" style="max-height:360px; max-width:100%;">
-        </div>
-        <div class="px-6 py-4 bg-white border-t flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center gap-1.5 p-1 bg-gray-50 rounded-xl">
-                <button class="crop-ar px-3 py-1.5 text-[10px] font-bold rounded-lg border border-transparent bg-white shadow-sm hover:translate-y-[-1px] transition" data-ratio="NaN">Bebas</button>
-                <button class="crop-ar px-3 py-1.5 text-[10px] font-bold rounded-lg border border-transparent text-gray-400 hover:text-gray-600 transition" data-ratio="1.777">16:9</button>
-                <button class="crop-ar px-3 py-1.5 text-[10px] font-bold rounded-lg border border-transparent text-gray-400 hover:text-gray-600 transition" data-ratio="1.333">4:3</button>
-                <button class="crop-ar px-3 py-1.5 text-[10px] font-bold rounded-lg border border-transparent text-gray-400 hover:text-gray-600 transition" data-ratio="1">1:1</button>
-            </div>
-            <div class="flex items-center gap-3">
-                <button id="btn-crop-cancel" class="px-5 py-2.5 text-xs font-bold text-gray-500 hover:text-gray-700 transition">Batal</button>
-                <button id="btn-crop-skip" class="px-5 py-2.5 text-xs font-bold bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition">Asal</button>
-                <button id="btn-crop-done" class="px-6 py-2.5 text-xs font-black bg-blue-600 text-white rounded-xl shadow-md">POTONG</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div id="preview-modal" class="fixed inset-0 z-[900] bg-slate-900/40 backdrop-blur-sm items-start justify-center overflow-y-auto p-4 py-12">
     <div class="bg-white w-full max-w-6xl rounded-3xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-8 duration-500">
         <div class="flex items-center justify-between px-6 py-4 bg-white border-b sticky top-0 z-10">

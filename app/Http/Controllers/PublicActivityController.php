@@ -10,10 +10,12 @@ class PublicActivityController extends Controller
 {
     public function index()
     {
-        $stories = ActivityStory::where('is_active', true)
-            ->orderBy('sort_order', 'asc')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $stories = ActivityStory::where('status', 'published')
+            ->orWhere(function($query) {
+                $query->whereNull('status')->where('is_active', true);
+            })
+            ->orderBy('event_date', 'desc')
+            ->paginate(6);
 
         return view('pages.aktiviti-kami', compact('stories'));
     }

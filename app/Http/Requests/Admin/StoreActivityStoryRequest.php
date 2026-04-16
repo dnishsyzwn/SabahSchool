@@ -17,13 +17,14 @@ class StoreActivityStoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'       => ['required', 'string', 'max:255'],
-            'tag'         => ['nullable', 'string', 'max:100'],
-            'description' => ['nullable', 'string'],
-            'event_date'  => ['nullable', 'string', 'max:100'],
-            'image_path'  => ['nullable', 'string'],
-            'is_active'   => ['nullable', 'boolean'],
-            'sort_order'  => ['nullable', 'integer'],
+            'title'        => ['required', 'string', 'max:255'],
+            'tag'          => ['nullable', 'string', 'max:100'],
+            'description'  => ['nullable', 'string'],
+            'event_date'   => ['required', 'date'],
+            'image_urls'   => ['required', 'array', 'min:1', 'max:3'],
+            'image_urls.*' => ['string'],
+            'status'       => ['required', 'string', 'in:draft,published,archived'],
+            'sort_order'   => ['nullable', 'integer'],
         ];
     }
 }

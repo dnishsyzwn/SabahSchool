@@ -199,35 +199,49 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Status Penerbitan</p>
-                <div class="grid grid-cols-2 gap-3">
-                    @foreach(['draft'=>['Draf','Simpan Dulu','text-amber-600 bg-amber-50'],'published'=>['Terbit','Siarkan','text-emerald-600 bg-emerald-50']] as $val=>[$lbl,$desc,$cls])
-                    <div class="relative">
-                        <input type="radio" name="status" value="{{ $val }}" {{ old('status','draft')===$val?'checked':'' }} class="sr-only" id="st-{{$val}}">
-                        <label for="st-{{$val}}" class="status-card flex flex-col items-center gap-2 cursor-pointer p-4 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/10 transition group relative text-center">
-                            <div class="status-icon w-10 h-10 rounded-full {{ $cls }} flex items-center justify-center transition duration-300">
-                                @if($val === 'draft')
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                                @else
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                @endif
-                            </div>
-                            <p class="text-[11px] font-bold {{ explode(' ',$cls)[0] }}">{{ $lbl }}</p>
-                            <div class="status-check hidden absolute top-2 right-2">
-                                <div class="w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                                    <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Status & Visibiliti</p>
+                @php
+                    $availableStatuses = [
+                        'draft'     => ['Draf', 'amber', 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'],
+                        'published' => ['Penerbitan', 'emerald', 'M5 13l4 4L19 7'],
+                    ];
+                @endphp
+                <div class="space-y-3 mb-6">
+                    @foreach($availableStatuses as $val => [$lbl, $color, $iconPath])
+                        <div class="relative">
+                            <input type="radio" name="status" value="{{ $val }}" 
+                                   {{ old('status', 'draft') === $val ? 'checked' : '' }} 
+                                   class="sr-only" id="st-{{ $val }}">
+                            <label for="st-{{ $val }}" 
+                                   class="status-card flex items-center justify-between cursor-pointer p-4 rounded-xl border border-gray-100 hover:border-blue-200 transition group relative">
+                                <div class="flex items-center gap-3">
+                                    <div class="status-icon w-10 h-10 rounded-xl bg-{{ $color }}-50 text-{{ $color }}-600 flex items-center justify-center transition duration-300">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $iconPath }}"></path></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-black uppercase tracking-tight text-gray-800">{{ $lbl }}</p>
+                                        <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest">{{ $val }}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
+                                <div class="status-check hidden">
+                                    <div class="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
+                                        <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
                     @endforeach
                 </div>
-            </div>
 
-            <button type="button" id="btn-save"
-                    class="relative z-[10] w-full py-4 bg-blue-600 text-white font-extrabold rounded-2xl hover:bg-blue-700 active:scale-[0.98] transition shadow-xl shadow-blue-200 uppercase tracking-widest text-xs">
-                Simpan Draf
-            </button>
+                <div class="pt-4 border-t border-gray-50 space-y-3">
+                    <button type="button" id="btn-save" class="w-full py-4 bg-blue-600 text-white font-black text-[11px] uppercase tracking-[0.2em] rounded-xl hover:bg-blue-700 transition shadow-xl shadow-blue-100 hover:shadow-blue-200 hover:-translate-y-0.5 transition-all duration-300">
+                        Simpan Artikel Berita
+                    </button>
+                    <a href="{{ route('admin.news.index') }}" class="w-full flex items-center justify-center py-4 bg-gray-50 text-gray-400 font-black text-[11px] uppercase tracking-[0.2em] rounded-xl hover:bg-gray-100 transition border border-gray-100">
+                        Batal
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </form>
@@ -270,31 +284,7 @@
     </div>
 </div>
 
-{{-- Crop Modal --}}
-<div id="crop-modal" class="fixed inset-0 z-[1000] bg-black/90 backdrop-blur-md items-center justify-center p-4">
-    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-50">
-            <h3 class="font-bold text-gray-800 text-sm italic tracking-tight">Kekemasan Visual</h3>
-            <div id="crop-queue-info" class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md">PROSES</div>
-        </div>
-        <div class="bg-gray-100 flex items-center justify-center" style="height:380px;">
-            <img id="crop-target" src="" alt="" style="max-height:360px; max-width:100%;">
-        </div>
-        <div class="px-6 py-4 bg-white border-t flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center gap-1.5 p-1 bg-gray-50 rounded-xl">
-                <button class="crop-ar px-3 py-1.5 text-[10px] font-bold rounded-lg border border-transparent bg-white shadow-sm hover:translate-y-[-1px] transition" data-ratio="NaN">Bebas</button>
-                <button class="crop-ar px-3 py-1.5 text-[10px] font-bold rounded-lg border border-transparent text-gray-400 hover:text-gray-600 transition" data-ratio="1.777">16:9</button>
-                <button class="crop-ar px-3 py-1.5 text-[10px] font-bold rounded-lg border border-transparent text-gray-400 hover:text-gray-600 transition" data-ratio="1.333">4:3</button>
-                <button class="crop-ar px-3 py-1.5 text-[10px] font-bold rounded-lg border border-transparent text-gray-400 hover:text-gray-600 transition" data-ratio="1">1:1</button>
-            </div>
-            <div class="flex items-center gap-3">
-                <button id="btn-crop-cancel" class="px-5 py-2.5 text-xs font-bold text-gray-500 hover:text-gray-700 transition">Batal</button>
-                <button id="btn-crop-skip" class="px-5 py-2.5 text-xs font-bold bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition">Asal</button>
-                <button id="btn-crop-done" class="px-6 py-2.5 text-xs font-black bg-blue-600 text-white rounded-xl hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 transition shadow-md">POTONG</button>
-            </div>
-        </div>
-    </div>
-</div>
+@include('admin.partials.crop-modal')
 
 {{-- Preview Modal --}}
 <div id="preview-modal" class="fixed inset-0 z-[900] bg-slate-900/40 backdrop-blur-sm items-start justify-center overflow-y-auto p-4 py-12">

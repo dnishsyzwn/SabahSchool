@@ -29,8 +29,20 @@ class ContactController extends Controller
 
         // Send Email Notification
         try {
-            $adminEmail = \App\Models\SiteSetting::get('admin_email', config('mail.from.address'));
-            Mail::to($adminEmail)->send(new ContactMessageEmail($message));
+            // Priority 1: Site Setting 'admin_email'
+            // Priority 2: All users with 'superadmin' role
+            // Priority 3: Default system from address
+            $recipient = \App\Models\SiteSetting::get('admin_email');
+            
+            if (!$recipient) {
+                $recipient = \App\Models\User::where('role', 'superadmin')->pluck('email')->toArray();
+            }
+
+            if (empty($recipient)) {
+                $recipient = config('mail.from.address');
+            }
+
+            Mail::to($recipient)->send(new ContactMessageEmail($message));
             
             $message->update(['email_notified' => true]);
         } catch (\Exception $e) {

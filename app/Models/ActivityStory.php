@@ -16,8 +16,18 @@ class ActivityStory extends Model
         'tag',
         'description',
         'image_path',
+        'images',
         'event_date',
+        'status',
+        'published_at',
         'is_active',
         'sort_order',
+    ];
+
+    protected $casts = [
+        'images'       => 'array',
+        'event_date'   => 'date',
+        'published_at' => 'datetime',
+        'is_active'    => 'boolean',
     ];
 }

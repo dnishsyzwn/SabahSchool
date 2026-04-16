@@ -33,193 +33,122 @@
 
             <div class="space-y-16 lg:space-y-32">
                 @foreach($stories as $index => $it)
-                @php $isEven = $index % 2 === 0; @endphp
+                @php 
+                    $isEven = $index % 2 === 0; 
+                    // Prepare images array
+                    $imagesArr = $it->images ?? [];
+                    if (count($imagesArr) === 0 && $it->image_path) {
+                        $imagesArr = [$it->image_path];
+                    }
+                    if (count($imagesArr) === 0) {
+                        $imagesArr = ['https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1000&q=80']; // Fallback
+                    }
+                @endphp
 
-                <div class="relative flex flex-col lg:flex-row items-center group @if($index >= 5) hidden extra-item @endif">
+                <div class="relative flex flex-col lg:flex-row items-center group animate-in fade-in slide-in-from-bottom-8 duration-700 delay-{{ ($index % 6) * 100 }}">
+                    {{-- Central Dot --}}
                     <div class="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-white border-4 border-primary z-10 items-center justify-center group-hover:scale-125 transition-transform duration-300">
                         <div class="w-2 h-2 bg-primary rounded-full"></div>
                     </div>
 
-<<<<<<< HEAD
-                    <div class="w-full lg:w-1/2 {{ $isEven ? 'lg:pr-24 text-right' : 'lg:pl-24 lg:order-last text-left' }}">
+                    {{-- Text Content --}}
+                    <div class="w-full lg:w-1/2 mb-8 lg:mb-0 {{ $isEven ? 'lg:pr-24 text-left lg:text-right' : 'lg:pl-24 lg:order-last text-left' }}">
                         <div class="transition-all duration-500 transform group-hover:translate-y-[-5px]">
                             <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
                                 {{ $it->tag }}
                             </span>
-                            <p class="text-sm font-medium text-gray-400 mb-2">{{ $it->event_date }}</p>
-                            <h3 class="text-3xl font-bold text-slate-900 mb-4 group-hover:text-primary transition-colors">
+                            <p class="text-sm font-medium text-gray-400 mb-2">{{ $it->event_date ? $it->event_date->format('d M Y') : 'TIADA TARIKH' }}</p>
+                            <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4 group-hover:text-primary transition-colors leading-tight">
                                 {{ $it->title }}
                             </h3>
-                            <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            <p class="text-gray-600 text-base md:text-lg leading-relaxed">
                                 {{ $it->description }}
                             </p>
-=======
-                    <p class="text-gray-500 leading-relaxed mb-8 max-w-lg">
-                        {{ $featured->description }}
-                    </p>
-
-                    <!-- <a href="#" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#001a6e] hover:bg-[#000d36] text-white font-bold rounded-2xl shadow-[0_8px_20px_rgba(0,26,110,0.25)] hover:shadow-[0_12px_28px_rgba(0,26,110,0.35)] transition-all duration-300 transform hover:-translate-y-0.5 uppercase tracking-wider text-sm border border-white/10">
-                        <span>Lihat Butiran</span>
-                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </a> -->
-                </div>
-
-                {{-- Image side --}}
-                <div class="relative overflow-hidden rounded-3xl aspect-[4/3] lg:aspect-square shadow-[0_20px_60px_-15px_rgba(0,26,110,0.15)] border border-gray-100 bg-gray-50">
-                    @if($featured->featured_image)
-                        <img src="{{ Storage::url($featured->featured_image) }}"
-                             alt="{{ $featured->title }}"
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-                    @else
-                        <div class="w-full h-full flex flex-col items-center justify-center gap-4 text-gray-300">
-                            <svg class="w-16 h-16 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            <span class="text-xs font-mono tracking-widest uppercase">no image</span>
->>>>>>> 5c7aac2e127503c42300c1cd8470dea5a5d48851
                         </div>
-                    </div>
-
-                    <div class="w-full lg:w-1/2 mt-8 lg:mt-0 {{ $isEven ? 'lg:pl-24' : 'lg:pr-24' }}">
-                        <div class="relative overflow-hidden rounded-[2rem] shadow-2xl group-hover:shadow-primary/20 transition-all duration-500">
-                            <div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
-                            <img src="{{ $it->image_path ? Storage::url($it->image_path) : 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1000&q=80' }}"
-                                 alt="{{ $it->title }}"
-                                 class="w-full h-[400px] object-cover scale-105 group-hover:scale-100 transition-transform duration-700">
-
-                            <div class="absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl flex items-center space-x-2">
-                                <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
-                                <p class="text-slate-900 font-bold text-sm">Projek Selesai</p>
+                    </div>                    {{-- Image / Slider Content --}}
+                    <div class="w-full lg:w-1/2 {{ $isEven ? 'lg:pl-24' : 'lg:pr-24' }}">
+                        <div x-data="{ 
+                                activeIndex: 0, 
+                                images: {{ json_encode(array_map(fn($img) => strpos($img, 'http') === 0 ? $img : Storage::url($img), $imagesArr)) }},
+                                touchStart: 0,
+                                touchEnd: 0,
+                                next() { this.activeIndex = (this.activeIndex + 1) % this.images.length },
+                                prev() { this.activeIndex = (this.activeIndex - 1 + this.images.length) % this.images.length },
+                                handleTouch() {
+                                    const diff = this.touchStart - this.touchEnd;
+                                    if (Math.abs(diff) > 40) {
+                                        if (diff > 0) this.next();
+                                        else this.prev();
+                                    }
+                                }
+                             }" 
+                             @touchstart="touchStart = $event.changedTouches[0].screenX"
+                             @touchend="touchEnd = $event.changedTouches[0].screenX; handleTouch()"
+                             class="relative overflow-hidden rounded-[2rem] shadow-2xl group-hover:shadow-primary/20 transition-all duration-500 h-[300px] sm:h-[400px] touch-pan-y bg-gray-100">
+                            
+                            {{-- Slides --}}
+                            <div class="absolute inset-0 z-0 select-none">
+                                <template x-for="(src, idx) in images" :key="idx">
+                                    <img x-show="activeIndex === idx" 
+                                         :src="src" 
+                                         x-transition:enter="transition opacity duration-500"
+                                         x-transition:enter-start="opacity-0"
+                                         x-transition:enter-end="opacity-100"
+                                         x-transition:leave="transition opacity duration-500"
+                                         x-transition:leave-start="opacity-100"
+                                         x-transition:leave-end="opacity-0"
+                                         class="absolute inset-0 w-full h-full object-cover pointer-events-none">
+                                </template>
                             </div>
-<<<<<<< HEAD
+
+                            {{-- Overlay --}}
+                            <div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-300 z-10 pointer-events-none"></div>
+
+                            {{-- Navigation Arrows (Show always on responsive, hover on desktop) --}}
+                            <template x-if="images.length > 1">
+                                <div class="absolute inset-0 z-20 flex items-center justify-between px-4 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
+                                    <button @click="prev()" class="w-10 h-10 rounded-full bg-white/90 backdrop-blur shadow-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition active:scale-90">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    </button>
+                                    <button @click="next()" class="w-10 h-10 rounded-full bg-white/90 backdrop-blur shadow-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition active:scale-90">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </button>
+                                </div>
+                            </template>
+
+                            {{-- Multi-image Indicators --}}
+                            <template x-if="images.length > 1">
+                                <div class="absolute bottom-6 right-6 z-20 flex gap-2 bg-black/30 backdrop-blur-md px-3 py-2 rounded-full border border-white/10">
+                                    <template x-for="(src, idx) in images" :key="idx">
+                                        <button @click="activeIndex = idx" 
+                                                class="h-1.5 rounded-full transition-all duration-300 pointer-events-auto"
+                                                :class="activeIndex === idx ? 'bg-white w-6' : 'bg-white/40 w-1.5'"></button>
+                                    </template>
+                                </div>
+                            </template>
                         </div>
-                    </div>
-=======
-                        @endif
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </div>
-                    <div class="font-mono text-xs tracking-[0.15em] text-gray-400 mb-3 uppercase">{{ $activity->event_date?->format('d M Y') ?? 'TIADA TARIKH' }}</div>
-                    @if($activity->category)
-                    <span class="inline-block text-xs uppercase tracking-[0.1em] text-green font-semibold mb-3 bg-green-50 px-2 py-0.5 rounded-md w-fit">{{ $activity->category }}</span>
-                    @endif
-                    <h3 class="text-xl font-bold text-[#001a6e] leading-tight mb-3 group-hover:text-green transition-colors duration-300">
-                        {!! str_replace(['<br>', '\n'], '<br>', e($activity->title)) !!}
-                    </h3>
-                    <div class="font-mono text-xs text-gray-400 mb-3">{{ $activity->location }} @if($activity->amount) • {{ $activity->amount }} @endif</div>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
-                        {{ $activity->description }}
-                    </p>
-                    <!-- <div class="mt-auto pt-4 border-t border-gray-50">
-                        <button class="inline-flex items-center gap-2 text-[#001a6e] hover:text-green text-sm font-bold uppercase tracking-[0.08em] transition-colors duration-300">
-                            <span>Butiran</span>
-                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                    </div> -->
->>>>>>> 5c7aac2e127503c42300c1cd8470dea5a5d48851
+                    </div>v>
                 </div>
                 @endforeach
 
-                @if(count($stories) > 5)
-                    <div class="flex justify-center mt-6">
-                        <button id="show-more" class="px-6 py-2 bg-primary text-white rounded-xl font-bold hover:bg-primary-dark transition">
-                            Tunjukkan lebih lagi
-                        </button>
+                <!-- Standard Laravel Pagination -->
+                <div class="pt-20">
+                    <div class="custom-pagination">
+                        {{ $stories->links() }}
                     </div>
-                @endif
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- <section class="py-24 bg-slate-50 border-t border-gray-100">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div class="max-w-xl">
-                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Sumbangan Aktiviti Komuniti</h2>
-                    <p class="text-gray-600">Inisiatif harian dan bantuan segera yang disalurkan oleh cawangan STU di seluruh negeri Sabah.</p>
-                </div>
-                <div class="mt-6 md:mt-0">
-                    <span class="inline-flex items-center px-4 py-2 rounded-xl bg-white text-primary text-sm font-bold shadow-sm border border-gray-100">
-                        <span class="w-2 h-2 bg-primary rounded-full animate-ping mr-3"></span>
-                        Kemaskini Terkini
-                    </span>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                @php
-                    // In your final app, this array would be replaced by:
-                    // $smallItems = \App\Models\Contribution::where('is_active', true)->latest()->get();
-                    $smallItems = [
-                        ['title' => 'Bakul Makanan Bersasar', 'location' => 'Kota Belud', 'img' => 'https://images.unsplash.com/photo-1593113598332-cd288d649433', 'label' => 'Kebajikan'],
-                        ['title' => 'Voucher Alat Tulis', 'location' => 'Sandakan', 'img' => 'https://images.unsplash.com/photo-1454165833767-027ffea3e678', 'label' => 'Pendidikan'],
-                        ['title' => 'Ziarah Kasih Pesara', 'location' => 'Kudat', 'img' => 'https://images.unsplash.com/photo-1516307361474-3324182441d8', 'label' => 'Ziarah'],
-                        ['title' => 'Bantuan Kecemasan Kilat', 'location' => 'Beaufort', 'img' => 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7', 'label' => 'Kesihatan'],
-                    ];
-                @endphp
-
-                @foreach($smallItems as $item)
-                <div class="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="{{ $item['img'] }}?auto=format&fit=crop&w=600&q=80"
-                             alt="{{ $item['title'] }}"
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    </div>
-
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-70 group-hover:opacity-85 transition-opacity"></div>
-
-                    <div class="absolute bottom-0 left-0 p-6 w-full">
-                        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-secondary mb-2 block">
-                            {{ $item['label'] }}
-                        </span>
-                        <h4 class="text-white font-bold text-lg leading-tight mb-1">
-                            {{ $item['title'] }}
-                        </h4>
-                        <div class="flex items-center text-gray-300 text-xs">
-                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                            {{ $item['location'] }}
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-
-                {{-- add contribution placeholder after items --}}
-                <div class="border-2 border-dashed border-gray-200 rounded-3xl flex flex-col items-center justify-center p-8 min-h-[250px] group hover:border-primary/50 transition-colors cursor-pointer bg-white/50">
-                    <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
-                        <svg class="w-6 h-6 text-gray-400 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <p class="text-gray-400 font-bold text-sm text-center uppercase tracking-wider">Tambah Rekod<br>Sumbangan</p>
-                </div>
-            </div>
-                </div>
-        </div>
-    </section> -->
-
-    <!-- <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="bg-gradient-to-br from-primary via-primary to-blue-800 rounded-[3rem] p-12 text-center text-white relative overflow-hidden shadow-2xl">
-                <div class="relative z-10">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Perlukan maklumat lanjut?</h2>
-                    <p class="text-blue-100 mb-10 max-w-xl mx-auto text-lg opacity-90">
-                        Sumbangan dan maklum balas anda sangat penting bagi kami untuk terus membela nasib warga pendidik di Sabah.
-                    </p>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="{{ url('/hubungi') }}" class="bg-secondary text-primary px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white transition-transform transition-colors duration-300 transform hover:scale-105 shadow-lg">
-                            Hubungi Kami
-                        </a>
-                        <a href="{{ url('/mengenai-stu') }}" class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white/20 transition-transform transition-colors duration-300 transform hover:scale-105">
-                            Lihat Profil STU
-                        </a>
-                    </div>
-                </div>
-                <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-                <div class="absolute -top-12 -right-12 w-64 h-64 bg-secondary/20 rounded-full blur-3xl"></div>
-            </div>
-        </div>
-    </section> -->
+    <style>
+        .custom-pagination nav { display: flex; justify-content: center; gap: 0.5rem; }
+        .custom-pagination span[aria-current="page"] > span { @apply bg-primary text-white border-primary shadow-lg shadow-primary/20; }
+        .custom-pagination a, .custom-pagination span > span { 
+            @apply flex items-center justify-center w-12 h-12 rounded-xl border border-gray-100 bg-white text-sm font-bold text-gray-500 transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-xl hover:shadow-primary/10;
+        }
+        .custom-pagination svg { @apply w-5 h-5; }
+    </style>
 @endsection
 
 @push('scripts')
@@ -229,21 +158,6 @@
         AOS.init({
             duration: 1000,
             once: true,
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const btn = document.getElementById('show-more');
-            if (!btn) return;
-            btn.addEventListener('click', function () {
-                // reveal next batch of up to 5 hidden extras
-                const hiddenItems = Array.from(document.querySelectorAll('.extra-item.hidden'));
-                hiddenItems.slice(0, 5).forEach(el => el.classList.remove('hidden'));
-
-                // if no more remain, remove the button
-                if (hiddenItems.length <= 5) {
-                    btn.remove();
-                }
-            });
         });
     </script>
 @endpush
