@@ -30,7 +30,6 @@ class ContactMessageEmail extends Mailable
     {
         return new Envelope(
             subject: 'Pesanan Hubungi Kami: ' . $this->contactMessage->name,
-            replyTo: [ $this->contactMessage->email ],
         );
     }
 

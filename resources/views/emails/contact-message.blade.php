@@ -24,6 +24,9 @@ Lihat Mesej di Admin Panel
 </p>
 @endif
 
-Terima kasih,<br>
+Terima kasih,
 Sistem {{ config('app.name') }}
+
+---
+**Nota Keselamatan:** Emel ini dihantar secara automatik melalui borang Hubungi Kami di portal rasmi Sabah Teachers' Union (STU). Jika anda menerima emel ini secara tidak sengaja, sila abaikan. Sebarang maklumat yang terkandung dalam emel ini adalah tertakluk kepada Polisi Privasi kami.
 </x-mail::message>
