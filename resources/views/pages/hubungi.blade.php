@@ -48,9 +48,9 @@
             <h3 class="text-4xl font-semibold text-gray-900">Alamat Rasmi</h3>
         </div>
         <p class="text-gray-600 leading-relaxed">
-            Tingkat 1, Lot No. 5, Blok F,<br>
-            Kompleks Sinsuran, Peti Surat 14214,<br>
-            88848 Kota Kinabalu, Sabah.
+            1ST FLOOR, LOT 5, BLOCK 25,<br>
+            BANDAR INDAH, JALAN UTARA,<br>
+            90000 SANDAKAN SABAH.
         </p>
     </div>
 
@@ -89,13 +89,13 @@
             <div class="lg:col-span-5 space-y-8 animate-fade-in-up delay-200">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-[400px] lg:h-full min-h-[400px] relative">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.043534882143!2d116.07106097587895!3d5.977464994008168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x323b69904d25160f%3A0x6e3263013d314816!2sSinsuran%20Complex%2C%20Pusat%20Bandar%20Kota%20Kinabalu%2C%2088000%20Kota%20Kinabalu%2C%20Sabah!5e0!3m2!1sen!2smy!4v1706692800000!5m2!1sen!2smy"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15876.495712165584!2d118.068361!3d5.8385611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3238d6896f6004b7%3A0x6739f506082490cc!2sBandar%20Indah%2C%2090000%20Sandakan%2C%20Sabah!5e0!3m2!1sen!2smy!4v1713715200000!5m2!1sen!2smy"
                         class="w-full h-full border-0"
                         allowfullscreen=""
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
-                    <a href="https://maps.google.com?q=Kompleks+Sinsuran+Kota+Kinabalu" target="_blank" class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium text-gray-900 hover:text-primary transition-colors flex items-center gap-2">
+                    <a href="https://www.google.com/maps/search/1ST+FLOOR,+LOT+5,+BLOCK+25,+BANDAR+INDAH,+JALAN+UTARA,+90000+SANDAKAN+SABAH" target="_blank" class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium text-gray-900 hover:text-primary transition-colors flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                         Buka di Google Maps
                     </a>
@@ -113,53 +113,60 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('hubungi.store') }}" method="POST" class="space-y-6">
+                    <form action="{{ route('hubungi.store') }}" method="POST" class="space-y-6" novalidate>
                         @csrf
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Penuh</label>
-                                <input type="text" id="name" name="name" required
-                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Penuh <span class="text-red-500">*</span></label>
+                                <input type="text" id="name" name="name"
+                                       class="w-full px-4 py-3 bg-gray-50 border {{ $errors->has('name') ? 'border-red-400' : 'border-gray-200' }} rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
                                        placeholder="Nama anda" value="{{ old('name') }}">
                                 @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
                             <div>
-                                <label for="ic" class="block text-sm font-medium text-gray-700 mb-2">No. IC</label>
+                                <label for="ic" class="block text-sm font-medium text-gray-700 mb-2">No. IC <span class="text-red-500">*</span></label>
                                 <input type="text" id="ic" name="ic"
-                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                       placeholder="000000-00-0000" value="{{ old('ic') }}">
+                                       class="w-full px-4 py-3 bg-gray-50 border {{ $errors->has('ic') ? 'border-red-400' : 'border-gray-200' }} rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                       placeholder="123456-78-9012" value="{{ old('ic') }}">
                                 @error('ic') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
                             <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">No. HP</label>
-                                <input type="tel" id="phone" name="phone"
-                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">No. HP <span class="text-red-500">*</span></label>
+                                <input type="text" id="phone" name="phone"
+                                       class="w-full px-4 py-3 bg-gray-50 border {{ $errors->has('phone') ? 'border-red-400' : 'border-gray-200' }} rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
                                        placeholder="012-3456789" value="{{ old('phone') }}">
                                 @error('phone') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
                             <div>
-                                <label for="school" class="block text-sm font-medium text-gray-700 mb-2">Nama Sekolah</label>
+                                <label for="school" class="block text-sm font-medium text-gray-700 mb-2">Nama Sekolah / Organisasi <span class="text-red-500">*</span></label>
                                 <input type="text" id="school" name="school"
-                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                       class="w-full px-4 py-3 bg-gray-50 border {{ $errors->has('school') ? 'border-red-400' : 'border-gray-200' }} rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
                                        placeholder="Contoh: SMK Contoh" value="{{ old('school') }}">
                                 @error('school') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
                         </div>
 
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Alamat Email</label>
-                            <input type="email" id="email" name="email" required
-                                   class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Alamat Email <span class="text-red-500">*</span></label>
+                            <input type="text" id="email" name="email"
+                                   class="w-full px-4 py-3 bg-gray-50 border {{ $errors->has('email') ? 'border-red-400' : 'border-gray-200' }} rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
                                    placeholder="email@contoh.com" value="{{ old('email') }}">
                             @error('email') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                         </div>
 
                         <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Mesej Anda</label>
-                            <textarea id="message" name="message" rows="6" required
-                                      class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200 resize-none"
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Mesej Anda <span class="text-red-500">*</span></label>
+                            <textarea id="message" name="message" rows="6"
+                                      class="w-full px-4 py-3 bg-gray-50 border {{ $errors->has('message') ? 'border-red-400' : 'border-gray-200' }} rounded-lg focus:bg-white focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200 resize-none"
                                       placeholder="Tulis mesej anda di sini...">{{ old('message') }}</textarea>
                             @error('message') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
+                            <div class="cf-turnstile" data-sitekey="{{ config('services.cloudflare.site_key') }}" data-theme="light"></div>
+                            @error('cf-turnstile-response')
+                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="flex items-center justify-between pt-2">
@@ -196,3 +203,31 @@
 </div>
 
 @endsection
+
+@push('scripts')
+{{-- Cloudflare Turnstile --}}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+    // Malaysian IC Auto-Formatter
+    // Formats: 123456121212 → 123456-12-1212
+    const icInput = document.getElementById('ic');
+    if (icInput) {
+        icInput.addEventListener('input', function (e) {
+            let val = e.target.value.replace(/\D/g, ''); // digits only
+            let formatted = '';
+            if (val.length > 6) {
+                formatted = val.substring(0, 6) + '-';
+                if (val.length > 8) {
+                    formatted += val.substring(6, 8) + '-' + val.substring(8, 12);
+                } else {
+                    formatted += val.substring(6, 8);
+                }
+            } else {
+                formatted = val;
+            }
+            e.target.value = formatted;
+        });
+    }
+</script>
+@endpush

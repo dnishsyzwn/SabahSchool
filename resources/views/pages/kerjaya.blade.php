@@ -20,7 +20,7 @@
     {{-- Hero Header (Similar to Hubungi Kami) --}}
     <div class="relative bg-gray-900 overflow-hidden">
         <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1522071823991-b9671f9d7f1f?q=80&w=2070&auto=format&fit=crop" 
+            <img src="{{ asset('assets/images/careers_hero_bg.png') }}" 
                  alt="Careers Background" 
                  class="w-full h-full object-cover opacity-40">
         </div>
@@ -36,29 +36,7 @@
         </div>
     </div>
 
-    {{-- Stats/Intro Section --}}
-    <div class="max-w-7xl mt-8 mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-        <div class="bg-white rounded-2xl shadow-xl shadow-gray-200/50 p-8 md:p-12 border border-gray-100">
-            <div class="grid md:grid-cols-3 gap-12 items-center">
-                <div class="space-y-3 text-center md:text-left">
-                    <h2 class="text-3xl font-bold text-gray-900">Peluang Kini Dibuka</h2>
-                    <p class="text-gray-500 leading-relaxed">Kami mencari individu yang berdedikasi, inovatif dan mempunyai semangat untuk berkhidmat dalam memperkasakan pendidikan Sabah.</p>
-                </div>
-                <div class="flex flex-col items-center justify-center p-8 bg-primary/5 rounded-2xl border border-primary/10 group transition-all duration-300 hover:bg-primary/10">
-                    <div class="flex items-baseline gap-1">
-                        <span id="counter-members" class="text-5xl font-black text-primary mb-1" data-target="20000">0</span>
-                        <span class="text-3xl font-bold text-primary">+</span>
-                    </div>
-                    <span class="text-gray-600 font-semibold text-sm uppercase tracking-wider">Ahli Aktif</span>
-                </div>
-                <div class="flex flex-col items-center justify-center p-8 bg-primary/5 rounded-2xl border border-primary/10 group transition-all duration-300 hover:bg-primary/10">
-                    <span id="counter-branches" class="text-5xl font-black text-primary mb-1" data-target="11">0</span>
-                    <span class="text-gray-600 font-semibold text-sm uppercase tracking-wider">Cawangan Bahagian</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
+   
     {{-- Application Form --}}
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="bg-white rounded-3xl shadow-2xl shadow-primary/5 border border-gray-100 overflow-hidden">
@@ -92,9 +70,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-12 pt-12 border-t border-white/10 italic text-sm text-white/60">
-                        * Calon yang disenarai pendek akan dihubungi untuk temuduga.
-                    </div>
+       
                 </div>
 
                 <div class="md:col-span-3 p-8 md:p-12">
@@ -107,56 +83,56 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('kerjaya.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <form action="{{ route('kerjaya.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6" novalidate>
                         @csrf
                         <div class="grid grid-cols-1 gap-6">
                             {{-- Name --}}
                             <div>
-                                <label for="name" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Penuh</label>
-                                <input type="text" name="name" id="name" required
-                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
-                                    placeholder="Masukkan nama penuh anda">
+                                <label for="name" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Nama Penuh <span class="text-red-500">*</span></label>
+                                <input type="text" name="name" id="name"
+                                    class="w-full px-4 py-3 bg-gray-50 border {{ $errors->has('name') ? 'border-red-400' : 'border-gray-200' }} rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+                                    placeholder="Masukkan nama penuh anda" value="{{ old('name') }}">
                                 @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
 
                             {{-- Alamat --}}
                             <div>
-                                <label for="alamat" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Alamat Menetap</label>
-                                <textarea name="alamat" id="alamat" rows="2" required
-                                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none"
-                                    placeholder="Masukkan alamat penuh anda"></textarea>
+                                <label for="alamat" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Alamat Menetap <span class="text-red-500">*</span></label>
+                                <textarea name="alamat" id="alamat" rows="2"
+                                    class="w-full px-4 py-3 bg-gray-50 border {{ $errors->has('alamat') ? 'border-red-400' : 'border-gray-200' }} rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none"
+                                    placeholder="Masukkan alamat penuh anda">{{ old('alamat') }}</textarea>
                                 @error('alamat') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {{-- Email --}}
                                 <div>
-                                    <label for="email" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">E-mel</label>
-                                    <input type="email" name="email" id="email" required
-                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
-                                        placeholder="nama@contoh.com">
+                                    <label for="email" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">E-mel <span class="text-red-500">*</span></label>
+                                    <input type="text" name="email" id="email"
+                                        class="w-full px-4 py-3 bg-gray-50 border {{ $errors->has('email') ? 'border-red-400' : 'border-gray-200' }} rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+                                        placeholder="nama@contoh.com" value="{{ old('email') }}">
                                     @error('email') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                                 </div>
 
                                 {{-- Phone --}}
                                 <div>
-                                    <label for="phone" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">No. Telefon</label>
-                                    <input type="tel" name="phone" id="phone" required
-                                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
-                                        placeholder="012-3456789">
+                                    <label for="phone" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">No. Telefon <span class="text-red-500">*</span></label>
+                                    <input type="text" name="phone" id="phone"
+                                        class="w-full px-4 py-3 bg-gray-50 border {{ $errors->has('phone') ? 'border-red-400' : 'border-gray-200' }} rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+                                        placeholder="012-3456789" value="{{ old('phone') }}">
                                     @error('phone') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                                 </div>
                             </div>
 
                             {{-- Resume Upload --}}
                             <div>
-                                <label for="resume" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Muat Naik Resume (PDF/DOC)</label>
+                                <label for="resume" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Muat Naik Resume (PDF/DOC) <span class="text-red-500">*</span></label>
                                 <div class="relative">
-                                    <input type="file" name="resume" id="resume" required
+                                    <input type="file" name="resume" id="resume"
                                         class="hidden"
                                         accept=".pdf,.doc,.docx"
                                         onchange="document.getElementById('file-name').textContent = this.files[0].name">
-                                    <label for="resume" class="flex items-center justify-between w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
+                                    <label for="resume" class="flex items-center justify-between w-full px-4 py-3 bg-gray-50 border {{ $errors->has('resume') ? 'border-red-400' : 'border-gray-200' }} rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
                                         <span id="file-name" class="text-gray-500 italic">Pilih fail...</span>
                                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
                                     </label>
@@ -170,9 +146,17 @@
                                 <label for="message" class="block text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Mesej Tambahan (Pilihan)</label>
                                 <textarea name="message" id="message" rows="4"
                                     class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none resize-none"
-                                    placeholder="Beritahu kami sedikit tentang diri anda..."></textarea>
+                                    placeholder="Beritahu kami sedikit tentang diri anda...">{{ old('message') }}</textarea>
                                 @error('message') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                             </div>
+                        </div>
+
+                        {{-- Cloudflare Turnstile --}}
+                        <div>
+                            <div class="cf-turnstile" data-sitekey="{{ config('services.cloudflare.site_key') }}" data-theme="light"></div>
+                            @error('cf-turnstile-response')
+                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <button type="submit" 
@@ -188,6 +172,7 @@
 </div>
 
 @push('scripts')
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
     function animateCounter(id, target, duration) {
         let startTimestamp = null;
@@ -231,6 +216,26 @@
     const statsSection = document.querySelector('.bg-white.rounded-2xl.shadow-xl');
     if (statsSection) {
         observer.observe(statsSection);
+    }
+
+    // Malaysian IC Auto-Formatter
+    const icInput = document.getElementById('ic');
+    if (icInput) {
+        icInput.addEventListener('input', function (e) {
+            let val = e.target.value.replace(/\D/g, '');
+            let formatted = '';
+            if (val.length > 6) {
+                formatted = val.substring(0, 6) + '-';
+                if (val.length > 8) {
+                    formatted += val.substring(6, 8) + '-' + val.substring(8, 12);
+                } else {
+                    formatted += val.substring(6, 8);
+                }
+            } else {
+                formatted = val;
+            }
+            e.target.value = formatted;
+        });
     }
 </script>
 @endpush

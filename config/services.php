@@ -34,5 +34,9 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'cloudflare' => [
+        'site_key'   => env('CLOUD_FLARE_SITE_KEY'),
+        'secret_key' => env('CLOUD_FLARE_SECRET_KEY'),
+    ],
 
 ];

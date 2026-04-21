@@ -4,7 +4,7 @@
     <div id="carousel-inner" class="relative w-full h-full">
         <!-- Slide 1 -->
         <div class="carousel-item absolute inset-0 opacity-100 pointer-events-auto transition-opacity duration-1000 ease-in-out">
-            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Slide 1">
+            <img src="{{ asset('assets/images/home_hero_1.png') }}" class="absolute block w-full h-full object-cover" alt="Slide 1">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="max-w-2xl">
@@ -12,12 +12,12 @@
                             <span class="block text-secondary">Kesatuan Guru-Guru Sabah</span>
                         </h1>
                         <div class="mt-6 sm:mt-10 flex flex-wrap gap-4">
-                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
+                            <a href="{{ url('/keahlian') }}" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
                                 <span class="relative z-10 text-secondary">Sertai Sekarang</span>
                                 <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
-                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold hover:bg-white/20 hover:shadow-xl active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block">
-                                <span class="relative z-10">Teroka Faedah</span>
+                            <a href="{{ url('/bukti-tuntutan') }}" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold hover:bg-white/20 hover:shadow-xl active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block">
+                                <span class="relative z-10">Teroka Bukti</span>
                                 <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
                         </div>
@@ -28,7 +28,7 @@
 
         <!-- Slide 2 -->
         <div class="carousel-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out">
-            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Slide 2">
+            <img src="{{ asset('assets/images/home_hero_2.png') }}" class="absolute block w-full h-full object-cover" alt="Slide 2">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="max-w-2xl">
@@ -36,12 +36,12 @@
                             <span class="block text-secondary">Kesatuan Guru-Guru Sabah</span>
                         </h1>
                         <div class="mt-6 sm:mt-10 flex flex-wrap gap-4">
-                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
+                            <a href="{{ url('/keahlian') }}" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
                                 <span class="relative z-10 text-secondary">Sertai Sekarang</span>
                                 <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
-                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold hover:bg-white/20 hover:shadow-xl active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block">
-                                <span class="relative z-10">Teroka Faedah</span>
+                            <a href="{{ url('/bukti-tuntutan') }}" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold hover:bg-white/20 hover:shadow-xl active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block">
+                                <span class="relative z-10">Teroka Bukti</span>
                                 <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
                         </div>
@@ -52,7 +52,7 @@
 
         <!-- Slide 3 -->
         <div class="carousel-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out">
-            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2104&auto=format&fit=crop" class="absolute block w-full h-full object-cover" alt="Slide 3">
+            <img src="{{ asset('assets/images/home_hero_3.png') }}" class="absolute block w-full h-full object-cover" alt="Slide 3">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="max-w-2xl">
@@ -60,12 +60,12 @@
                             <span class="block text-secondary">Kesatuan Guru-Guru Sabah</span>
                         </h1>
                         <div class="mt-6 sm:mt-10 flex flex-wrap gap-4">
-                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
+                            <a href="{{ url('/keahlian') }}" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-[#001a6e] text-secondary rounded-xl font-bold hover:scale-105 hover:shadow-[0_0_20px_rgba(254,178,26,0.3)] active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block border border-white/10 hover:border-secondary/50">
                                 <span class="relative z-10 text-secondary">Sertai Sekarang</span>
                                 <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
-                            <a href="#" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold hover:bg-white/20 hover:shadow-xl active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block">
-                                <span class="relative z-10">Teroka Faedah</span>
+                            <a href="{{ url('/bukti-tuntutan') }}" class="group relative overflow-hidden px-6 py-3 sm:px-10 sm:py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold hover:bg-white/20 hover:shadow-xl active:scale-95 transition-all duration-300 text-base sm:text-lg inline-block">
+                                <span class="relative z-10">Teroka Bukti</span>
                                 <div class="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in"></div>
                             </a>
                         </div>

@@ -102,7 +102,7 @@
             <x-navbar.mobile-nav-accordion title="PROFIL STU">
                 <x-navbar.mobile-nav-accordion-link :href="url('/mengenai-stu')">MENGENAI STU</x-navbar.mobile-nav-accordion-link>
                 <x-navbar.mobile-nav-accordion-link :href="url('/ahli-tertinggi-exco')">AHLI TERTINGGI & EXCO</x-navbar.mobile-nav-accordion-link>
-                <x-navbar.mobile-nav-accordion-link :href="url('/pengurusan')">PENGURUSAN</x-navbar.mobile-nav-accordion-link>
+                <!-- <x-navbar.mobile-nav-accordion-link :href="url('/pengurusan')">PENGURUSAN</x-navbar.mobile-nav-accordion-link> -->
             </x-navbar.mobile-nav-accordion>
 
             <x-navbar.mobile-nav-accordion title="MEDIA & AKTIVITI">

@@ -54,15 +54,15 @@
                     </div>
                 @endif
 
-                <form action="{{ route('borang.hantar') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+                <form action="{{ route('borang.hantar') }}" method="POST" enctype="multipart/form-data" class="space-y-6" novalidate>
                     @csrf
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                             Nama Penuh <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" id="name" name="name" required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                placeholder="Masukkan nama penuh anda">
+                        <input type="text" id="name" name="name"
+                                class="w-full px-4 py-3 border {{ $errors->has('name') ? 'border-red-400' : 'border-gray-300' }} rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                placeholder="Masukkan nama penuh anda" value="{{ old('name') }}">
                         @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
@@ -71,9 +71,9 @@
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
                                 Alamat Email <span class="text-red-500">*</span>
                             </label>
-                            <input type="email" id="email" name="email" required
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                    placeholder="email@gmail.com">
+                            <input type="text" id="email" name="email"
+                                    class="w-full px-4 py-3 border {{ $errors->has('email') ? 'border-red-400' : 'border-gray-300' }} rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                    placeholder="email@gmail.com" value="{{ old('email') }}">
                             @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
 
@@ -81,9 +81,9 @@
                             <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
                                 No. Telefon <span class="text-red-500">*</span>
                             </label>
-                            <input type="tel" id="phone" name="phone" required
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                    placeholder="012-3456789">
+                            <input type="text" id="phone" name="phone"
+                                    class="w-full px-4 py-3 border {{ $errors->has('phone') ? 'border-red-400' : 'border-gray-300' }} rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                    placeholder="012-3456789" value="{{ old('phone') }}">
                             @error('phone') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
                     </div>
@@ -92,13 +92,13 @@
                         <label for="form_type" class="block text-sm font-medium text-gray-700 mb-2">
                             Jenis Borang <span class="text-red-500">*</span>
                         </label>
-                        <select id="form_type" name="form_type" required
-                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200 bg-white">
-                            <option value="" disabled selected>Pilih jenis borang</option>
+                        <select id="form_type" name="form_type"
+                                 class="w-full px-4 py-3 border {{ $errors->has('form_type') ? 'border-red-400' : 'border-gray-300' }} rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200 bg-white">
+                            <option value="" disabled {{ old('form_type') ? '' : 'selected' }}>Pilih jenis borang</option>
                             @foreach($borangs as $borang)
-                                <option value="{{ $borang->title }}">{{ $borang->title }}</option>
+                                <option value="{{ $borang->title }}" {{ old('form_type') == $borang->title ? 'selected' : '' }}>{{ $borang->title }}</option>
                             @endforeach
-                            <option value="Lain-lain">Lain-lain</option>
+                            <option value="Lain-lain" {{ old('form_type') == 'Lain-lain' ? 'selected' : '' }}>Lain-lain</option>
                         </select>
                         @error('form_type') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
@@ -107,9 +107,9 @@
                         <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
                             Subjek <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" id="subject" name="subject" required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
-                                placeholder="Contoh: Permohonan Keahlian Baharu STU">
+                        <input type="text" id="subject" name="subject"
+                                class="w-full px-4 py-3 border {{ $errors->has('subject') ? 'border-red-400' : 'border-gray-300' }} rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200"
+                                placeholder="Contoh: Permohonan Keahlian Baharu STU" value="{{ old('subject') }}">
                         @error('subject') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
@@ -118,9 +118,9 @@
                             Lampiran Borang <span class="text-red-500">*</span>
                         </label>
                         <div class="relative">
-                            <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" required
+                            <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
                                    class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
-                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-primary transition-colors duration-200">
+                            <div class="border-2 border-dashed {{ $errors->has('file') ? 'border-red-400' : 'border-gray-300' }} rounded-lg p-8 text-center hover:border-primary transition-colors duration-200">
                                 <div class="w-12 h-12 mx-auto mb-4 bg-gray-50 rounded-full flex items-center justify-center text-gray-500">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -147,7 +147,14 @@
                         </label>
                         <textarea id="message" name="message" rows="4"
                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-colors duration-200 resize-none"
-                                  placeholder="Sila nyatakan maklumat tambahan jika perlu..."></textarea>
+                                  placeholder="Sila nyatakan maklumat tambahan jika perlu...">{{ old('message') }}</textarea>
+                    </div>
+
+                    <div>
+                        <div class="cf-turnstile" data-sitekey="{{ config('services.cloudflare.site_key') }}" data-theme="light"></div>
+                        @error('cf-turnstile-response')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="pt-4">
@@ -211,12 +218,12 @@
 </div>
 
 @push('scripts')
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
     // File upload preview functionality
     document.getElementById('file').addEventListener('change', function(e) {
         const file = e.target.files[0];
         const preview = document.getElementById('file-preview');
-        
         if (file) {
             preview.innerHTML = `
                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
@@ -245,6 +252,25 @@
         document.getElementById('file-preview').classList.add('hidden');
     }
 
+    // Malaysian IC Auto-Formatter
+    const icInput = document.getElementById('ic');
+    if (icInput) {
+        icInput.addEventListener('input', function (e) {
+            let val = e.target.value.replace(/\D/g, '');
+            let formatted = '';
+            if (val.length > 6) {
+                formatted = val.substring(0, 6) + '-';
+                if (val.length > 8) {
+                    formatted += val.substring(6, 8) + '-' + val.substring(8, 12);
+                } else {
+                    formatted += val.substring(6, 8);
+                }
+            } else {
+                formatted = val;
+            }
+            e.target.value = formatted;
+        });
+    }
 </script>
 @endpush
 @endsection
