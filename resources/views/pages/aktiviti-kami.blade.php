@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Aktiviti Kami – Sabah Teachers Union')
+@section('title', 'Aktiviti Kami | Sabah Teachers Union (STU)')
+@section('meta_description', 'Lihat aktiviti terkini, program keahlian, dan inisiatif pendidikan yang dijalankan oleh Sabah Teachers Union (STU) untuk komuniti guru di Sabah.')
+@section('meta_keywords', 'Aktiviti STU, Program Guru Sabah, Berita STU, Acara Kesatuan Guru')
 
 @section('content')
     <section class="relative bg-slate-900 py-32 overflow-hidden">

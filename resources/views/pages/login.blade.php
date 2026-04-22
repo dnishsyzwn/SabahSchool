@@ -80,12 +80,20 @@
                     </div>
                 </div>
 
-                <!-- Remember Me -->
                 <div class="flex items-center px-1">
                     <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" class="w-5 h-5 rounded-lg bg-white/5 border-white/10 text-secondary focus:ring-secondary/50 focus:ring-offset-0 transition-all">
+                        <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}
+                               class="w-5 h-5 rounded-lg bg-white/5 border-white/10 text-secondary focus:ring-secondary/50 focus:ring-offset-0 transition-all">
                         <span class="text-xs font-medium text-white/60 group-hover:text-white transition-colors">Ingat Saya</span>
                     </label>
+                </div>
+
+                <!-- Cloudflare Turnstile -->
+                <div class="px-1">
+                    <div class="cf-turnstile" data-sitekey="{{ config('services.cloudflare.site_key') }}" data-theme="dark"></div>
+                    @error('cf-turnstile-response')
+                        <p class="text-red-500 text-[10px] font-bold uppercase tracking-wider mt-2 ml-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Submit Button -->
@@ -108,6 +116,7 @@
 </div>
 
 @push('scripts')
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const passwordInput = document.getElementById('password');

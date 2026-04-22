@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Berita & Artikel | STU')
+@section('title', 'Berita & Artikel | Sabah Teachers Union (STU)')
+@section('meta_description', 'Ikuti berita terkini, artikel pendidikan, dan arkib maklumat penting daripada Sabah Teachers Union (STU). Pusat informasi utama untuk guru-guru di Sabah.')
+@section('meta_keywords', 'Berita STU, Artikel Pendidikan, Info Guru Sabah, Arkib STU')
 
 @section('content')
     <!-- Hero Section -->

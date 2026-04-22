@@ -22,11 +22,19 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email'    => ['required', 'email'],
-            'password' => ['required'],
+            'email'                  => ['required', 'email'],
+            'password'               => ['required'],
+            'cf-turnstile-response' => ['required', new \App\Rules\CloudflareTurnstile()],
+        ], [
+            'cf-turnstile-response.required' => 'Sila sahkan anda bukan robot.',
         ]);
 
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+        $loginCredentials = [
+            'email'    => $credentials['email'],
+            'password' => $credentials['password'],
+        ];
+
+        if (Auth::attempt($loginCredentials, $request->boolean('remember'))) {
             /** @var \App\Models\User $user */
             $user = Auth::user();
 

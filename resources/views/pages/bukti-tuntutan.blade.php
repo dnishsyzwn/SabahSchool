@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Bukti Tuntutan | Sabah Teachers Union')
+@section('title', 'Bukti Tuntutan | Sabah Teachers Union (STU)')
+@section('meta_description', 'Semak rekod bukti tuntutan, pampasan, dan bantuan kebajikan yang telah disalurkan kepada ahli Sabah Teachers Union (STU). Bukti nyata komitmen kami melindungi kebajikan ahli.')
+@section('meta_keywords', 'Tuntutan STU, Rekod Pampasan Guru, Bantuan STU, Kebajikan Ahli STU')
 
 @push('styles')
 <style>
@@ -83,7 +85,7 @@
                         <div class="relative w-56">
                             <button @click="sortOpen = !sortOpen"
                                     class="w-full flex items-center justify-between px-5 py-3.5 bg-gray-50 border border-gray-100 rounded-xl text-sm font-bold text-gray-700 hover:bg-white hover:border-gray-200 transition-all">
-                                <span>{{ match(request('sort')) { 'oldest' => 'Terlama (Post)', 'name_asc' => 'Nama (A-Z)', 'name_desc' => 'Nama (Z-A)', default => 'Terbaru (Post)' } }}</span>
+                                <span>{{ match(request('sort')) { 'oldest' => 'Terlama', 'name_asc' => 'Nama (A-Z)', 'name_desc' => 'Nama (Z-A)', default => 'Terbaru' } }}</span>
                                 <svg class="w-4 h-4 text-gray-400 transition-transform duration-200" :class="sortOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </button>
                             <div x-show="sortOpen" x-cloak @click.away="sortOpen = false"
@@ -91,8 +93,8 @@
                                  x-transition:enter="transition ease-out duration-150"
                                  x-transition:enter-start="opacity-0 translate-y-1"
                                  x-transition:enter-end="opacity-100 translate-y-0">
-                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'latest']) }}" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition {{ request('sort', 'latest') === 'latest' ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">Terbaru (Post)</a>
-                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'oldest']) }}" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition {{ request('sort') === 'oldest' ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">Terlama (Post)</a>
+                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'latest']) }}" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition {{ request('sort', 'latest') === 'latest' ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">Terbaru</a>
+                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'oldest']) }}" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition {{ request('sort') === 'oldest' ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">Terlama</a>
                                 <div class="h-px bg-gray-50 mx-3 my-1"></div>
                                 <a href="{{ request()->fullUrlWithQuery(['sort' => 'name_asc']) }}" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition {{ request('sort') === 'name_asc' ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">Nama (A-Z)</a>
                                 <a href="{{ request()->fullUrlWithQuery(['sort' => 'name_desc']) }}" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition {{ request('sort') === 'name_desc' ? 'text-blue-600 bg-blue-50/50 font-bold' : '' }}">Nama (Z-A)</a>
@@ -100,17 +102,6 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-8 bg-blue-50/60 px-6 py-3 rounded-2xl border border-blue-100/60">
-                        <div class="text-center">
-                            <span class="block text-2xl font-black text-blue-900 leading-none">{{ $claims->total() }}</span>
-                            <span class="text-[9px] font-bold text-blue-400 uppercase tracking-widest mt-1 block">Rekod Ditemui</span>
-                        </div>
-                        <div class="w-px h-8 bg-blue-200/50"></div>
-                        <div class="text-center">
-                            <span class="block text-2xl font-black text-blue-600 leading-none">{{ $claims->count() }}</span>
-                            <span class="text-[9px] font-bold text-blue-400 uppercase tracking-widest mt-1 block">Halaman Ini</span>
-                        </div>
-                    </div>
                 </div>
 
             </div>

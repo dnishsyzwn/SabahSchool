@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Keahlian | Sabah Teachers Union')
+@section('title', 'Keahlian STU | Sabah Teachers Union (STU)')
+@section('meta_description', 'Maklumat lengkap mengenai keahlian Sabah Teachers Union (STU). Ketahui yuran, faedah, tuntutan wakalah, dan langkah-langkah untuk menjadi ahli kesatuan guru terbesar di Sabah.')
+@section('meta_keywords', 'Keahlian STU, Yuran STU, Faedah Ahli STU, Daftar STU, Guru Sabah')
 
 @push('styles')
     @vite('resources/css/pages/keahlian.css')

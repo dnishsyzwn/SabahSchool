@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://www.sabahteachersunion.com/sitemap.xml

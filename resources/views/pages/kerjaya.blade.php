@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Kerjaya | Sabah Teachers Union')
+@section('title', 'Kerjaya | Sabah Teachers Union (STU)')
+@section('meta_description', 'Sertai pasukan Sabah Teachers Union (STU). Lihat peluang kerjaya terkini dan jadilah sebahagian daripada kesatuan guru yang dinamik di Sabah.')
+@section('meta_keywords', 'Kerjaya STU, Kerja Guru Sabah, Peluang Kerja STU, Jawatan Kosong STU')
 
 @section('content')
 

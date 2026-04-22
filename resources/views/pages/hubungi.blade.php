@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Hubungi Kami | Sabah Teachers Union')
+@section('title', 'Hubungi Kami | Sabah Teachers Union (STU)')
+@section('meta_description', 'Hubungi Sabah Teachers Union (STU) untuk sebarang pertanyaan mengenai keahlian, aduan, atau cadangan. Kami sedia membantu para guru di Sabah.')
+@section('meta_keywords', 'Hubungi STU, Alamat STU, Email STU, Lokasi Sabah Teachers Union')
 
 @section('content')
 
@@ -16,7 +18,7 @@
     .delay-300 { animation-delay: 0.3s; }
 </style>
 
-<div class="min-h-screen bg-gray-50">
+<div class="min-h-screen bg-gray-50/50">
 
     <div class="relative bg-gray-900 overflow-hidden">
         <div class="absolute inset-0">
@@ -38,48 +40,35 @@
 
     <div class="bg-white border-b border-gray-100 animate-fade-in-up delay-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 items-center">
 
-    <div class="flex flex-col items-center text-center">
-        <div class="flex items-center justify-center gap-3 mb-3">
-            <div class="p-2 bg-primary/10 rounded-full text-primary">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            </div>
-            <h3 class="text-4xl font-semibold text-gray-900">Alamat Rasmi</h3>
-        </div>
-        <p class="text-gray-600 leading-relaxed">
-            1ST FLOOR, LOT 5, BLOCK 25,<br>
-            BANDAR INDAH, JALAN UTARA,<br>
-            90000 SANDAKAN SABAH.
-        </p>
-    </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="flex items-center justify-center gap-3 mb-3">
+                        <div class="p-2 bg-primary/10 rounded-full text-primary">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Alamat Rasmi</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        1ST FLOOR, LOT 5, BLOCK 25,<br>
+                        BANDAR INDAH, JALAN UTARA,<br>
+                        90000 SANDAKAN SABAH.
+                    </p>
+                </div>
 
-    <div class="flex flex-col items-center text-center md:border-l md:border-r border-gray-100">
-        <div class="flex items-center justify-center gap-3 mb-3">
-            <div class="p-2 bg-primary/10 rounded-full text-primary">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <div class="flex flex-col items-center text-center md:border-l border-gray-100">
+                    <div class="flex items-center justify-center gap-3 mb-3">
+                        <div class="p-2 bg-primary/10 rounded-full text-primary">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Telefon</h3>
+                    </div>
+                    <p class="text-gray-600 mb-1 text-sm">Hubungi kami di talian:</p>
+                    <a href="tel:088-215768" class="text-lg font-bold text-primary hover:text-primary/80 transition-colors">
+                        088-215768
+                    </a>
+                </div>
             </div>
-            <h3 class="text-4xl font-semibold text-gray-900">Telefon</h3>
-        </div>
-        <p class="text-gray-600 mb-1">Hubungi kami di talian:</p>
-        <a href="tel:088-215768" class="text-xl font-medium text-primary hover:text-primary/80 transition-colors">
-            088-215768
-        </a>
-    </div>
-
-    <div class="flex flex-col items-center text-center">
-        <div class="flex items-center justify-center gap-3 mb-3">
-            <div class="p-2 bg-primary/10 rounded-full text-primary">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            </div>
-            <h3 class="text-4xl font-semibold text-gray-900">Fax</h3>
-        </div>
-        <p class="text-gray-600 mb-1">Nombor Fax:</p>
-        <p class="text-xl font-medium text-gray-900">
-            088-221768
-        </p>
-    </div>
-</div>
         </div>
     </div>
 
@@ -103,7 +92,7 @@
             </div>
 
             <div class="lg:col-span-7 animate-fade-in-up delay-300">
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8 lg:p-10">
+                <div class="bg-white rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 md:p-10 lg:p-12">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">Hantar Mesej</h2>
 
                     @if(session('success'))
@@ -180,19 +169,17 @@
                     </form>
                 </div>
 
-                <div class="mt-8 grid sm:grid-cols-2 gap-4">
-                    <div class="bg-blue-50 border border-blue-100 p-4 rounded-lg flex items-start gap-3">
-                        <svg class="w-6 h-6 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <div>
-                            <h4 class="font-bold text-blue-900 text-sm">Waktu Pejabat</h4>
-                            <p class="text-sm text-blue-700 mt-1">Isnin - Jumaat: 8.00 PG - 5.00 PTG<br>Sabtu - Ahad: Tutup</p>
+                <div class="mt-8">
+                    <div class="bg-blue-50 border border-blue-100 p-6 rounded-2xl flex items-start gap-4">
+                        <div class="p-3 bg-blue-100 rounded-xl text-blue-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         </div>
-                    </div>
-                    <div class="bg-green-50 border border-green-100 p-4 rounded-lg flex items-start gap-3">
-                        <svg class="w-6 h-6 text-green-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                         <div>
-                            <h4 class="font-bold text-green-900 text-sm">Unit Keahlian</h4>
-                            <p class="text-sm text-green-700 mt-1">Untuk urusan pendaftaran ahli baharu, sila hubungi sambungan 104.</p>
+                            <h4 class="font-bold text-blue-900">Waktu Pejabat</h4>
+                            <p class="text-sm text-blue-700 mt-2 leading-relaxed">
+                                <span class="font-semibold text-blue-800">Isnin - Jumaat:</span> 9.00 PG - 5.00 PTG<br>
+                                <span class="font-semibold text-blue-800">Sabtu, Ahad & Cuti Umum:</span> Tutup
+                            </p>
                         </div>
                     </div>
                 </div>

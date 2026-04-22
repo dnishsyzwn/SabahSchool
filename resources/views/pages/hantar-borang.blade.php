@@ -27,7 +27,7 @@
     .delay-400 { animation-delay: 0.4s; }
 </style>
 
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-gray-50/50">
     <!-- Header Section -->
     <div class="border-b border-gray-100 animate-fade-in-up">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
@@ -37,7 +37,7 @@
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 border-2 border-gray-100 rounded-md shadow-md p-8">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 bg-white border border-gray-200 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 sm:p-12">
             
             <div class="animate-fade-in-up delay-200">
                 <div class="mb-8">
@@ -171,9 +171,9 @@
 
             <div class="lg:pl-8 lg:border-l border-gray-200 animate-fade-in-up delay-300">
                 <div class="mb-8">
-                    <div class="aspect-[4/3] overflow-hidden rounded-lg">
-                        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=2072&auto=format&fit=crop"
-                             alt="STU Community"
+                    <div class="aspect-[4/3] overflow-hidden rounded-2xl shadow-inner border border-gray-100">
+                        <img src="{{ asset('assets/images/documentation_hero.png') }}"
+                             alt="Documentation & Records"
                              class="w-full h-full object-cover">
                     </div>
                     <div class="mt-4">

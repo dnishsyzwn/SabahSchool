@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Muat Turun | Sabah Teachers Union')
+@section('title', 'Muat Turun Borang | Sabah Teachers Union (STU)')
+@section('meta_description', 'Pusat muat turun borang rasmi Sabah Teachers Union (STU) termasuk borang keahlian, borang tuntutan kebajikan, dan dokumen rasmi kesatuan.')
+@section('meta_keywords', 'Borang STU, Muat Turun Borang Guru, Dokumen STU, Borang Tuntutan STU')
 
 @section('content')
 

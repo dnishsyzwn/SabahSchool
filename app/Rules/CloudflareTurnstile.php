@@ -33,7 +33,7 @@ class CloudflareTurnstile implements ValidationRule
             }
         } catch (\Throwable $e) {
             // If Cloudflare is unreachable, log and fail gracefully
-            \Log::warning('Cloudflare Turnstile verification failed: ' . $e->getMessage());
+            
             $fail('Pengesahan keselamatan tidak dapat disahkan. Sila cuba lagi.');
         }
     }

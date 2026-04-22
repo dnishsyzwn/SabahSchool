@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ContactMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactMessageController extends Controller
 {
@@ -65,7 +66,7 @@ class ContactMessageController extends Controller
             $contactMessage->update([
                 'is_read' => true,
                 'read_at' => now(),
-                'read_by' => auth()->id(),
+                'read_by' => Auth::user()->id,
             ]);
         }
 
