@@ -123,7 +123,7 @@
                     @foreach($claims as $claim)
 
                     {{-- Each card has its own Alpine instance to scope lightbox images --}}
-                    <div class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:border-blue-100 transition-all duration-500"
+                    <div class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:border-blue-100 transition-all duration-500 flex flex-col h-full"
                          x-data="{
                             lightboxOpen: false,
                             lightboxIndex: 0,
@@ -224,19 +224,31 @@
 
                         {{-- Image Gallery --}}
                         @if($claim->images->count() > 0)
-                        <div class="px-6 pb-5">
-                            <div class="grid {{ $claim->images->count() === 1 ? 'grid-cols-1' : ($claim->images->count() === 2 ? 'grid-cols-2' : 'grid-cols-3') }} gap-2">
+                        <div class="px-6 pb-5 mt-auto">
+                            <div class="grid {{ $claim->images->count() === 1 ? 'grid-cols-1' : ($claim->images->count() === 2 ? 'grid-cols-2' : 'grid-cols-3') }} gap-3">
                                 @foreach($claim->images as $idx => $img)
-                                    <div class="relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer group/img"
+                                    <div class="relative h-48 sm:h-56 md:h-64 rounded-xl overflow-hidden cursor-pointer group/img border border-gray-100 shadow-sm"
                                          @click="openLightbox({{ $idx }})">
                                         <img src="{{ Storage::url($img->image_path) }}"
                                              alt="{{ $claim->member_name }}"
-                                             class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-110">
-                                        <div class="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                                            <svg class="w-8 h-8 text-white opacity-0 group-hover/img:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                             class="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-110">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-all duration-300 flex items-center justify-center">
+                                            <div class="bg-white/20 backdrop-blur-md p-3 rounded-full border border-white/30 transform translate-y-4 group-hover/img:translate-y-0 transition-transform duration-300">
+                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
+                            </div>
+                        </div>
+                        @else
+                        {{-- Spacer to maintain card height consistency when no images --}}
+                        <div class="mt-auto px-6 pb-5">
+                            <div class="h-48 sm:h-56 md:h-64 rounded-xl bg-gray-50/50 border-2 border-dashed border-gray-100 flex flex-col items-center justify-center gap-3">
+                                <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <span class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Tiada Imej Bukti</span>
                             </div>
                         </div>
                         @endif
