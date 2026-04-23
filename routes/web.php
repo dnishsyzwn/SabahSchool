@@ -109,7 +109,8 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
 //     return "Migration completed!";
 // });
 
-// Route::get('/run-link', function () {
-//     \Illuminate\Support\Facades\Artisan::call('storage:link');
-//     return "Storage linked!";
-// });
+Route::get('/link-storage', function () {
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
+    return 'Storage link created!';
+});
+
