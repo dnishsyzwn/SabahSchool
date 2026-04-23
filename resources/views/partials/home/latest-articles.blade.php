@@ -28,24 +28,28 @@
 
             <!-- Articles Carousel Container -->
             <div class="relative group/carousel">
-                <!-- Floating Navigation Buttons -->
-                <button id="article-prev"
-                    class="absolute -left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-white text-gray-700 shadow-xl hover:bg-green hover:text-white transition-all duration-300 opacity-100 lg:opacity-40 lg:group-hover/carousel:opacity-100 disabled:hidden border border-gray-100">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                </button>
-                <button id="article-next"
-                    class="absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-white text-gray-700 shadow-xl hover:bg-green hover:text-white transition-all duration-300 opacity-100 lg:opacity-40 lg:group-hover/carousel:opacity-100 disabled:hidden border border-gray-100">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
-                <div id="articles-slider-container" class="overflow-visible">
-                    <div id="articles-slider" class="flex transition-transform duration-700 ease-in-out gap-8">
-                        @forelse($news as $article)
+                @if($news->count() > 3)
+                    <!-- Floating Navigation Buttons -->
+                    <button id="article-prev"
+                        class="absolute -left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-white text-gray-700 shadow-xl hover:bg-green hover:text-white transition-all duration-300 opacity-100 lg:opacity-40 lg:group-hover/carousel:opacity-100 disabled:hidden border border-gray-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button id="article-next"
+                        class="absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-10 p-4 rounded-full bg-white text-gray-700 shadow-xl hover:bg-green hover:text-white transition-all duration-300 opacity-100 lg:opacity-40 lg:group-hover/carousel:opacity-100 disabled:hidden border border-gray-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                @endif
+
+                <div id="{{ $news->count() > 3 ? 'articles-slider-container' : '' }}" class="{{ $news->count() > 3 ? 'overflow-visible' : '' }}">
+                    <div id="{{ $news->count() > 3 ? 'articles-slider' : '' }}" 
+                         class="flex transition-transform duration-700 ease-in-out gap-8 {{ $news->count() <= 3 ? 'justify-center flex-wrap' : '' }}">
+                        @foreach($news as $article)
                             <div
-                                class="article-slide flex-[0_0_100%] md:flex-[0_0_calc(50%-16px)] lg:flex-[0_0_calc(33.333%-21.33px)]">
+                                class="article-slide {{ $news->count() > 3 ? 'flex-[0_0_100%] md:flex-[0_0_calc(50%-16px)] lg:flex-[0_0_calc(33.333%-21.33px)]' : 'w-full md:w-[calc(50%-16px)] lg:w-[calc(33.333%-21.33px)]' }}">
                                 <div
                                     class="bg-white rounded-[2.5rem] p-4 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-500 group h-full flex flex-col">
                                     <!-- Image Container -->
@@ -54,17 +58,17 @@
                                             alt="{{ $article->title }}"
                                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                     </div>
-
+                                
                                     <!-- Content -->
-                                    <div class="px-2 pb-2 flex-grow flex flex-col">
+                                    <div class="px-2 pb-2 flex-grow flex flex-col text-left">
                                         <div class="flex items-center gap-2 mb-3">
                                             <h3 class="text-xl font-bold text-gray-900 leading-tight">{{ $article->title }}</h3>
                                         </div>
                                         <p class="text-gray-500 leading-relaxed mb-6 text-sm line-clamp-2">
-                                            {{ $article->excerpt ?? Str::limit(strip_tags($article->content), 120) }}
+                                            {{ $article->excerpt_plain_text }}
                                         </p>
                                     </div>
-
+                                
                                     <!-- Footer -->
                                     <div class="mt-auto border-t border-gray-50 pt-6 flex justify-center">
                                         <a href="{{ route('berita.show', $article->slug) }}"
@@ -74,17 +78,17 @@
                                     </div>
                                 </div>
                             </div>
-                        @empty
-
-                        @endforelse
+                        @endforeach
                     </div>
                 </div>
             </div>
 
-            <!-- Indicators Container (Will be populated by JS) -->
-            <div id="articles-indicators" class="flex justify-center gap-3 mt-12">
-                <!-- Indicators injected here -->
-            </div>
+            @if($news->count() > 3)
+                <!-- Indicators Container (Will be populated by JS) -->
+                <div id="articles-indicators" class="flex justify-center gap-3 mt-12">
+                    <!-- Indicators injected here -->
+                </div>
+            @endif
         </div>
     </section>
 @endif

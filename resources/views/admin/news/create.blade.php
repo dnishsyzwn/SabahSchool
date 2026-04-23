@@ -54,27 +54,44 @@
     /* ── Custom List Drag Selection ── */
     .cdx-nested-list__item-content.custom-selected-list-item { background-color: #e8f0fe !important; border-radius: 3px; }
 
-    /* ── Modals ── */
-    #crop-modal, #preview-modal, #cat-modal { display: none; }
+    /* ── Modals (Google Style) ── */
+    #crop-modal, #preview-modal, #cat-modal { 
+        display: none; 
+        backdrop-filter: blur(8px);
+        background: rgba(15, 23, 42, 0.6);
+    }
     #crop-modal.open, #preview-modal.open, #cat-modal.open { display: flex; }
-    .preview-device-btn.active { background: #3b82f6; color: white; }
+    
+    .modal-card {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-    /* ── Custom Scrollbar ── */
-    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: #f9fafb; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #d1d5db; }
+    /* ── Category Dropdown (Premium) ── */
+    #cat-dropdown-menu {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        transform-origin: top;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #cat-dropdown-menu.hidden {
+        display: none;
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    #cat-dropdown-menu:not(.hidden) {
+        display: block;
+        transform: scale(1);
+        opacity: 1;
+    }
 
-    input[type="radio"]:checked + .status-card { border-color: #3b82f6; background: #eff6ff; }
-    input[type="radio"]:checked + .status-card .status-icon { background: #3b82f6; color: white; transform: scale(1.1); }
-    input[type="radio"]:checked + .status-card .status-check { display: flex; }
-
-    /* ── Custom Dropdown ── */
-    #cat-dropdown-menu { display: none; }
-    #cat-dropdown-menu.open { display: block; }
+    .cat-item-active {
+        background-color: #eff6ff;
+        color: #2563eb;
+        font-weight: 700;
+    }
 
     /* Sidebar Layout Fix for Sticky */
-    .xl\:sticky {
+    .lg\:sticky {
         align-self: start;
     }
 </style>
@@ -85,10 +102,10 @@
     @csrf
     <input type="hidden" id="content-input" name="content" value="{{ old('content') }}">
 
-    <div class="grid grid-cols-1 xl:grid-cols-3 gap-10 xl:gap-8 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 items-start">
 
         {{-- Left: Content --}}
-        <div class="xl:col-span-2 space-y-6">
+        <div class="lg:col-span-2 space-y-6">
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
                 {{-- Thumbnail moved here --}}
                 <div class="mb-8">
@@ -159,38 +176,43 @@
         </div>
 
         {{-- Right: Settings (Sticky) --}}
-        <div class="space-y-6 xl:sticky xl:top-8">
+        <div class="space-y-6 lg:sticky lg:top-8">
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Klasifikasi Kategori</p>
-                
-                {{-- Custom Searchable Dropdown --}}
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Klasifikasi Kategori</p>
+                {{-- Modern Category Selector (Redesigned) --}}
                 <div class="relative" id="cat-dropdown-container">
-                    <button type="button" onclick="toggleCatDropdown(event)" id="cat-trigger" 
-                            class="w-full flex items-center justify-between px-4 py-3 text-sm border {{ $errors->has('category_id') ? 'border-red-300 bg-red-50/30' : 'border-gray-100 bg-gray-50/50' }} rounded-xl hover:bg-white hover:border-blue-200 transition text-left group">
-                        <span id="cat-label" class="{{ $errors->has('category_id') ? 'text-red-600 font-bold' : 'text-gray-600 font-medium' }} italic">
-                            {{ $errors->has('category_id') ? 'Sila Pilih Kategori' : '-- Pilih Kategori --' }}
-                        </span>
-                        <svg class="w-4 h-4 {{ $errors->has('category_id') ? 'text-red-400' : 'text-gray-400' }} group-hover:text-blue-500 transition-transform" id="cat-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-
-                    <div id="cat-dropdown-menu" class="absolute z-[100] mt-2 w-full bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                        <div class="p-3 border-b border-gray-50">
-                            <div class="relative">
-                                <input type="text" id="cat-search" placeholder="Cari kategori..." 
-                                       class="w-full pl-9 pr-4 py-2 text-xs border border-gray-100 bg-gray-50/50 rounded-lg focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition">
-                                <svg class="absolute left-3 top-2.5 w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <div class="group">
+                        <label class="block text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2 ml-1">Kategori Utama</label>
+                        <button type="button" onclick="toggleCatDropdown(event)" id="cat-trigger" 
+                                class="w-full flex items-center justify-between px-4 py-3 text-sm border border-gray-200 bg-white rounded-xl hover:border-blue-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 outline-none transition-all duration-300 shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"></div>
+                                <span id="cat-label" class="text-gray-700 font-semibold truncate max-w-[150px]">
+                                    Pilih Kategori
+                                </span>
                             </div>
-                        </div>
-                        
-                        <div id="cat-options" class="max-h-60 overflow-y-auto p-2 space-y-0.5 custom-scrollbar">
-                            {{-- Inject via JS --}}
-                        </div>
+                            <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-transform duration-300" id="cat-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
 
-                        <div class="p-2 border-t border-gray-50 bg-gray-50/50">
-                            <button type="button" onclick="openCategoryModal(event)" class="w-full py-2 text-[10px] font-bold text-blue-600 hover:bg-white rounded-lg transition uppercase tracking-wider flex items-center justify-center gap-2">
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"/></svg>
-                                Urus Kategori
-                            </button>
+                    <div id="cat-dropdown-menu" class="absolute z-[100] mt-2 w-full bg-white rounded-2xl border border-gray-100 hidden">
+                        <div class="p-2">
+                            <div class="relative mb-1">
+                                <input type="text" id="cat-search" placeholder="Cari..." 
+                                       class="w-full pl-9 pr-4 py-2 text-sm border-0 bg-gray-50 rounded-xl focus:ring-0 outline-none transition placeholder:text-gray-400">
+                                <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                            </div>
+                            
+                            <div id="cat-options" class="max-h-56 overflow-y-auto space-y-0.5 custom-scrollbar p-1">
+                                {{-- Categories injected via JS --}}
+                            </div>
+
+                            <div class="mt-1 pt-1 border-t border-gray-50">
+                                <button type="button" onclick="openCategoryModal(event)" class="w-full py-2.5 text-[10px] font-bold text-blue-600 hover:bg-blue-50 rounded-xl transition uppercase tracking-wider flex items-center justify-center gap-2">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    Urus Kategori
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -246,40 +268,83 @@
     </div>
 </form>
 
-{{-- Category Management Modal --}}
-<div id="cat-modal" class="fixed inset-0 z-[1000] bg-slate-900/60 backdrop-blur-md items-center justify-center p-4">
-    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-300">
-        <div class="px-6 py-4 border-b border-gray-50 flex items-center justify-between bg-gray-50/50">
-            <h3 class="font-bold text-gray-800 uppercase tracking-widest text-[10px]">Pengurusan Kategori</h3>
-            <div class="flex items-center gap-2">
-                <button type="button" onclick="toggleAddSection()" class="w-8 h-8 flex items-center justify-center bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-sm">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+{{-- Category Management Modal (Premium Multi-State Redesign) --}}
+<div id="cat-modal" class="fixed inset-0 z-[1000] flex items-center justify-center p-4">
+    <div class="bg-white rounded-[2.5rem] shadow-[0_30px_100px_-20px_rgba(0,0,0,0.3)] w-full max-w-lg overflow-hidden animate-in zoom-in duration-300 modal-card border border-white/20">
+        
+        {{-- VIEW 1: LIST & SEARCH --}}
+        <div id="cat-view-list" class="flex flex-col h-full">
+            <div class="px-10 py-8 border-b border-gray-100 bg-gradient-to-br from-slate-50 to-white flex items-center justify-between">
+                <div>
+                    <h3 class="font-black text-gray-900 uppercase tracking-[0.25em] text-[11px]">Urus Kategori</h3>
+                    <p class="text-[10px] text-slate-400 mt-1.5 font-bold tracking-tight">Cari atau hapus kategori berita</p>
+                </div>
+                <button type="button" onclick="closeCategoryModal()" class="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-2xl transition-all duration-300 group">
+                    <svg class="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
-                <button type="button" onclick="closeCategoryModal()" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition">✕</button>
+            </div>
+
+            <div class="p-10 space-y-6">
+                <div class="flex gap-3">
+                    <div class="relative flex-1">
+                        <div class="absolute left-5 top-1/2 -translate-y-1/2">
+                            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </div>
+                        <input type="text" id="modal-cat-search" placeholder="Cari kategori..." 
+                               class="w-full pl-12 pr-6 py-4 text-sm font-bold border-2 border-slate-200 bg-white rounded-[1.25rem] focus:border-blue-500 focus:ring-8 focus:ring-blue-500/5 outline-none transition-all duration-300 text-slate-700 placeholder:text-slate-400">
+                    </div>
+                    <button type="button" onclick="showAddCatView()" class="px-6 py-4 bg-blue-600 text-white text-[10px] font-black rounded-[1.25rem] hover:bg-blue-700 transition-all duration-300 shadow-xl shadow-blue-100 flex items-center gap-2 uppercase tracking-widest active:scale-95">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"/></svg>
+                        Baru
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Senarai Sedia Ada</label>
+                        <span id="cat-count-badge" class="px-3 py-1 bg-slate-100 text-slate-600 text-[9px] font-black rounded-full uppercase tracking-tighter border border-slate-200">0 KATEGORI</span>
+                    </div>
+                    <div id="modal-cat-list" class="max-h-[35vh] overflow-y-auto pr-3 space-y-2 custom-scrollbar -mr-3">
+                        {{-- Categories injected via JS --}}
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="p-6">
-            {{-- Add Form (Hidden by default) --}}
-            <div id="modal-add-section" class="hidden mb-6 p-4 bg-blue-50/50 rounded-2xl border border-blue-100 animate-in slide-in-from-top-2 duration-200">
-                <label class="block text-[10px] font-black text-blue-600 uppercase tracking-wider mb-2">Kategori Baru</label>
-                <div class="flex gap-2">
-                    <input type="text" id="new-cat-name" placeholder="cth: Sukan, Ekonomi..." 
-                           class="flex-1 px-4 py-2.5 text-sm border-0 bg-white rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 outline-none transition">
-                    <button type="button" onclick="addNewCategory()" class="px-4 py-2.5 bg-blue-600 text-white text-xs font-black rounded-xl hover:bg-blue-700 transition shadow-md">SIMPAN</button>
+
+        {{-- VIEW 2: ADD NEW --}}
+        <div id="cat-view-add" class="hidden flex flex-col h-full animate-in slide-in-from-right-4 duration-300">
+            <div class="px-10 py-8 border-b border-blue-100 bg-gradient-to-br from-blue-50 to-white flex items-center gap-4">
+                <button type="button" onclick="showListCatView()" class="w-10 h-10 flex items-center justify-center text-blue-600 bg-white shadow-sm border-2 border-blue-100 rounded-xl hover:bg-blue-50 hover:border-blue-200 transition-all active:scale-95">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div>
+                    <h3 class="font-black text-gray-900 uppercase tracking-[0.25em] text-[11px]">Tambah Kategori Baru</h3>
+                    <p class="text-[10px] text-blue-500 mt-1.5 font-bold tracking-tight">Cipta klasifikasi berita baru</p>
                 </div>
             </div>
 
-            {{-- Modal Search --}}
-            <div class="relative mb-4">
-                <input type="text" id="modal-cat-search" placeholder="Cari untuk padam..." 
-                       class="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-100 bg-gray-50/50 rounded-xl focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition">
-                <svg class="absolute left-3.5 top-3 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <div class="p-10 space-y-8">
+                <div class="space-y-4">
+                    <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Nama Kategori</label>
+                    <input type="text" id="new-cat-name" placeholder="cth: Pendidikan, Sukan, Kebajikan..." 
+                           class="w-full px-6 py-5 text-base font-bold border-2 border-slate-300 bg-white rounded-[1.5rem] focus:border-blue-600 focus:ring-8 focus:ring-blue-500/5 outline-none transition-all duration-300 text-slate-800 placeholder:text-slate-300">
+                    <p class="text-[10px] text-slate-500 font-medium italic px-1 bg-amber-50 py-2 rounded-lg border border-amber-100/50 flex items-center gap-2">
+                        <svg class="w-3 h-3 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/></svg>
+                        Pastikan nama kategori unik dan senang difahami.
+                    </p>
+                </div>
+
+                <div class="flex gap-3 pt-4">
+                    <button type="button" onclick="showListCatView()" class="flex-1 py-4 text-[10px] font-black text-slate-600 bg-slate-100 uppercase tracking-[0.2em] rounded-[1.25rem] hover:bg-slate-200 border-2 border-slate-200 transition-all duration-300 active:scale-95">Batal</button>
+                    <button type="button" onclick="addNewCategory()" class="flex-[2] py-4 bg-slate-900 text-white text-[10px] font-black rounded-[1.25rem] hover:bg-blue-600 transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-blue-200 uppercase tracking-[0.2em] active:scale-95">Simpan Kategori</button>
+                </div>
             </div>
-            
-            <div id="modal-cat-list" class="space-y-1 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
-                {{-- Categories injected via JS --}}
-            </div>
+        </div>
+
+        {{-- Footer Info --}}
+        <div class="px-10 py-6 bg-slate-50/50 border-t border-slate-100 flex items-center gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+            <p class="text-[9px] font-bold text-slate-500 uppercase tracking-wider font-black">Mod Pengurusan Aktif</p>
         </div>
     </div>
 </div>
@@ -433,7 +498,7 @@ async function deleteRemoteFile(url){
 // ══ Custom Tools ══
 class AlignTune{
     static get isTune(){return true;}
-    constructor({data}){this.data=data||{align:'left'};this._root=null;}
+    constructor({data}){this.data = (data && typeof data === 'object') ? data : {align:'left'};this._root=null;}
     render(){
         const wrap=document.createElement('div');
         wrap.innerHTML='<div style="font-[800] text-[9px] text-slate-400 px-3 py-2 uppercase tracking-wide">Alignment</div>';
@@ -457,7 +522,11 @@ class AlignTune{
 
 class CustomImageBlock{
     static get toolbox(){return{title:'Gambar',icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01"/></svg>'};}
-    constructor({data}){this.data={url:data.url||'',caption:data.caption||'',width:data.width||'100',align:data.align||'center'};this.wrapper=null;}
+    constructor({data}){
+        const d = data || {};
+        this.data={url:d.url||'',caption:d.caption||'',width:d.width||'100',align:d.align||'center'};
+        this.wrapper=null;
+    }
     render(){this.wrapper=document.createElement('div');this._build();return this.wrapper;}
     _build(){this.wrapper.innerHTML=''; this.data.url?this._view():this._pick();}
     _pick(){
@@ -525,7 +594,11 @@ class CustomImageBlock{
 
 class ImageGalleryTool{
     static get toolbox(){return{title:'Galeri',icon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>'};}
-    constructor({data}){this.data={images:data.images||[],columns:data.columns||2,aspectRatio:data.aspectRatio||'16/9'};this.wrapper=null;}
+    constructor({data}){
+        const d = data || {};
+        this.data={images:d.images||[],columns:d.columns||2,aspectRatio:d.aspectRatio||'16/9'};
+        this.wrapper=null;
+    }
     render(){this.wrapper=document.createElement('div'); this.wrapper.className='gallery-block'; this._draw(); return this.wrapper;}
     _draw(){
         this.wrapper.innerHTML='';
@@ -578,66 +651,73 @@ class ImageGalleryTool{
 let editor;
 
 try {
+    const tools = {};
+    
+    if (typeof AlignTune !== 'undefined') tools.alignTune = AlignTune;
+    
+    if (typeof Header !== 'undefined') {
+        tools.header = {
+            class: Header,
+            config: { levels: [2, 3, 4], defaultLevel: 2 },
+            tunes: typeof AlignTune !== 'undefined' ? ['alignTune'] : [],
+            inlineToolbar: true,
+            shortcut: 'CMD+SHIFT+H'
+        };
+    }
+
+    if (typeof NestedList !== 'undefined') {
+        tools.list = { 
+            class: NestedList, 
+            inlineToolbar: true,
+            config: { defaultStyle: 'unordered hover:text-slate-900 transition-colors' }
+        };
+    }
+
+    if (typeof Quote !== 'undefined') {
+        tools.quote = { 
+            class: Quote, 
+            inlineToolbar: true, 
+            config: { quotePlaceholder: 'Kata-kata hikmah...', captionPlaceholder: 'Penulis' }
+        };
+    }
+
+    if (typeof CustomImageBlock !== 'undefined') tools.image = CustomImageBlock;
+    if (typeof ImageGalleryTool !== 'undefined') tools.gallery = ImageGalleryTool;
+    if (typeof Underline !== 'undefined') tools.underline = Underline;
+    if (typeof Strikethrough !== 'undefined') tools.strikethrough = Strikethrough;
+    
+    if (typeof Marker !== 'undefined') {
+        tools.marker = { class: Marker, shortcut: 'CMD+SHIFT+M' };
+    }
+
+    const colorClass = (typeof ColorPlugin !== 'undefined' ? ColorPlugin : (typeof Color !== 'undefined' ? Color : null));
+    if (colorClass) {
+        tools.color = { 
+            class: colorClass, 
+            config: { 
+                colorCollections: ['#1e293b', '#2563eb', '#db2777', '#059669', '#d97706', '#dc2626', '#7c3aed'], 
+                defaultColor: '#1e293b', 
+                type: 'text' 
+            } 
+        };
+    }
+
+    if (typeof InlineCode !== 'undefined') tools.inlineCode = InlineCode;
+    
+    if (typeof Table !== 'undefined') {
+        tools.table = { 
+            class: Table, 
+            inlineToolbar: true, 
+            config: { rows: 2, cols: 3 } 
+        };
+    }
+
     const editorConfig = {
         holder: 'editorjs',
         placeholder: 'Mula berkarya di sini...',
         inlineToolbar: true,
-        data: {!! old('content', 'null') !!},
-        tools: {
-            alignTune: typeof AlignTune !== 'undefined' ? AlignTune : null,
-            header: {
-                class: typeof Header !== 'undefined' ? Header : null,
-                config: { levels: [2, 3, 4], defaultLevel: 2 },
-                tunes: ['alignTune'],
-                inlineToolbar: true,
-                shortcut: 'CMD+SHIFT+H',
-                paste: {
-                    tags: ['H2', 'H3', 'H4'],
-                    patterns: {
-                        header: /^#+ .+/
-                    }
-                }
-            },
-            list: { 
-                class: typeof NestedList !== 'undefined' ? NestedList : null, 
-                inlineToolbar: true,
-                config: { defaultStyle: 'unordered hover:text-slate-900 transition-colors' },
-                paste: {
-                    tags: ['OL', 'UL', 'LI'],
-                    patterns: {
-                        list: /^(?:[\*\-]|[\d]+\.) .+/
-                    }
-                }
-            },
-            quote: { 
-                class: typeof Quote !== 'undefined' ? Quote : null, 
-                inlineToolbar: true, 
-                config: { quotePlaceholder: 'Kata-kata hikmah...', captionPlaceholder: 'Penulis' },
-                paste: { tags: ['BLOCKQUOTE'] }
-            },
-            image: typeof CustomImageBlock !== 'undefined' ? CustomImageBlock : null,
-            gallery: typeof ImageGalleryTool !== 'undefined' ? ImageGalleryTool : null,
-            underline: typeof Underline !== 'undefined' ? Underline : null,
-            strikethrough: typeof Strikethrough !== 'undefined' ? Strikethrough : null,
-            marker: { 
-                class: typeof Marker !== 'undefined' ? Marker : null, 
-                shortcut: 'CMD+SHIFT+M' 
-            },
-            color: { 
-                class: (typeof ColorPlugin !== 'undefined' ? ColorPlugin : (typeof Color !== 'undefined' ? Color : null)), 
-                config: { 
-                    colorCollections: ['#1e293b', '#2563eb', '#db2777', '#059669', '#d97706', '#dc2626', '#7c3aed'], 
-                    defaultColor: '#1e293b', 
-                    type: 'text' 
-                } 
-            },
-            inlineCode: typeof InlineCode !== 'undefined' ? InlineCode : null,
-            table: { 
-                class: typeof Table !== 'undefined' ? Table : null, 
-                inlineToolbar: true, 
-                config: { rows: 2, cols: 3 } 
-            }
-        },
+        data: {{ \Illuminate\Support\Js::from(old('content') ? json_decode(old('content'), true) : null) }},
+        tools: tools,
         onReady: () => {
             if (typeof Undo !== 'undefined') {
                 const btnUndo = document.getElementById('btn-undo');
@@ -682,16 +762,20 @@ try {
                     }, 50);
                 };
 
-                editorUndo = new Undo({ 
-                    editor, 
-                    onUpdate: () => { updateUndoButtons(); }
-                });
+                try {
+                    editorUndo = new Undo({ 
+                        editor, 
+                        onUpdate: () => { updateUndoButtons(); }
+                    });
 
-                if (btnUndo) btnUndo.addEventListener('click', () => { editorUndo.undo(); });
-                if (btnRedo) btnRedo.addEventListener('click', () => { editorUndo.redo(); });
+                    if (btnUndo) btnUndo.addEventListener('click', () => { editorUndo.undo(); });
+                    if (btnRedo) btnRedo.addEventListener('click', () => { editorUndo.redo(); });
 
-                // Initial check
-                updateUndoButtons();
+                    // Initial check
+                    updateUndoButtons();
+                } catch (e) {
+                    console.error('Undo plugin initialization failed:', e);
+                }
             }
         }
     };
@@ -703,10 +787,34 @@ try {
     });
 
     if (typeof EditorJS !== 'undefined') {
-        editor = new EditorJS(editorConfig);
+        try {
+            editor = new EditorJS(editorConfig);
+        } catch (e) {
+            console.error('EditorJS Constructor Error:', e);
+            document.getElementById('editorjs').innerHTML = `<div class="p-10 text-center border-2 border-dashed border-red-200 rounded-3xl bg-red-50/50 my-10">
+                <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                </div>
+                <h3 class="text-lg font-bold text-red-900 mb-1">Gagal Memulakan Editor</h3>
+                <p class="text-sm text-red-600 mb-4">Terdapat ralat teknikal semasa memuatkan kandungan artikel.</p>
+                <code class="px-3 py-1 bg-white border border-red-100 rounded text-[10px] text-red-400 block max-w-xs mx-auto overflow-hidden text-ellipsis">${e.message}</code>
+                <div class="mt-6">
+                    <button type="button" onclick="window.location.reload()" class="px-6 py-2.5 bg-red-600 text-white text-xs font-black rounded-xl hover:bg-red-700 transition shadow-lg shadow-red-100">Muat Semula Halaman</button>
+                </div>
+            </div>`;
+        }
+    } else {
+        document.getElementById('editorjs').innerHTML = `<div class="p-10 text-center border-2 border-dashed border-amber-200 rounded-3xl bg-amber-50/50 my-10">
+            <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-amber-900 mb-1">Sambungan Internet Perlahan</h3>
+            <p class="text-sm text-amber-600 mb-6">Library editor tidak dapat dimuatkan. Sila semak sambungan internet anda.</p>
+            <button type="button" onclick="window.location.reload()" class="px-6 py-2.5 bg-amber-600 text-white text-xs font-black rounded-xl hover:bg-amber-700 transition shadow-lg shadow-amber-100">Cuba Lagi</button>
+        </div>`;
     }
 } catch (e) {
-    console.error('EditorJS Paste-Enhanced Init Error:', e);
+    console.error('EditorJS Config Error (Create):', e);
 }
 
 // ══ Bulk Formatting Support ══
@@ -807,23 +915,23 @@ function toggleCatDropdown(e) {
     if(e) e.stopPropagation();
     const menu = document.getElementById('cat-dropdown-menu');
     const arrow = document.getElementById('cat-arrow');
-    const isOpen = menu.classList.contains('open');
+    const isHidden = menu.classList.contains('hidden');
     
-    // Close on second click
-    if(isOpen) {
-        menu.classList.remove('open');
-        arrow.style.transform = 'rotate(0deg)';
+    if(!isHidden) {
+        menu.classList.add('hidden');
+        if(arrow) arrow.style.transform = 'rotate(0deg)';
     } else {
-        menu.classList.add('open');
-        arrow.style.transform = 'rotate(180deg)';
+        menu.classList.remove('hidden');
+        if(arrow) arrow.style.transform = 'rotate(180deg)';
         document.getElementById('cat-search').focus();
     }
 }
 
-// Close dropdown when clicking outside
 document.addEventListener('click', e => {
-    if(!document.getElementById('cat-dropdown-container').contains(e.target)) {
-        document.getElementById('cat-dropdown-menu').classList.remove('open');
+    const container = document.getElementById('cat-dropdown-container');
+    const menu = document.getElementById('cat-dropdown-menu');
+    if(container && menu && !container.contains(e.target)) {
+        menu.classList.add('hidden');
         const arrow = document.getElementById('cat-arrow');
         if(arrow) arrow.style.transform = 'rotate(0deg)';
     }
@@ -831,24 +939,70 @@ document.addEventListener('click', e => {
 
 function openCategoryModal(e) { 
     if(e) e.stopPropagation();
-    document.getElementById('cat-dropdown-menu').classList.remove('open');
+    document.getElementById('cat-dropdown-menu').classList.add('hidden');
     document.getElementById('cat-modal').classList.add('open');
-    document.getElementById('modal-add-section').classList.add('hidden');
+    showListCatView();
     refreshCategoryLists();
 }
 
 function closeCategoryModal() { document.getElementById('cat-modal').classList.remove('open'); }
 
-function toggleAddSection() {
-    const sec = document.getElementById('modal-add-section');
-    sec.classList.toggle('hidden');
-    if(!sec.classList.contains('hidden')) document.getElementById('new-cat-name').focus();
+function showListCatView() {
+    document.getElementById('cat-view-list').classList.remove('hidden');
+    document.getElementById('cat-view-add').classList.add('hidden');
+}
+
+function showAddCatView() {
+    document.getElementById('cat-view-list').classList.add('hidden');
+    document.getElementById('cat-view-add').classList.remove('hidden');
+    document.getElementById('new-cat-name').value = '';
+    document.getElementById('new-cat-name').focus();
 }
 
 document.getElementById('cat-search').addEventListener('input', e => {
-    const q = e.target.value.toLowerCase();
-    renderCategoryOptions(allCategories.filter(c => c.name.toLowerCase().includes(q)));
+    const q = e.target.value.toLowerCase().trim();
+    const filtered = allCategories.filter(c => c.name.toLowerCase().includes(q));
+    renderCategoryOptions(filtered, q);
 });
+
+document.getElementById('cat-search').addEventListener('keydown', e => {
+    if(e.key === 'Enter') {
+        e.preventDefault();
+        const q = e.target.value.trim();
+        const exactMatch = allCategories.find(c => c.name.toLowerCase() === q.toLowerCase());
+        if(exactMatch) {
+            selectCategory(exactMatch.id, exactMatch.name);
+        } else if(q.length > 0) {
+            handleQuickAdd(q);
+        }
+    }
+});
+
+async function handleQuickAdd(name) {
+    if(!name) return;
+    
+    try {
+        const r = await fetch('{{ route("admin.news.categories.store") }}', {
+            method: 'POST',
+            headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ name })
+        });
+        
+        const d = await r.json();
+        if(d.ok) {
+            document.getElementById('cat-search').value = '';
+            document.getElementById('new-cat-name').value = '';
+            await refreshCategoryLists();
+            const newCat = allCategories.find(c => c.name.toLowerCase() === name.toLowerCase());
+            if(newCat) selectCategory(newCat.id, newCat.name);
+        } else {
+            Swal.fire({ icon: 'error', title: 'Ralat', text: d.message || 'Gagal menambah kategori.' });
+        }
+    } catch(e) {
+        console.error('Quick add failed:', e);
+    }
+}
+
 
 document.getElementById('modal-cat-search').addEventListener('input', e => {
     const q = e.target.value.toLowerCase();
@@ -856,47 +1010,92 @@ document.getElementById('modal-cat-search').addEventListener('input', e => {
 });
 
 async function refreshCategoryLists() {
-    const r = await fetch('{{ route("admin.news.categories.index") }}');
-    allCategories = await r.json();
-    renderCategoryOptions(allCategories);
-    renderModalCategoryList(allCategories);
-    
-    // Sync current selection label
-    const selectedId = document.getElementById('category_id_val').value;
-    const selectedCat = allCategories.find(c => c.id == selectedId);
-    if(selectedCat) selectCategory(selectedCat.id, selectedCat.name);
+    try {
+        const r = await fetch('{{ route("admin.news.categories.index") }}');
+        allCategories = await r.json();
+        
+        // Update counts
+        const badge = document.getElementById('cat-count-badge');
+        if(badge) badge.innerText = `${allCategories.length} KATEGORI`;
+
+        renderCategoryOptions(allCategories);
+        renderModalCategoryList(allCategories);
+        
+        // Sync current selection label
+        const selectedId = document.getElementById('category_id_val').value;
+        if(selectedId) {
+            const selectedCat = allCategories.find(c => c.id == selectedId);
+            if(selectedCat) {
+                document.getElementById('cat-label').textContent = selectedCat.name;
+                document.getElementById('cat-label').classList.add('text-blue-600', 'font-bold');
+            }
+        }
+    } catch(e) {}
 }
 
 function renderModalCategoryList(cats) {
     const modalList = document.getElementById('modal-cat-list');
     if(cats.length === 0) {
-        modalList.innerHTML = '<p class="text-[10px] text-gray-400 text-center py-8 italic">Tiada kategori dijumpai...</p>';
+        modalList.innerHTML = `
+            <div class="py-12 text-center">
+                <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </div>
+                <p class="text-xs text-slate-400 italic">Tiada kategori dijumpai...</p>
+            </div>`;
         return;
     }
     modalList.innerHTML = cats.map(c => `
-        <div class="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition border border-transparent hover:border-gray-100 group">
-            <span class="text-sm font-medium text-gray-700">${c.name}</span>
-            <button type="button" onclick="deleteCategory(${c.id})" class="w-8 h-8 flex items-center justify-center text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4-6h4"/></svg>
+        <div class="flex items-center justify-between p-4 rounded-2xl hover:bg-slate-50 transition-all group border border-transparent hover:border-slate-100 mb-1">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-[10px]">${c.name.charAt(0).toUpperCase()}</div>
+                <span class="text-sm font-bold text-slate-700">${c.name}</span>
+            </div>
+            <button type="button" onclick="deleteCategory(${c.id})" class="w-10 h-10 flex items-center justify-center text-slate-300 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all opacity-0 group-hover:opacity-100">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4-6h4"/></svg>
             </button>
         </div>
     `).join('');
 }
 
-function renderCategoryOptions(cats) {
+function renderCategoryOptions(cats, query = '') {
     const container = document.getElementById('cat-options');
-    if(cats.length === 0) {
-        container.innerHTML = '<p class="text-[10px] text-gray-400 text-center py-4 italic">Tiada kategori dijumpai...</p>';
+    const selectedId = document.getElementById('category_id_val').value;
+    let html = '';
+
+    if(cats.length === 0 && query.length === 0) {
+        container.innerHTML = '<div class="py-6 text-center"><p class="text-[10px] text-gray-400 italic">Tiada kategori...</p></div>';
         return;
     }
     
-    container.innerHTML = cats.map(c => `
-        <button type="button" onclick="selectCategory(${c.id}, '${c.name.replace(/'/g, "\\'")}')" 
-                class="w-full text-left px-3 py-2 text-xs text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition flex items-center justify-between group">
-            <span>${c.name}</span>
-            <svg class="w-3 h-3 text-blue-500 opacity-0 group-hover:opacity-100 transition" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-        </button>
-    `).join('');
+    html = cats.map(c => {
+        const isActive = c.id == selectedId;
+        return `
+            <button type="button" onclick="selectCategory(${c.id}, '${c.name.replace(/'/g, "\\'")}')" 
+                    class="w-full text-left px-4 py-3 text-xs rounded-xl transition-all flex items-center justify-between group ${isActive ? 'cat-item-active' : 'text-gray-600 hover:bg-gray-50'}">
+                <div class="flex items-center gap-3">
+                    <div class="w-1.5 h-1.5 rounded-full ${isActive ? 'bg-blue-600 shadow-[0_0_6px_rgba(37,99,235,0.4)]' : 'bg-gray-300 group-hover:bg-blue-400'}"></div>
+                    <span class="font-bold">${c.name}</span>
+                </div>
+                ${isActive ? '<svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>' : ''}
+            </button>
+        `;
+    }).join('');
+
+    if(query.length > 0 && !allCategories.find(c => c.name.toLowerCase() === query.toLowerCase())) {
+        html += `
+            <button type="button" onclick="handleQuickAdd('${query.replace(/'/g, "\\'")}')"
+                    class="w-full text-left px-4 py-3.5 text-xs bg-blue-600 text-white hover:bg-blue-700 rounded-xl transition-all mt-2 shadow-lg shadow-blue-100 flex items-center justify-between group">
+                <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"/></svg>
+                    <span class="font-bold uppercase tracking-wider text-[9px]">Tambah: ${query}</span>
+                </div>
+                <kbd class="hidden sm:block text-[8px] bg-white/20 px-1.5 py-0.5 rounded font-black tracking-tighter">ENTER</kbd>
+            </button>
+        `;
+    }
+
+    container.innerHTML = html || '<div class="py-6 text-center"><p class="text-[10px] text-gray-400 italic">Tiada hasil carian...</p></div>';
 }
 
 function selectCategory(id, name) {
@@ -905,7 +1104,7 @@ function selectCategory(id, name) {
     document.getElementById('cat-label').classList.remove('text-red-600', 'text-gray-400');
     document.getElementById('cat-label').classList.add('text-blue-600', 'font-bold');
     document.getElementById('cat-trigger').classList.remove('border-red-300', 'bg-red-50/30');
-    document.getElementById('cat-dropdown-menu').classList.remove('open');
+    document.getElementById('cat-dropdown-menu').classList.add('hidden');
     document.getElementById('cat-arrow').style.transform = 'rotate(0deg)';
 }
 
@@ -916,53 +1115,96 @@ async function addNewCategory() {
     const name = document.getElementById('new-cat-name').value;
     if(!name) return;
     
-    const r = await fetch('{{ route("admin.news.categories.store") }}', {
-        method: 'POST',
-        headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name })
-    });
-    
-    const d = await r.json();
-    if(d.ok) {
-        document.getElementById('new-cat-name').value = '';
-        refreshCategoryLists();
-    } else {
-        Swal.fire({ icon: 'error', title: 'Ralat', text: d.message || 'Gagal menambah kategori.' });
+    try {
+        const r = await fetch('{{ route("admin.news.categories.store") }}', {
+            method: 'POST',
+            headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ name })
+        });
+        
+        const d = await r.json();
+        if(d.ok) {
+            document.getElementById('new-cat-name').value = '';
+            showListCatView();
+            await refreshCategoryLists();
+            Swal.fire({ icon: 'success', title: 'Berjaya', text: 'Kategori baru telah ditambah.', timer: 1500, showConfirmButton: false });
+        } else {
+            Swal.fire({ icon: 'error', title: 'Ralat', text: d.message || 'Gagal menambah kategori.' });
+        }
+    } catch(e) {
+        console.error('Failed to add category:', e);
     }
 }
 
 async function deleteCategory(id) {
-    if(!confirm('Adakah anda pasti mahu memadam kategori ini?')) return;
-    
-    const r = await fetch(`{{ url('admin/news-categories') }}/${id}`, {
-        method: 'DELETE',
-        headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Accept': 'application/json' }
+    Swal.fire({
+        title: 'Padam Kategori?',
+        text: "Anda pasti mahu memadam kategori ini? Artikel yang menggunakan kategori ini mungkin terjejas.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e11d48', // rose-600
+        cancelButtonColor: '#64748b',  // slate-500
+        confirmButtonText: 'Ya, Padam',
+        cancelButtonText: 'Batal',
+        borderRadius: '1.5rem',
+        customClass: {
+            popup: 'rounded-[2rem] border-0 shadow-2xl',
+            confirmButton: 'rounded-xl px-6 py-3 text-[10px] font-black uppercase tracking-widest',
+            cancelButton: 'rounded-xl px-6 py-3 text-[10px] font-black uppercase tracking-widest'
+        }
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const r = await fetch(`{{ url('admin/news-categories') }}/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'X-CSRF-TOKEN': CSRF_TOKEN, 'Accept': 'application/json' }
+                });
+                
+                const d = await r.json();
+                if(d.ok) {
+                    refreshCategoryLists();
+                    Swal.fire({ icon: 'success', title: 'Dipadam!', text: 'Kategori telah berjaya dipadam.', timer: 1500, showConfirmButton: false, borderRadius: '1.5rem' });
+                } else {
+                    Swal.fire({ icon: 'error', title: 'Had Sekatan', text: d.message, borderRadius: '1.5rem' });
+                }
+            } catch(e) {
+                console.error('Delete failed:', e);
+            }
+        }
     });
-    
-    const d = await r.json();
-    if(d.ok) {
-        refreshCategoryLists();
-    } else {
-        Swal.fire({ icon: 'error', title: 'Had Sekatan', text: d.message });
-    }
 }
 
 document.getElementById('btn-save').addEventListener('click',async()=>{
     const b=document.getElementById('btn-save'); 
-    const status = document.querySelector('input[name="status"]:checked').value;
     const originalText = b.textContent;
     b.textContent='PROSES...'; b.disabled=true;
-    try{ const d=await editor.save(); document.getElementById('content-input').value=JSON.stringify(d); document.getElementById('news-form').submit(); }
-    catch{ b.textContent=originalText; b.disabled=false; }
+    try{ 
+        if(!editor) throw new Error('Editor not initialized');
+        const d=await editor.save(); 
+        document.getElementById('content-input').value=JSON.stringify(d); 
+        document.getElementById('news-form').submit(); 
+    }
+    catch(err){ 
+        console.error('Save failed:', err);
+        b.textContent=originalText; b.disabled=false; 
+        Swal.fire({ icon: 'error', title: 'Ralat Simpan', text: 'Gagal menyimpan kandungan. Sila pastikan anda telah mengisi tajuk dan kandungan dengan betul.' });
+    }
 });
 
 // Update button text on status change
 document.querySelectorAll('input[name="status"]').forEach(radio => {
     radio.addEventListener('change', e => {
         const btn = document.getElementById('btn-save');
-        btn.textContent = e.target.value === 'published' ? 'Terbitkan' : 'Simpan Draf';
+        btn.textContent = e.target.value === 'published' ? 'Kemaskini & Terbitkan' : 'Simpan Sebagai Draf';
     });
 });
+
+// Set initial text based on selection
+const initialStatusEl = document.querySelector('input[name="status"]:checked');
+if(initialStatusEl) {
+    const initialStatus = initialStatusEl.value;
+    document.getElementById('btn-save').textContent = initialStatus === 'published' ? 'Terbitkan Artikel' : 'Simpan Sebagai Draf';
+}
 
 // ══ UI Helpers ══
 document.getElementById('thumbnail').addEventListener('change',async function(){
@@ -994,25 +1236,44 @@ function buildHtml(bs){
         const d=b.data, a=b.tunes?.alignTune?.align||'left', s=a!=='left'?` style="text-align:${a}"`:'';
         if(b.type==='paragraph')return`<p${s}>${d.text}</p>`;
         if(b.type==='header')return`<h${d.level}${s}>${d.text}</h${d.level}>`;
-        if(b.type==='quote')return`<blockquote>${d.text}${d.caption?`<cite>— ${d.caption}</cite>`:''}</blockquote>`;
+        if(b.type==='quote')return`<blockquote class="border-l-4 border-blue-500 bg-blue-50 p-4 my-4">${d.text}${d.caption?`<cite class="block mt-2 text-sm text-gray-500">— ${d.caption}</cite>`:''}</blockquote>`;
         if(b.type==='image'){
             const w=d.width||'100', m=w==='100'?'100%':w+'%';
-            return`<figure style="text-align:${d.align||'center'}"><div style="display:inline-block; max-width:${m}; width:100%"><img src="${d.url}" style="width:100%; border-radius:20px; display:block;"></div>${d.caption?`<figcaption>${d.caption}</figcaption>`:''}</figure>`;
+            return`<figure style="text-align:${d.align||'center'}"><div style="display:inline-block; max-width:${m}; width:100%"><img src="${d.url}" style="width:100%; border-radius:20px; display:block;"></div>${d.caption?`<figcaption class="mt-2 text-xs text-gray-400 italic">${d.caption}</figcaption>`:''}</figure>`;
         }
         if(b.type==='gallery'){
             const cs={1:'grid-cols-1',2:'grid-cols-2',3:'grid-cols-3'}[d.columns]||'grid-cols-2', r=d.aspectRatio||'16/9', ar=r==='auto'?'height:auto;':`aspect-ratio:${r};`;
             return`<div class="grid ${cs} gap-4 my-6">${(d.images||[]).map(x=>`<figure style="margin:0"><img src="${x.url}" style="width:100%; ${ar} object-fit:cover; border-radius:16px; display:block;">${x.caption?`<figcaption style="font-size:11px; color:#94a3b8; text-align:center; margin-top:6px;">${x.caption}</figcaption>`:''}</figure>`).join('')}</div>`;
         }
-        if(b.type==='list')return`<${d.style==='ordered'?'ol':'ul'}>${(d.items||[]).map(i=>`<li>${typeof i==='object'?i.content:i}</li>`).join('')}</${d.style==='ordered'?'ol':'ul'}>`;
+        if(b.type==='list')return`<${d.style==='ordered'?'ol':'ul'} class="list-inside ${d.style==='ordered'?'list-decimal':'list-disc'}">${(d.items||[]).map(i=>`<li>${typeof i==='object'?i.content:i}</li>`).join('')}</${d.style==='ordered'?'ol':'ul'}>`;
+        if(b.type==='table'){
+            const rows = d.content || [];
+            return `<div class="overflow-x-auto my-4"><table class="min-w-full border-collapse border border-gray-200">
+                ${rows.map(row => `<tr>${row.map(cell => `<td class="border border-gray-200 p-2">${cell}</td>`).join('')}</tr>`).join('')}
+            </table></div>`;
+        }
         return '';
     }).join('\n');
 }
 document.getElementById('btn-preview').addEventListener('click',async()=>{
-    const d=await editor.save();
-    document.getElementById('prev-title').textContent=document.getElementById('title').value||'Tajuk Artikel';
-    document.getElementById('prev-content').innerHTML=buildHtml(d.blocks)||'<p>Mula menaip untuk melihat pratonton...</p>';
-    document.getElementById('prev-cat').textContent=document.getElementById('cat-label').textContent||'Umum';
-    document.getElementById('preview-modal').classList.add('open');
+    const btn = document.getElementById('btn-preview');
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    
+    try {
+        if(!editor) throw new Error('Editor not initialized');
+        const d=await editor.save();
+        document.getElementById('prev-title').textContent=document.getElementById('title').value||'Tajuk Artikel';
+        document.getElementById('prev-content').innerHTML=buildHtml(d.blocks)||'<p>Mula menaip untuk melihat pratonton...</p>';
+        document.getElementById('prev-cat').textContent=document.getElementById('cat-label').textContent||'Umum';
+        document.getElementById('preview-modal').classList.add('open');
+    } catch(err) {
+        console.error('Preview failed:', err);
+        Swal.fire({ icon: 'error', title: 'Pratonton Gagal', text: 'Sila pastikan kandungan editor diisi dengan betul sebelum melihat pratonton.' });
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+    }
 });
 document.getElementById('btn-close-preview').addEventListener('click',()=>document.getElementById('preview-modal').classList.remove('open'));
 document.querySelectorAll('.preview-device-btn').forEach(btn=>{
@@ -1067,5 +1328,7 @@ document.addEventListener('mousemove', (e) => {
 document.addEventListener('mouseup', () => {
     isDraggingList = false;
 });
+
+
 </script>
 @endpush
