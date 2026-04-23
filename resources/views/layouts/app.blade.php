@@ -43,7 +43,7 @@
       ],
       "contactPoint": {
         "@@type": "ContactPoint",
-        "telephone": "+60 88-215768",
+        "telephone": "+6016 663 6752",
         "contactType": "customer service",
         "areaServed": "MY",
         "availableLanguage": ["Malay", "English"]
@@ -82,6 +82,7 @@
 
 
     @include('partials.footer')
+    @include('partials.whatsapp-button')
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

@@ -39,7 +39,7 @@
                             PERUTUSAN KHAS
                         </span>
                         <h2 class="text-3xl md:text-5xl font-black text-primary uppercase leading-[1.1] tracking-tight">
-                            AMANAT PRESIDEN <br><span class="text-gray-400">SESI 2022-2024</span>
+                            AMANAT PRESIDEN <br><span class="text-gray-400">SESI 2022-2026</span>
                         </h2>
                     </div>
 

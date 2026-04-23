@@ -8,7 +8,7 @@
     {{-- Filter Bar --}}
     <div class="mb-8 p-6 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col lg:flex-row items-center gap-6">
         <div class="flex-1 w-full">
-            <h2 class="text-sm font-black text-gray-800 uppercase tracking-widest mb-1">Permohonan Masuk (Kanban)</h2>
+            <h2 class="text-sm font-black text-gray-800 uppercase tracking-widest mb-1">Permohonan Masuk</h2>
             <p class="text-[10px] text-gray-400 font-medium">Seret dan lepas untuk mengemaskini status permohonan</p>
         </div>
 

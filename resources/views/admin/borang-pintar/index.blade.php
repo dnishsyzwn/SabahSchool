@@ -31,45 +31,49 @@
     </div>
 
     {{-- Table Container --}}
-    <div class="overflow-x-auto relative">
-        <table class="min-w-full text-left text-sm">
-            <thead class="bg-gray-50/80 text-[10px] text-gray-400 uppercase tracking-[0.2em] font-black border-b border-gray-100">
-                <tr>
+    <div class="overflow-x-auto relative min-h-[400px]">
+        <table class="min-w-full block lg:table text-left text-sm">
+            <thead class="hidden lg:table-header-group bg-gray-50/80 text-[10px] text-gray-400 uppercase tracking-[0.2em] font-black border-b border-gray-100">
+                <tr class="lg:table-row">
                     <th class="px-6 py-4">Borang</th>
                     <th class="px-6 py-4">Saiz Fail</th>
                     <th class="px-6 py-4">Tarikh Muat Naik</th>
                     <th class="px-6 py-4 text-right">Tindakan</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-50">
+            <tbody class="block lg:table-row-group divide-y divide-gray-50">
                 @forelse($borangs as $borang)
-                <tr class="hover:bg-blue-50/30 transition group/row animate-in fade-in duration-500 borang-row" data-title="{{ strtolower($borang->title) }}">
-                    <td class="px-6 py-4">
+                <tr class="block lg:table-row bg-white hover:bg-blue-50/30 transition group/row animate-in fade-in duration-500 mb-4 lg:mb-0 border border-gray-100 lg:border-none rounded-2xl lg:rounded-none overflow-hidden borang-row" data-title="{{ strtolower($borang->title) }}">
+                    <td class="block lg:table-cell px-6 pt-6 pb-2 lg:py-4">
                         <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center text-red-500 shadow-sm border border-red-100 transition group-hover/row:scale-110">
+                            <div class="w-12 h-12 lg:w-10 lg:h-10 bg-red-50 rounded-xl flex items-center justify-center text-red-500 shadow-sm border border-red-100 transition group-hover/row:scale-110">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                 </svg>
                             </div>
-                            <div>
+                            <div class="flex-1">
                                 <p class="font-bold text-gray-800 group-hover/row:text-blue-600 transition">{{ $borang->title }}</p>
                                 <p class="text-[10px] text-gray-400 font-medium line-clamp-1 max-w-xs">{{ $borang->description ?: 'Tiada deskripsi' }}</p>
                             </div>
                         </div>
                     </td>
-                    <td class="px-6 py-4">
-                        <span class="inline-flex items-center px-2.5 py-1 text-[10px] font-black rounded-lg border border-slate-100 bg-slate-50 text-slate-500 uppercase tracking-tighter">
-                            {{ $borang->file_size }}
-                        </span>
+                    <td class="block lg:table-cell px-6 py-2 lg:py-4 border-t border-gray-50 lg:border-none">
+                        <div class="flex flex-col lg:block">
+                            <span class="lg:hidden text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Saiz Fail</span>
+                            <span class="inline-flex items-center px-2.5 py-1 text-[10px] font-black rounded-lg border border-slate-100 bg-slate-50 text-slate-500 uppercase tracking-tighter w-fit">
+                                {{ $borang->file_size }}
+                            </span>
+                        </div>
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="block lg:table-cell px-6 py-3 lg:py-4 border-t border-gray-50 lg:border-none">
                         <div class="flex flex-col">
+                            <span class="lg:hidden text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Tarikh Muat Naik</span>
                             <span class="text-xs font-bold text-gray-700">{{ $borang->created_at->format('d M Y') }}</span>
                             <span class="text-[10px] text-gray-400 font-medium">{{ $borang->created_at->format('H:i A') }}</span>
                         </div>
                     </td>
-                    <td class="px-6 py-4 text-right">
-                        <div class="flex items-center justify-end gap-2 px-2">
+                    <td class="block lg:table-cell px-6 py-4 bg-gray-50/50 lg:bg-transparent border-t border-gray-100 lg:border-none">
+                        <div class="flex items-center justify-start lg:justify-end gap-2 px-2">
                             <a href="{{ asset('storage/' . $borang->file_path) }}" target="_blank" 
                                class="w-11 h-11 flex items-center justify-center bg-white text-gray-400 hover:text-blue-600 hover:bg-blue-50 border border-gray-100 rounded-xl transition shadow-sm group/btn">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
@@ -82,8 +86,8 @@
                     </td>
                 </tr>
                 @empty
-                <tr>
-                    <td colspan="4" class="px-6 py-24 text-center">
+                <tr class="block lg:table-row">
+                    <td colspan="4" class="block lg:table-cell px-6 py-24 text-center">
                         <div class="flex flex-col items-center">
                             <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-200 mb-4 border border-dashed border-gray-200">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>

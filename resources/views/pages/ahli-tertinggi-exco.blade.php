@@ -15,7 +15,7 @@
         </h1>
         <div class="h-2 w-24 bg-secondary mx-auto rounded-full animate-fade-in-up delay-100"></div>
         <p class="mt-6 text-white/80 font-bold uppercase tracking-[0.3em] text-sm animate-fade-in-up delay-200">
-            Sesi 2022 - 2024
+            Sesi 2022 - 2026
         </p>
     </div>
 </div>
