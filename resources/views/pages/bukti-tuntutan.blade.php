@@ -179,7 +179,7 @@
                             <div class="grid grid-cols-2 gap-3">
                                 @if($claim->disease_type)
                                 <div class="bg-gray-50 rounded-xl p-3">
-                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">Jenis Penyakit</p>
+                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">SEBAB</p>
                                     <p class="text-sm font-bold text-gray-800">{{ $claim->disease_type }}</p>
                                 </div>
                                 @endif
