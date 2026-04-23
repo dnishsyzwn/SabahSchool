@@ -2,7 +2,10 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/sabahtea/public_html/
-    # Salin isi folder public ke public_html
-    - /bin/cp -R public/* $DEPLOYPATH
-    # (Opsional) Salin folder lain ke folder core Laravel anda
-    - /bin/cp -R * /home/sabahtea/stu/
+    - export COREPATH=/home/sabahtea/stu/
+    
+    # 1. Salin semua fail projek ke folder core (kecuali public)
+    - /usr/bin/rsync -avz --exclude 'public' --exclude '.git' --exclude 'node_modules' . $COREPATH
+    
+    # 2. Salin isi folder public (termasuk folder build) ke public_html
+    - /usr/bin/rsync -avz public/ $DEPLOYPATH

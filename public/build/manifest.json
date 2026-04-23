@@ -1,0 +1,72 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-Bff6tx8h.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/pages/keahlian.css": {
+    "file": "assets/keahlian-EzOG5O7l.css",
+    "src": "resources/css/pages/keahlian.css",
+    "isEntry": true,
+    "name": "keahlian",
+    "names": [
+      "keahlian.css"
+    ]
+  },
+  "resources/images/activity2.png": {
+    "file": "assets/activity2-DDmcyZM4.png",
+    "src": "resources/images/activity2.png"
+  },
+  "resources/images/activity3.png": {
+    "file": "assets/activity3--MRcQZ4_.png",
+    "src": "resources/images/activity3.png"
+  },
+  "resources/images/activity4.png": {
+    "file": "assets/activity4-BuB6k1XD.png",
+    "src": "resources/images/activity4.png"
+  },
+  "resources/images/activity5.png": {
+    "file": "assets/activity5-9fFsK4bd.png",
+    "src": "resources/images/activity5.png"
+  },
+  "resources/images/activity6.png": {
+    "file": "assets/activity6-BESsQF7f.png",
+    "src": "resources/images/activity6.png"
+  },
+  "resources/images/activity7.png": {
+    "file": "assets/activity7-BIqwsBIw.png",
+    "src": "resources/images/activity7.png"
+  },
+  "resources/images/activity8.png": {
+    "file": "assets/activity8-pYwZ8WcM.png",
+    "src": "resources/images/activity8.png"
+  },
+  "resources/images/activity9.png": {
+    "file": "assets/activity9-BJTlVVIj.png",
+    "src": "resources/images/activity9.png"
+  },
+  "resources/images/aktiviti1.png": {
+    "file": "assets/aktiviti1-lQgdDD_s.png",
+    "src": "resources/images/aktiviti1.png"
+  },
+  "resources/images/president-stu.png": {
+    "file": "assets/president-stu-DG9_nutJ.png",
+    "src": "resources/images/president-stu.png"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-Dmps02HT.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/pages/keahlian.js": {
+    "file": "assets/keahlian-Dl25my2v.js",
+    "name": "keahlian",
+    "src": "resources/js/pages/keahlian.js",
+    "isEntry": true
+  }
+}
