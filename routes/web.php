@@ -110,7 +110,21 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
 // });
 
 Route::get('/link-storage', function () {
-    \Illuminate\Support\Facades\Artisan::call('storage:link');
-    return 'Storage link created!';
+    // Path ke folder asal gambar
+    $target = '/home/sabahtea/stu/storage/app/public';
+    
+    // Path ke folder di mana link patut berada
+    $link = '/home/sabahtea/public_html/storage';
+
+    if (file_exists($link)) {
+        return 'Link sudah wujud di: ' . $link;
+    }
+
+    if (symlink($target, $link)) {
+        return 'Storage link berjaya dicipta di: ' . $link;
+    } else {
+        return 'Gagal mencipta link. Sila semak permission folder.';
+    }
 });
+
 
