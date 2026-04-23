@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/sitemap.xml', function () {
+    return response()->view('seo.sitemap')->header('Content-Type', 'text/xml');
+});
+
 Route::get('/keahlian', function () {
     return view('pages.keahlian');
 });
