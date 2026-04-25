@@ -62,6 +62,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     
     @stack('styles')
+
+    <!-- Ahrefs Analytics -->
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="7g+CJcVLX59M0i0dTyTLcQ" async></script>
+    <script>
+      var ahrefs_analytics_script = document.createElement('script');
+      ahrefs_analytics_script.async = true;
+      ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
+      ahrefs_analytics_script.setAttribute('data-key', '7g+CJcVLX59M0i0dTyTLcQ');
+      document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
+    </script>
 </head>
 <body class="font-sans antialiased bg-gray-50 text-gray-900">
     <div class="min-h-screen flex flex-col">
