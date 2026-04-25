@@ -5,7 +5,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/sitemap.xml', function () {
-    return response()->view('seo.sitemap')->header('Content-Type', 'text/xml');
+    $news = \App\Models\NewsPost::where('status', 'published')->get();
+
+    $bukti = \App\Models\Claim::where('status', 'published')->get();
+    $comitee = \App\Models\CommitteeMember::all();
+    $borang = \App\Models\Borang::all(); 
+    $aktiviti = \App\Models\ActivityStory::where('status', 'published')->get();
+
+    return response()->view('seo.sitemap', compact('news', 'bukti', 'comitee', 'borang', 'aktiviti'))->header('Content-Type', 'text/xml');
 });
 
 Route::get('/keahlian', function () {

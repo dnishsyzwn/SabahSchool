@@ -25,7 +25,7 @@
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.sabahteachersunion.com/muat-turun</loc>
+        <loc>https://www.sabahteachersunion.com/borang/muat-turun</loc>
         <lastmod>2026-04-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -54,4 +54,28 @@
         <changefreq>yearly</changefreq>
         <priority>0.7</priority>
     </url>
+    <url>
+        <loc>https://www.sabahteachersunion.com/ahli-tertinggi-exco</loc>
+        <lastmod>2026-04-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    @foreach($news as $post)
+    <url>
+        <loc>https://www.sabahteachersunion.com/berita/{{ $post->slug }}</loc>
+        <lastmod>{{ $post->published_at ? $post->published_at->format('Y-m-d') : $post->updated_at->format('Y-m-d') }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    @endforeach
+
+    @foreach($jobs as $job)
+    <url>
+        <loc>https://www.sabahteachersunion.com/kerjaya/{{ $job->slug }}</loc>
+        <lastmod>{{ $job->updated_at->format('Y-m-d') }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    @endforeach
 </urlset>

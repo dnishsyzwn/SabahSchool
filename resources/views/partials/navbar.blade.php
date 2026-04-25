@@ -95,7 +95,7 @@
             <x-navbar.mobile-nav-link :href="url('/')" :active="Request::is('/')">HOME</x-navbar.mobile-nav-link>
 
             <x-navbar.mobile-nav-accordion title="INFORMASI KEAHLIAN">
-                <x-navbar.mobile-nav-accordion-link :href="url('/keahlian')">KEAHLIAN</x-navbar.nav-accordion-link>
+                <x-navbar.mobile-nav-accordion-link :href="url('/keahlian')">KEAHLIAN</x-navbar.mobile-nav-accordion-link>
                 <x-navbar.mobile-nav-accordion-link :href="url('/bukti-tuntutan')">BUKTI TUNTUTAN</x-navbar.mobile-nav-accordion-link>
             </x-navbar.mobile-nav-accordion>
 

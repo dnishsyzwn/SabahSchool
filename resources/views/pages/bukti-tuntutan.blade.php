@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Bukti Tuntutan | Sabah Teachers Union (STU)')
-@section('meta_description', 'Semak rekod bukti tuntutan, pampasan, dan bantuan kebajikan yang telah disalurkan kepada ahli Sabah Teachers Union (STU). Bukti nyata komitmen kami melindungi kebajikan ahli.')
+@section('meta_description', 'Semak rekod bukti tuntutan, pampasan, dan bantuan kebajikan ahli Sabah Teachers Union (STU). Bukti nyata komitmen kami melindungi kebajikan ahli.')
 @section('meta_keywords', 'Tuntutan STU, Rekod Pampasan Guru, Bantuan STU, Kebajikan Ahli STU')
 
 @push('styles')

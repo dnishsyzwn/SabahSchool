@@ -7,7 +7,7 @@
 
     <link rel="icon" type="image/png" href="{{ asset('images/stu-logo.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/stu-logo.png') }}">
-    <title>@yield('title', 'Sabah Teachers Union (STU) | Membela Kebajikan Guru Sabah')</title>
+    <title>@yield('title', 'Sabah Teachers Union (STU) | Kebajikan Guru Sabah')</title>
 
     <!-- Global SEO Meta Tags -->
     <meta name="description" content="@yield('meta_description', 'Portal rasmi Sabah Teachers Union (STU). Memperjuangkan kebajikan guru & profesion perguruan di Sabah sejak 1962.')">
