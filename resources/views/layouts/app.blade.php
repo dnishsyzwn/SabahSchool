@@ -13,6 +13,7 @@
     <meta name="description" content="@yield('meta_description', 'Portal rasmi Sabah Teachers Union (STU). Memperjuangkan kebajikan guru & profesion perguruan di Sabah sejak 1962.')">
     <meta name="keywords" content="@yield('meta_keywords', 'STU, Sabah Teachers Union, Kesatuan Guru Sabah, Kebajikan Guru Sabah, Pendidikan Sabah')">
     <meta name="author" content="Sabah Teachers Union">
+    <meta name="ahrefs-site-verification" content="d86dd6079e76f1d1dac4522b4eb5c8087376a4b041b35a971fccdecfd5e81a1e">
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!-- Open Graph / Facebook -->
