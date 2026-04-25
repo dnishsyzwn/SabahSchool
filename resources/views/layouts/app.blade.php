@@ -6,10 +6,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" type="image/png" href="{{ asset('images/stu-logo.png') }}">
-    <title>@yield('title', config('app.name', 'Sabah Teachers Union'))</title>
+    <link rel="apple-touch-icon" href="{{ asset('images/stu-logo.png') }}">
+    <title>@yield('title', 'Sabah Teachers Union (STU) | Membela Kebajikan Guru Sabah')</title>
 
     <!-- Global SEO Meta Tags -->
-    <meta name="description" content="@yield('meta_description', 'Sabah Teachers Union (STU) - Membela nasib guru dan memperkasakan profesion perguruan di Sabah sejak 1962.')">
+    <meta name="description" content="@yield('meta_description', 'Portal rasmi Sabah Teachers Union (STU). Memperjuangkan kebajikan guru & profesion perguruan di Sabah sejak 1962.')">
     <meta name="keywords" content="@yield('meta_keywords', 'STU, Sabah Teachers Union, Kesatuan Guru Sabah, Kebajikan Guru Sabah, Pendidikan Sabah')">
     <meta name="author" content="Sabah Teachers Union">
     <link rel="canonical" href="{{ url()->current() }}">

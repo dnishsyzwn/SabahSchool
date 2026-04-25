@@ -44,8 +44,11 @@
             </div>
             
             <!-- Subtitle/Description -->
-            <p class="max-w-3xl text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed font-light drop-shadow-md">
-                Satu rekod cemerlang yang membuktikan komitmen berterusan <span class="font-semibold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">Sabah Teacher's Union</span> dalam memartabatkan profesion perguruan serta membela nasib para pendidik.
+            <p class="max-w-4xl text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed font-light drop-shadow-md">
+                Satu rekod cemerlang yang membuktikan komitmen berterusan <span class="font-semibold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">Sabah Teacher's Union</span> dalam memartabatkan profesion perguruan serta membela nasib para pendidik di seluruh negeri Sabah. Sejak penubuhannya, STU telah menjadi suara utama dalam rundingan bersama pihak kerajaan untuk memastikan kebajikan guru sentiasa terpelihara.
+            </p>
+            <p class="max-w-3xl text-gray-400 text-sm md:text-base mt-4 font-light leading-relaxed">
+                Kami percaya bahawa pendidikan yang berkualiti bermula dengan guru yang dihargai. Oleh itu, setiap pencapaian dalam senarai ini adalah hasil kesatuan dan sokongan padu daripada ahli-ahli kami di peringkat akar umbi.
             </p>
             
             <!-- Separator Line -->

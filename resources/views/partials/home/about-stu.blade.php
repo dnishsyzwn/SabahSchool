@@ -44,6 +44,30 @@
                     Ditubuhkan pada 1967, Sabah Teacher's Union (STU) berperanan ampuh memaju, memelihara dan meningkatkan kepentingan sosial warga pendidik dalam perkhidmatan perguruan melalui kerjasama utuh bersama Kementerian Pendidikan Malaysia (KPM) serta badan sukarela (NGO) lain.
                 </p>
 
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 w-full max-w-4xl mx-auto relative z-10">
+                    <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-blue-50 text-[#001a6e] rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Perlindungan Hak</h4>
+                        <p class="text-sm text-gray-500">Memastikan setiap ahli mendapat keadilan dan perlindungan profesional dalam kerjaya.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-green-50 text-green rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Pembangunan Kerjaya</h4>
+                        <p class="text-sm text-gray-500">Menganjurkan program latihan dan seminar untuk meningkatkan kualiti pendidikan di Sabah.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Kebajikan Ahli</h4>
+                        <p class="text-sm text-gray-500">Menyediakan pelbagai bentuk bantuan kewangan, insurans, dan khidmat nasihat untuk ahli.</p>
+                    </div>
+                </div>
+
                 <!-- Action Button -->
                 <div class="mt-10 sm:mt-14 z-10 relative">
                     <a href="{{ url('/mengenai-stu') }}" class="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 bg-[#001a6e] hover:bg-[#000d36] text-white font-bold rounded-full sm:rounded-[20px] shadow-[0_8px_20px_rgba(0,26,110,0.3)] hover:shadow-[0_12px_25px_rgba(0,26,110,0.4)] transition-all duration-300 transform hover:-translate-y-1 uppercase tracking-widest text-[11px] sm:text-xs md:text-sm border border-white/10 w-full sm:w-auto">
