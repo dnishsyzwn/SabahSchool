@@ -7,6 +7,7 @@
 
     <link rel="icon" type="image/png" href="{{ asset('images/stu-logo.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('images/stu-logo.png') }}">
+    <meta name="theme-color" content="#1a4731"> {{-- STU Green color --}}
     <title>@yield('title', 'Sabah Teachers Union (STU) | Kebajikan Guru Sabah')</title>
 
     <!-- Global SEO Meta Tags -->

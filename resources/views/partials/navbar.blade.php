@@ -4,8 +4,8 @@
 
     <!-- Logo -->
     <div class="flex-shrink-0 flex items-center justify-center">
-        <a href="{{ url('/') }}">
-            <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" class="h-20 w-auto" onerror="this.src='https://placehold.co/60?text=LOGO'">
+        <a href="{{ url('/') }}" aria-label="Laman Utama STU">
+            <img src="{{ asset('images/stu-logo.png') }}" alt="Sabah Teachers Union Logo" width="80" height="80" class="h-20 w-auto" onerror="this.src='https://placehold.co/80?text=LOGO'">
         </a>
     </div>
 
@@ -55,7 +55,7 @@
 
             <!-- Mobile & Tablet Menu -->
             <div class="sm:hidden absolute left-0 flex items-center">
-                <button id="mobile-menu-toggle" class="text-white p-2 focus:outline-none">
+                <button id="mobile-menu-toggle" class="text-white p-2 focus:outline-none" aria-label="Buka Menu Navigasi">
                     <svg id="mobile-menu-icon" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -76,7 +76,8 @@
     <div class="p-6">
         <!-- Close Button -->
         <div class="flex justify-end mb-8">
-            <button id="mobile-menu-close" class="text-white p-2">
+            <button id="mobile-menu-close" class="text-white p-2 flex items-center gap-2" aria-label="Tutup Menu">
+                <span class="text-xs font-bold uppercase tracking-widest opacity-60">Tutup</span>
                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
