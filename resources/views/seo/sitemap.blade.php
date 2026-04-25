@@ -63,7 +63,7 @@
 
     @foreach($news as $post)
     <url>
-        <loc>https://www.sabahteachersunion.com/berita/{{ $post->slug }}</loc>
+        <loc>https://www.sabahteachersunion.com/berita/{{ trim($post->slug, '/') }}</loc>
         <lastmod>{{ $post->published_at ? $post->published_at->format('Y-m-d') : $post->updated_at->format('Y-m-d') }}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -72,7 +72,7 @@
 
     @foreach($jobs as $job)
     <url>
-        <loc>https://www.sabahteachersunion.com/kerjaya/{{ $job->slug }}</loc>
+        <loc>https://www.sabahteachersunion.com/kerjaya/{{ trim($job->slug, '/') }}</loc>
         <lastmod>{{ $job->updated_at->format('Y-m-d') }}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>

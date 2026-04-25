@@ -11,8 +11,9 @@ Route::get('/sitemap.xml', function () {
     $comitee = \App\Models\CommitteeMember::all();
     $borang = \App\Models\Borang::all(); 
     $aktiviti = \App\Models\ActivityStory::where('status', 'published')->get();
+    $jobs = \App\Models\Job::all();
 
-    return response()->view('seo.sitemap', compact('news', 'bukti', 'comitee', 'borang', 'aktiviti'))->header('Content-Type', 'text/xml');
+    return response()->view('seo.sitemap', compact('news', 'jobs', 'bukti', 'comitee', 'borang', 'aktiviti'))->header('Content-Type', 'text/xml');
 });
 
 Route::get('/keahlian', function () {
