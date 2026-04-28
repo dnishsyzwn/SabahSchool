@@ -13,6 +13,14 @@
                 <p class="text-sm opacity-80 leading-relaxed">
                     STU sebagai sebuah kesatuan pembela guru dan pembela profesion perguruan, sentiasa prihatin terhadap perkhidmatan para guru, perhubungan kerjaya, keistimewaan khas serta perkara-perkara lain yang berkaitan dengan profesion perguruan.
                 </p>
+                <div class="pt-2">
+                    <a href="https://www.facebook.com/stu.sabah/" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-white/90 hover:text-secondary transition-colors group">
+                        <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-[#1877F2] transition-all">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </div>
+                        Ikuti kami di Facebook
+                    </a>
+                </div>
             </div>
 
             <!-- Column 2: Quick Links -->

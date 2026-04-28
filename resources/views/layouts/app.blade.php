@@ -11,8 +11,8 @@
     <title>@yield('title', 'Sabah Teachers Union (STU) | Kebajikan Guru Sabah')</title>
 
     <!-- Global SEO Meta Tags -->
-    <meta name="description" content="@yield('meta_description', 'Portal rasmi Sabah Teachers Union (STU). Memperjuangkan kebajikan guru & profesion perguruan di Sabah sejak 1962.')">
-    <meta name="keywords" content="@yield('meta_keywords', 'STU, Sabah Teachers Union, Kesatuan Guru Sabah, Kebajikan Guru Sabah, Pendidikan Sabah')">
+    <meta name="description" content="@yield('meta_description', 'Portal rasmi Sabah Teachers Union (STU) / Kesatuan Guru Sabah. Memperjuangkan kebajikan guru & profesion perguruan di Sabah sejak 1962.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'STU, STU Sabah, Sabah Teachers Union, Kesatuan Guru Sabah, Kebajikan Guru Sabah, Pendidikan Sabah')">
     <meta name="author" content="Sabah Teachers Union">
     <meta name="ahrefs-site-verification" content="d86dd6079e76f1d1dac4522b4eb5c8087376a4b041b35a971fccdecfd5e81a1e">
     <link rel="canonical" href="{{ url()->current() }}">
@@ -20,14 +20,14 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('title', 'Sabah Teachers Union')">
+    <meta property="og:title" content="@yield('title', 'Sabah Teachers Union / Kesatuan Guru Sabah')">
     <meta property="og:description" content="@yield('meta_description', 'Membela nasib guru dan memperkasakan profesion perguruan di Sabah.')">
     <meta property="og:image" content="@yield('og_image', asset('images/stu-logo.png'))">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('title', 'Sabah Teachers Union')">
+    <meta property="twitter:title" content="@yield('title', 'Sabah Teachers Union / Kesatuan Guru Sabah')">
     <meta property="twitter:description" content="@yield('meta_description', 'Membela nasib guru dan memperkasakan profesion perguruan di Sabah.')">
     <meta property="twitter:image" content="@yield('og_image', asset('images/stu-logo.png'))">
 
@@ -37,12 +37,12 @@
       "@@context": "https://schema.org",
       "@@type": "Organization",
       "name": "Sabah Teachers Union",
-      "alternateName": "STU",
+      "alternateName": ["STU", "STU Sabah", "Kesatuan Guru Sabah"],
       "url": "https://www.sabahteachersunion.com",
       "logo": "{{ asset('images/stu-logo.png') }}",
       "sameAs": [
-        "https://www.facebook.com/sabahteachersunion",
-        "https://twitter.com/stu_sabah"
+        "https://www.facebook.com/stu.sabah/",
+       
       ],
       "contactPoint": {
         "@@type": "ContactPoint",
