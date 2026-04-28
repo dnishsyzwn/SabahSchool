@@ -6,7 +6,7 @@
 <!-- Hero Section -->
 <div class="relative bg-primary pt-24 pb-20 overflow-hidden">
     <div class="absolute inset-0 opacity-10 pointer-events-none">
-        <img src="{{ asset('images/stu-logo.png') }}" alt="" class="w-full h-full object-contain scale-150 blur-sm">
+        <img src="{{ asset('images/stu-logo.webp') }}" alt="" class="w-full h-full object-contain scale-150 blur-sm">
     </div>
     
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

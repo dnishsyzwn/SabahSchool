@@ -8,7 +8,7 @@
     <!-- Hero Section -->
     <section class="relative min-h-[50vh] flex items-center bg-primary overflow-hidden pt-20">
         <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/berita-hero.png') }}" alt="Berita & Artikel" class="w-full h-full object-cover">
+            <img src="{{ asset('images/berita-hero.webp') }}" alt="Berita & Artikel" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-primary/40"></div>
             <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 opacity-60"></div>
         </div>

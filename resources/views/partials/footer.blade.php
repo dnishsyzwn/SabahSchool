@@ -4,7 +4,7 @@
             <!-- Column 1: Info -->
             <div class="space-y-6">
                 <div class="flex items-center space-x-3">
-                    <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" width="64" height="64" class="h-16 w-auto " onerror="this.src='https://placehold.co/64?text=LOGO'">
+                    <img src="{{ asset('images/stu-logo.webp') }}" alt="STU Logo" width="64" height="64" class="h-16 w-auto " onerror="this.src='https://placehold.co/64?text=LOGO'">
                     <div>
                         <div class="font-black text-xl leading-tight uppercase tracking-tighter">Sabah Teachers' Union</div>
                         <p class="text-[10px] opacity-60 mt-1 uppercase tracking-widest font-bold">Peneraju Profesion Keguruan Sabah</p>

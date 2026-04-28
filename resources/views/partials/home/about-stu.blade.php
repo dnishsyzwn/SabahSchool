@@ -26,7 +26,7 @@
 
                 <!-- Elegant Badge -->
                 <div class="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-green-50 text-green rounded-full mx-auto mb-6 sm:mb-8 shadow-[0_4px_10px_rgba(0,186,81,0.1)] whitespace-nowrap border border-green/10 z-10 relative">
-                    <img src="{{ asset('images/stu-logo.png') }}" class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0" alt="Logo Sabah Teachers Union (STU)" onerror="this.src='https://placehold.co/24?text=STU'">
+                    <img src="{{ asset('images/stu-logo.webp') }}" width="24" height="24" class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0" alt="Logo Sabah Teachers Union (STU)" onerror="this.src='https://placehold.co/24?text=STU'">
                     <span class="text-[10px] sm:text-xs md:text-sm font-bold tracking-widest uppercase">Mengenai STU</span>
                 </div>
 

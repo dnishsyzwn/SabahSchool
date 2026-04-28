@@ -42,7 +42,7 @@
         {{-- Hero Header (Similar to Hubungi Kami) --}}
         <div class="relative bg-gray-900 overflow-hidden">
             <div class="absolute inset-0">
-                <img src="{{ asset('assets/images/careers_hero_bg.png') }}" alt="Careers Background"
+                <img src="{{ asset('assets/images/careers_hero_bg.webp') }}" alt="Careers Background"
                     class="w-full h-full object-cover opacity-40">
             </div>
             <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50"></div>

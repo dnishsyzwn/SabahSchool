@@ -4,7 +4,7 @@
     <div id="carousel-inner" class="relative w-full h-full">
         <!-- Slide 1 -->
         <div class="carousel-item absolute inset-0 opacity-100 pointer-events-auto transition-opacity duration-1000 ease-in-out">
-            <img src="{{ asset('assets/images/home_hero_1.png') }}" width="1920" height="1080" fetchpriority="high" class="absolute block w-full h-full object-cover" alt="Suasana Bilik Darjah Moden - Sabah Teachers Union">
+            <img src="{{ asset('assets/images/home_hero_1.webp') }}" width="1920" height="1080" fetchpriority="high" class="absolute block w-full h-full object-cover" alt="Suasana Bilik Darjah Moden - Sabah Teachers Union">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="max-w-2xl">
@@ -28,7 +28,7 @@
 
         <!-- Slide 2 -->
         <div class="carousel-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out">
-            <img src="{{ asset('assets/images/home_hero_2.png') }}" width="1920" height="1080" loading="lazy" class="absolute block w-full h-full object-cover" alt="Meja Guru dan Persediaan Akademik - Sabah Teachers Union">
+            <img src="{{ asset('assets/images/home_hero_2.webp') }}" width="1920" height="1080" loading="lazy" class="absolute block w-full h-full object-cover" alt="Meja Guru dan Persediaan Akademik - Sabah Teachers Union">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="max-w-2xl">
@@ -52,7 +52,7 @@
 
         <!-- Slide 3 -->
         <div class="carousel-item absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out">
-            <img src="{{ asset('assets/images/home_hero_3.png') }}" width="1920" height="1080" loading="lazy" class="absolute block w-full h-full object-cover" alt="Suasana Perpustakaan dan Sumber Ilmu - Sabah Teachers Union">
+            <img src="{{ asset('assets/images/home_hero_3.webp') }}" width="1920" height="1080" loading="lazy" class="absolute block w-full h-full object-cover" alt="Suasana Perpustakaan dan Sumber Ilmu - Sabah Teachers Union">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex items-center">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="max-w-2xl">

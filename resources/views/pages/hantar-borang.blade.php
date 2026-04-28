@@ -172,7 +172,7 @@
             <div class="lg:pl-8 lg:border-l border-gray-200 animate-fade-in-up delay-300">
                 <div class="mb-8">
                     <div class="aspect-[4/3] overflow-hidden rounded-2xl shadow-inner border border-gray-100">
-                        <img src="{{ asset('assets/images/documentation_hero.png') }}"
+                        <img src="{{ asset('assets/images/documentation_hero.webp') }}"
                              alt="Documentation & Records"
                              class="w-full h-full object-cover">
                     </div>

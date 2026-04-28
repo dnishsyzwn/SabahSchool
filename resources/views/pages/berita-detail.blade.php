@@ -9,7 +9,7 @@
             @if($post->thumbnail)
                 <img src="{{ Storage::url($post->thumbnail) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
             @else
-                <img src="{{ asset('images/berita-hero.png') }}" alt="Berita" class="w-full h-full object-cover">
+                <img src="{{ asset('images/berita-hero.webp') }}" alt="Berita" class="w-full h-full object-cover">
             @endif
             <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-primary/20"></div>
         </div>

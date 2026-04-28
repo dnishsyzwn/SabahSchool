@@ -56,6 +56,9 @@
                                     <div class="relative h-64 w-full overflow-hidden rounded-[2rem] mb-6 flex-shrink-0">
                                         <img src="{{ $article->thumbnail ? asset('storage/' . $article->thumbnail) : 'https://placehold.co/600x400/001a6e/feb21a?text=' . urlencode($article->title) }}"
                                             alt="{{ $article->title }}"
+                                            width="600"
+                                            height="400"
+                                            loading="lazy"
                                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                     </div>
                                 

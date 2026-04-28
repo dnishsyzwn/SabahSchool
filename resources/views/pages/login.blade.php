@@ -8,7 +8,7 @@
     <div class="absolute inset-0 z-0">
         <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-secondary/20 rounded-full blur-[120px] animate-pulse"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 rounded-full blur-[120px] animate-pulse delay-700"></div>
-        <img src="{{ asset('images/stu-logo.png') }}" alt="" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl opacity-[0.03] pointer-events-none select-none">
+        <img src="{{ asset('images/stu-logo.webp') }}" alt="" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl opacity-[0.03] pointer-events-none select-none">
     </div>
 
     <!-- Login Card Container -->
@@ -16,7 +16,7 @@
         <!-- Logo & Title -->
         <div class="text-center mb-8">
             <div class="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 mb-6 shadow-xl">
-                <img src="{{ asset('images/stu-logo.png') }}" alt="STU Logo" class="w-14 h-14 object-contain">
+                <img src="{{ asset('images/stu-logo.webp') }}" alt="STU Logo" class="w-14 h-14 object-contain">
             </div>
             <h1 class="text-3xl font-black text-white uppercase tracking-tighter mb-2">Portal <span class="text-secondary">Admin</span></h1>
             <p class="text-white/60 text-sm font-medium uppercase tracking-widest">Akses Keamanan Kesatuan</p>
