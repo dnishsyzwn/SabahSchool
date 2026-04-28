@@ -129,7 +129,7 @@
                                 </div>
                             </template>
                         </div>
-                    </div>v>
+                    </div>
                 </div>
                 @endforeach
 

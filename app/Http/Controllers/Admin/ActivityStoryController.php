@@ -122,8 +122,9 @@ class ActivityStoryController extends Controller
 
         // Handle Status Transition
         // BLOCK: Published -> Draft transition
-        if ($activity_story->status === 'published' && $data['status'] === 'draft') {
-            return back()->withErrors(['status' => 'Cerita yang telah diterbitkan tidak boleh ditukar semula kepada draf.'])->withInput();
+        // BLOCK: Published/Archived -> Draft transition
+        if ($activity_story->status !== 'draft' && $data['status'] === 'draft') {
+            return back()->withErrors(['status' => 'Cerita yang telah diterbitkan atau diarkibkan tidak boleh ditukar semula kepada draf.'])->withInput();
         }
 
         $data['is_active'] = ($data['status'] === 'published');

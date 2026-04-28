@@ -94,6 +94,22 @@
     .lg\:sticky {
         align-self: start;
     }
+
+    /* ── Status Card Active State ── */
+    input:checked + .status-card {
+        border-color: #2563eb !important;
+        background-color: #eff6ff !important;
+    }
+    input:checked + .status-card .status-icon {
+        background-color: #2563eb !important;
+        color: #ffffff !important;
+    }
+    input:checked + .status-card .status-check {
+        display: flex !important;
+    }
+    input:checked + .status-card p.text-gray-800 {
+        color: #1e3a8a !important;
+    }
 </style>
 @endpush
 
@@ -233,19 +249,19 @@
                         <div class="relative">
                             <input type="radio" name="status" value="{{ $val }}" 
                                    {{ old('status', 'draft') === $val ? 'checked' : '' }} 
-                                   class="sr-only" id="st-{{ $val }}">
+                                   class="sr-only peer" id="st-{{ $val }}">
                             <label for="st-{{ $val }}" 
-                                   class="status-card flex items-center justify-between cursor-pointer p-4 rounded-xl border border-gray-100 hover:border-blue-200 transition group relative">
+                                   class="status-card flex items-center justify-between cursor-pointer p-4 rounded-xl border-2 border-gray-100 peer-checked:border-blue-600 peer-checked:bg-blue-50/50 hover:border-blue-200 transition-all duration-300 group relative">
                                 <div class="flex items-center gap-3">
-                                    <div class="status-icon w-10 h-10 rounded-xl bg-{{ $color }}-50 text-{{ $color }}-600 flex items-center justify-center transition duration-300">
+                                    <div class="status-icon w-10 h-10 rounded-xl bg-{{ $color }}-50 text-{{ $color }}-600 peer-checked:bg-blue-600 peer-checked:text-white flex items-center justify-center transition duration-300">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $iconPath }}"></path></svg>
                                     </div>
                                     <div>
-                                        <p class="text-xs font-black uppercase tracking-tight text-gray-800">{{ $lbl }}</p>
+                                        <p class="text-xs font-black uppercase tracking-tight text-gray-800 group-peer-checked:text-blue-900">{{ $lbl }}</p>
                                         <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest">{{ $val }}</p>
                                     </div>
                                 </div>
-                                <div class="status-check hidden">
+                                <div class="status-check hidden peer-checked:flex">
                                     <div class="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
                                         <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>
                                     </div>

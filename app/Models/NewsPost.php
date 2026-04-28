@@ -30,16 +30,19 @@ class NewsPost extends Model
 
         $data = json_decode($this->content, true);
         if (json_last_error() !== JSON_ERROR_NONE || !isset($data['blocks'])) {
-            return \Illuminate\Support\Str::limit(strip_tags($this->content), 120);
+            $text = html_entity_decode(strip_tags($this->content), ENT_QUOTES, 'UTF-8');
+            $text = str_replace(["\xc2\xa0", "\xa0", "&nbsp;"], ' ', $text);
+            return \Illuminate\Support\Str::limit(trim($text), 120);
         }
 
-        $text = '';
         foreach ($data['blocks'] as $block) {
-            if (isset($block['data']['text'])) {
-                $text .= strip_tags($block['data']['text']) . ' ';
+            if ($block['type'] === 'paragraph' && isset($block['data']['text'])) {
+                $text = html_entity_decode(strip_tags($block['data']['text'] ?? ''), ENT_QUOTES, 'UTF-8');
+                $text = str_replace(["\xc2\xa0", "\xa0", "&nbsp;"], ' ', $text);
+                if ($text) return \Illuminate\Support\Str::limit(trim($text), 120);
             }
         }
 
-        return \Illuminate\Support\Str::limit(trim($text), 120);
+        return '';
     }
 }

@@ -36,14 +36,17 @@ class ContentRenderer
             if (json_last_error() === JSON_ERROR_NONE && isset($data['blocks'])) {
                 foreach ($data['blocks'] as $block) {
                     if (in_array($block['type'], ['paragraph', 'quote'])) {
-                        $text = strip_tags($block['data']['text'] ?? '');
-                        if ($text) return \Illuminate\Support\Str::limit($text, $length);
+                        $text = html_entity_decode(strip_tags($block['data']['text'] ?? ''), ENT_QUOTES, 'UTF-8');
+                        $text = str_replace(["\xc2\xa0", "\xa0", "&nbsp;"], ' ', $text);
+                        if ($text) return \Illuminate\Support\Str::limit(trim($text), $length);
                     }
                 }
             }
         }
 
-        return \Illuminate\Support\Str::limit(strip_tags($trimmed), $length);
+        $text = html_entity_decode(strip_tags($trimmed), ENT_QUOTES, 'UTF-8');
+        $text = str_replace(["\xc2\xa0", "\xa0", "&nbsp;"], ' ', $text);
+        return \Illuminate\Support\Str::limit(trim($text), $length);
     }
 
     protected static function renderBlock(array $block): string

@@ -44,12 +44,12 @@
                     </button>
                 @endif
 
-                <div id="{{ $news->count() > 3 ? 'articles-slider-container' : '' }}" class="{{ $news->count() > 3 ? 'overflow-visible' : '' }}">
+                <div id="{{ $news->count() > 3 ? 'articles-slider-container' : '' }}" class="overflow-hidden">
                     <div id="{{ $news->count() > 3 ? 'articles-slider' : '' }}" 
-                         class="flex transition-transform duration-700 ease-in-out gap-8 {{ $news->count() <= 3 ? 'justify-center flex-wrap' : '' }}">
-                        @foreach($news as $article)
+                         class="flex flex-row flex-nowrap gap-8 transition-transform duration-700 ease-in-out">
+                        @foreach($news as $index => $article)
                             <div
-                                class="article-slide {{ $news->count() > 3 ? 'flex-[0_0_100%] md:flex-[0_0_calc(50%-16px)] lg:flex-[0_0_calc(33.333%-21.33px)]' : 'w-full md:w-[calc(50%-16px)] lg:w-[calc(33.333%-21.33px)]' }}">
+                                class="article-slide flex-shrink-0 {{ $index >= 6 ? 'hidden md:flex' : 'flex' }} w-full md:w-[calc(33.333%-21.33px)]">
                                 <div
                                     class="bg-white rounded-[2.5rem] p-4 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-500 group h-full flex flex-col">
                                     <!-- Image Container -->

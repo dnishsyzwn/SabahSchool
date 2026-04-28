@@ -159,9 +159,13 @@
                         @endphp
                         <div class="space-y-3">
                             @foreach($availableStatuses as $val => [$lbl, $color, $iconPath])
-                                @if($story->status === 'published' && $val === 'draft')
-                                    @continue
-                                @endif
+                                @php
+                                    $shouldHide = false;
+                                    if ($story->status === 'archived' && $val === 'draft') $shouldHide = true;
+                                    if ($story->status === 'draft' && $val === 'archived') $shouldHide = true;
+                                    if ($story->status === 'published' && $val === 'draft') $shouldHide = true;
+                                @endphp
+                                @if($shouldHide) @continue @endif
                                 <div class="relative">
                                     <input type="radio" name="status" value="{{ $val }}" 
                                            {{ old('status', $story->status ?? 'draft') === $val ? 'checked' : '' }} 
