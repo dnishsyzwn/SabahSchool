@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Aktiviti Kami - Pengurusan')
-@section('header', 'Pengurusan Aktiviti Kami (Cerita Kejayaan)')
+@section('header', 'Aktiviti Kami ')
 
 @section('actions')
     <a href="{{ route('admin.activity-stories.create') }}" 
