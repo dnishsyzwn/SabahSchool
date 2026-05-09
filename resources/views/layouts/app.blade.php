@@ -33,25 +33,73 @@
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-    {
-      "@@context": "https://schema.org",
-      "@@type": "Organization",
-      "name": "Sabah Teachers Union",
-      "alternateName": ["STU", "STU Sabah", "Kesatuan Guru Sabah"],
-      "url": "https://www.sabahteachersunion.com",
-      "logo": "{{ asset('images/stu-logo.png') }}",
-      "sameAs": [
-        "https://www.facebook.com/stu.sabah/",
-       
-      ],
-      "contactPoint": {
-        "@@type": "ContactPoint",
-        "telephone": "+60 19-620 4438",
-        "contactType": "customer service",
-        "areaServed": "MY",
-        "availableLanguage": ["Malay", "English"]
+    [
+      {
+        "@@context": "https://schema.org",
+        "@@type": "Organization",
+        "name": "Sabah Teachers Union",
+        "alternateName": ["STU", "STU Sabah", "Kesatuan Guru Sabah", "Sabah Teacher's Union"],
+        "url": "{{ url('/') }}",
+        "logo": "{{ asset('images/stu-logo.png') }}",
+        "sameAs": [
+          "https://www.facebook.com/stu.sabah/"
+        ],
+        "contactPoint": {
+          "@@type": "ContactPoint",
+          "telephone": "+60 19-620 4438",
+          "contactType": "customer service",
+          "areaServed": "MY",
+          "availableLanguage": ["Malay", "English"]
+        }
+      },
+      {
+        "@@context": "https://schema.org",
+        "@@type": "WebSite",
+        "name": "Sabah Teachers Union (STU)",
+        "url": "{{ url('/') }}",
+        "potentialAction": {
+          "@@type": "SearchAction",
+          "target": "{{ url('/berita') }}?search={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@@context": "https://schema.org",
+        "@@type": "ItemList",
+        "itemListElement": [
+          {
+            "@@type": "ListItem",
+            "position": 1,
+            "name": "Mengenai STU",
+            "url": "{{ url('/mengenai-stu') }}"
+          },
+          {
+            "@@type": "ListItem",
+            "position": 2,
+            "name": "Keahlian",
+            "url": "{{ url('/keahlian') }}"
+          },
+          {
+            "@@type": "ListItem",
+            "position": 3,
+            "name": "Berita & Aktiviti",
+            "url": "{{ url('/berita') }}"
+          },
+          {
+            "@@type": "ListItem",
+            "position": 4,
+            "name": "Muat Turun",
+            "url": "{{ url('/muat-turun') }}"
+          },
+          {
+            "@@type": "ListItem",
+            "position": 5,
+            "name": "Hubungi Kami",
+            "url": "{{ url('/hubungi') }}"
+          }
+        ]
       }
-    }
+    ]
     </script>
 
     <!-- Fonts -->
