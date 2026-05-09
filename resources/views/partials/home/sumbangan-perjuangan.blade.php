@@ -44,12 +44,17 @@
             </div>
             
             <!-- Subtitle/Description -->
-            <p class="max-w-4xl text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed font-light drop-shadow-md">
-                Satu rekod cemerlang yang membuktikan komitmen berterusan <span class="font-semibold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">Sabah Teacher's Union</span> dalam memartabatkan profesion perguruan serta membela nasib para pendidik di seluruh negeri Sabah. Sejak penubuhannya, STU telah menjadi suara utama dalam rundingan bersama pihak kerajaan untuk memastikan kebajikan guru sentiasa terpelihara.
-            </p>
-            <p class="max-w-3xl text-gray-400 text-sm md:text-base mt-4 font-light leading-relaxed">
-                Kami percaya bahawa pendidikan yang berkualiti bermula dengan guru yang dihargai. Oleh itu, setiap pencapaian dalam senarai ini adalah hasil kesatuan dan sokongan padu daripada ahli-ahli kami di peringkat akar umbi.
-            </p>
+            <div class="max-w-4xl space-y-6 text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed font-light drop-shadow-md text-justify [text-align-last:center]">
+                <p>
+                    Aktiviti terkini kesatuan bukan sahaja tertumpu kepada usaha merekrut ahli baharu bagi <span class="font-semibold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">Sabah Teacher's Union</span>, malah turut memberi penekanan kepada penambahbaikan perkhidmatan sedia ada demi kebajikan semua ahli. Di samping itu, kesatuan juga memperkenalkan satu skim yang menarik serta komprehensif khusus untuk ahli STU, dan terbuka kepada seluruh ahli keluarga guru-guru di Sabah. Program yang sedang giat dilaksanakan ini berupaya membantu menyediakan dana sehingga maksimum RM200,000, dengan kadar caruman minimum serendah RM20 sebulan.
+                </p>
+                <p>
+                    Lebih penting, skim ini turut memberi perlindungan sekiranya ahli STU atau ahli keluarga mereka ditakdirkan diuji dengan musibah seperti kematian atau hilang upaya. Dalam tempoh promosi, kesatuan juga membuka peluang kepada guru-guru serta ahli keluarga yang mempunyai masalah kesihatan sedia ada untuk menyertai program ini tanpa perlu mengemukakan laporan perubatan. Walaupun mempunyai rekod kesihatan yang kurang baik, mereka masih layak mencarum dan berpeluang membuat tuntutan sehingga maksimum RM200,000 berdasarkan penyakit yang dihidapi.
+                </p>
+                <p>
+                    Sekiranya berlaku kematian akibat penyakit tersebut, manfaat kewangan yang diperuntukkan akan disalurkan kepada waris yang layak, sekali gus membantu meringankan beban keluarga yang ditinggalkan.
+                </p>
+            </div>
             
             <!-- Separator Line -->
             <div class="w-32 h-1 bg-gradient-to-r from-transparent via-green to-transparent mt-10 opacity-70"></div>

@@ -64,8 +64,8 @@
                         <h3 class="text-xl font-bold text-gray-900">Telefon</h3>
                     </div>
                     <p class="text-gray-600 mb-1 text-sm">Hubungi kami di talian:</p>
-                    <a href="tel:+60166636752" class="text-lg font-bold text-primary hover:text-primary/80 transition-colors">
-                        +6016 663 6752
+                    <a href="tel:+60196204438" class="text-lg font-bold text-primary hover:text-primary/80 transition-colors">
+                        +60 19-620 4438
                     </a>
                 </div>
             </div>

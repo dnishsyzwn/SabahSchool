@@ -40,33 +40,17 @@
                 <div class="w-12 sm:w-16 h-1 bg-gradient-to-r from-[#001a6e] to-green rounded-full mb-8 sm:mb-10 opacity-70 z-10 relative" style="max-width: 50px;"></div>
 
                 <!-- Description -->
-                <p class="text-gray-600 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed font-light max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto z-10 relative px-2 sm:px-0">
-                    Ditubuhkan pada 1967, Sabah Teacher's Union (STU) berperanan ampuh memaju, memelihara dan meningkatkan kepentingan sosial warga pendidik dalam perkhidmatan perguruan melalui kerjasama utuh bersama Kementerian Pendidikan Malaysia (KPM) serta badan sukarela (NGO) lain.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 w-full max-w-4xl mx-auto relative z-10">
-                    <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 bg-blue-50 text-[#001a6e] rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">Perlindungan Hak</h4>
-                        <p class="text-sm text-gray-500">Memastikan setiap ahli mendapat keadilan dan perlindungan profesional dalam kerjaya.</p>
-                    </div>
-                    <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 bg-green-50 text-green rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">Pembangunan Kerjaya</h4>
-                        <p class="text-sm text-gray-500">Menganjurkan program latihan dan seminar untuk meningkatkan kualiti pendidikan di Sabah.</p>
-                    </div>
-                    <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">Kebajikan Ahli</h4>
-                        <p class="text-sm text-gray-500">Menyediakan pelbagai bentuk bantuan kewangan, insurans, dan khidmat nasihat untuk ahli.</p>
-                    </div>
+                <div class="space-y-4 max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto z-10 relative px-2 sm:px-0">
+                    <p class="text-gray-600 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed font-light text-justify [text-align-last:center]">
+                        SABAH TEACHERS UNION (STU) ialah satu kesatuan terawal yang didaftarkan di Sabah, amnya di Malaysia. Ditubuhkan pada 6 Mac 1967 dan didaftarkan mengikut Akta Kesatuan Sekerja yang mempunyai hak kesatuan seperti mengambil tindakan perusahaan, piket, hak perlindungan dengan kerajaan dalam menuntut bonus, gaji dan syarat-syarat perkhidmatan yang lebih baik serta menjaga kebajikan ahli.
+                    </p>
+                    <p class="text-gray-600 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed font-bold italic text-justify [text-align-last:center]">
+                        Keahlian terbuka kepada semua pegawai perkhidmatan pendidikan yang berkhidmat dengan Kementerian Pendidikan Malaysia seluruh negeri Sabah.
+                    </p>
                 </div>
+
+                
+                   
 
                 <!-- Action Button -->
                 <div class="mt-10 sm:mt-14 z-10 relative">

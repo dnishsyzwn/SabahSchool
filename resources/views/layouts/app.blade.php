@@ -46,7 +46,7 @@
       ],
       "contactPoint": {
         "@@type": "ContactPoint",
-        "telephone": "+6016 663 6752",
+        "telephone": "+60 19-620 4438",
         "contactType": "customer service",
         "areaServed": "MY",
         "availableLanguage": ["Malay", "English"]

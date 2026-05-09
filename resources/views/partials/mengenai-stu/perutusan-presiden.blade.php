@@ -43,28 +43,29 @@
                         </h2>
                     </div>
 
-                    <div class="text-gray-600 space-y-6 leading-relaxed text-sm md:text-base lg:text-lg font-medium italic">
+                    <div class="text-gray-600 space-y-6 leading-relaxed text-sm md:text-base lg:text-lg font-medium italic text-justify">
                         <p>
-                            "Salam sejahtera dan salam perpaduan kepada semua ahli STU. Saya mewakili STU dan seluruh pucuk pimpinan STU pusat mengucapkan setinggi-tinggi Tahniah dan penghargaan kepada semua AJK bahagian yang telah berjaya mengadakan aktiviti serta terima kasih kepada semua ahli yang telah hadir dalam menjayakan semua aktiviti STU.
-                        </p>
-                        <p>
-                            Sebagai ahli kita semua seharusnya bertanggungjawab dengan kesatuan ini kerana ia adalah milik kita semua. Saya hanya sebagai pengemudi kepada kesatuan ini dan sentiasa berharap kita akan sentiasa bekerjasama dalam semua perkara agar STU akan terus berdiri megah sebagai kesatuan yang sentiasa bersedia berkhidmat menjaga kebajikan semua ahli. Kita semua maklum bahawa tugas ini adalah tugas sukarela namun kita sentiasa bersedia menghadapi cabaran agar STU terus relevan sebagai kesatuan yang terunggul di Sabah khasnya dan di Malaysia umumnya.
+                            "Tahniah! Anda dan juga keluarga tersayang kini diberi keistimewaan untuk menyertai SKIM BERKELOMPOK KOMPREHENSIF 'MUTIARA PLUS'. Skim ini terbuka kepada warga pendidik di seluruh negeri Sabah beserta pasangan dan juga keluarga."
                         </p>
                         <p>
-                            Sebagai president saya akan sentiasa berusaha menguruskan kesatuan ini dan bersedia membawa segala saranan, kesulitan, dan usul daripada semua ahli, tidak kira di mana mereka berada. Saya sedar ahli STU berada di seluruh pelusuk negeri Sabah sama ada di sekolah rendah, sekolah menengah, PPD mahupun JPN. Semua isu atau saranan akan kita ambil berat dan dibawa kepada pihak yang bertanggungjawab.
+                            Sehubungan dengan ini, STU juga telah memikirkan langkah-langkah kebajikan seluruh warga pendidik bagi merancang ekonomi dengan baik secara profesional, sistematik dan telus. Lebih mustahak, skim ini menepati <span class="font-bold text-primary not-italic">PRINSIP SYARIAH & MUAMALAT ISLAM</span>.
                         </p>
-                        <p class="hidden lg:block">
-                            Namun demikian saya memohon agar semua faham dan sedia menerima kenyataan jika setiap kehendak dan saranan kita sukar dipenuhi oleh pihak kementerian dan kerajaan kerana sudah pasti ada kekangan dan kesulitan yang tidak dapat dielakkan. Namun kita tidak akan berputus asa untuk terus memanjangkan isu yang berbangkit sehingga ia dipertimbangkan.
+                        <p>
+                            Oleh yang demikian, STU ingin mengajak semua guru dan ahli keluarga menyertai SKIM TAKAFUL BERKELOMPOK ini kerana ianya terbukti dapat membantu dan meringankan bebanan kewangan serta penyakit yang dihadapi di samping mengurangkan penderitaan yang mungkin perlu ditanggung oleh ahli keluarga jika ditakdirkan ditimpa musibah atau meninggal dunia.
                         </p>
-                        <div class="pt-6 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
-                            <div class="italic text-primary/80 font-semibold border-l-4 border-secondary pl-4">
-                                "Segala yang baik adalah dari Tuhan, segala kelemahan adalah dari umatnya manusia."
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-1">Disediakan Oleh</p>
-                                <p class="text-primary font-black text-lg">Pucuk Pimpinan STU</p>
-                            </div>
-                        </div>
+                        <p>
+                            Pihak kesatuan berkeyakinan bahawa skim ini akan terus mendapat sambutan dengan termetrinya kerjasama di antara STU dengan agensi korporat iaitu <span class="font-bold text-primary not-italic">SYUHAIRY & PARTNERS GROUP SDN. BHD.</span> dan <span class="font-bold text-primary not-italic">AL MATEEN SYNERGY PLT</span> sebagai penyelaras skim tersebut, serta <span class="font-bold text-primary not-italic">ETIQA FAMILY TAKAFUL BERHAD</span> sebagai pengendali takaful.
+                        </p>
+                        <p>
+                            Memandangkan skim ini amat baik dan tidak membebankan ahli, saya berharap warga pendidik dapat merebut peluang ini demi kebaikan diri dan keluarga yang dikasihi.
+                        </p>
+                        <p class="text-primary/90">
+                            "Sesungguhnya sesorang yang beriman ialah sesiapa yang memberi keselamatan dan perlindungan terhadap harta dan jiwa raga manusia." (Hadis riwayat Ibnu Majah)
+                        </p>
+                        <p>
+                            Sekian, Terima kasih.
+                        </p>
+                        
                     </div>
                 </div>
             </div>
