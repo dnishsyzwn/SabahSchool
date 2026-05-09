@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" type="image/png" href="{{ asset('images/stu-logo.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('images/stu-logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/stu-logo.webp') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/stu-logo.webp') }}">
     <meta name="theme-color" content="#1a4731"> {{-- STU Green color --}}
     <title>@yield('title', 'Sabah Teachers Union (STU) | Kebajikan Guru Sabah')</title>
 
@@ -22,14 +22,14 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="@yield('title', 'Sabah Teachers Union / Kesatuan Guru Sabah')">
     <meta property="og:description" content="@yield('meta_description', 'Membela nasib guru dan memperkasakan profesion perguruan di Sabah.')">
-    <meta property="og:image" content="@yield('og_image', asset('images/stu-logo.png'))">
+    <meta property="og:image" content="@yield('og_image', asset('images/stu-logo.webp'))">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="@yield('title', 'Sabah Teachers Union / Kesatuan Guru Sabah')">
     <meta property="twitter:description" content="@yield('meta_description', 'Membela nasib guru dan memperkasakan profesion perguruan di Sabah.')">
-    <meta property="twitter:image" content="@yield('og_image', asset('images/stu-logo.png'))">
+    <meta property="twitter:image" content="@yield('og_image', asset('images/stu-logo.webp'))">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -40,7 +40,7 @@
         "name": "Sabah Teachers Union",
         "alternateName": ["STU", "STU Sabah", "Kesatuan Guru Sabah", "Sabah Teacher's Union"],
         "url": "{{ url('/') }}",
-        "logo": "{{ asset('images/stu-logo.png') }}",
+        "logo": "{{ asset('images/stu-logo.webp') }}",
         "sameAs": [
           "https://www.facebook.com/stu.sabah/"
         ],
