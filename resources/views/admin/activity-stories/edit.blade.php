@@ -77,58 +77,85 @@
             {{-- Section 2: Image Gallery --}}
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                 <div class="px-6 py-4 bg-gray-50 border-b border-gray-100">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            </div>
-                            <h3 class="font-bold text-gray-800">Galeri Gambar <span class="text-red-500">*</span></h3>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Had:</span>
-                            <span class="text-xs font-black text-indigo-700 bg-indigo-50 border border-indigo-100 rounded-full px-3 py-0.5">Maks 3</span>
-                        </div>
+                        <h3 class="font-bold text-gray-800">Galeri Gambar <span class="text-red-500">*</span></h3>
                     </div>
                 </div>
-                <div class="p-6" x-data="imageUpload({{ json_encode(array_map(fn($p) => Storage::url($p), $story->images ?? ($story->image_path ? [$story->image_path] : []))) }})">
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-                        <template x-for="(url, index) in imageUrls" :key="index">
-                            <div class="relative group aspect-square rounded-2xl overflow-hidden border border-gray-100 shadow-sm animate-in fade-in zoom-in duration-300">
+                <div class="p-6" x-data="imageUpload({{ json_encode(array_map(fn($p) => Storage::url($p), $story->images ?? ($story->image_path ? [$story->image_path] : []))) }})" x-init="initSortable()">
+                    <div id="image-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
+                        <template x-for="(url, index) in imageUrls" :key="url">
+                            <div class="relative group aspect-square rounded-2xl overflow-hidden border border-gray-100 shadow-sm animate-in fade-in zoom-in duration-300 cursor-move">
                                 <img :src="url" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                                 <input type="hidden" name="image_urls[]" :value="url">
-                                <button type="button" @click="removeImage(index)" 
-                                        class="absolute top-3 right-3 bg-red-500/90 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition shadow-lg hover:bg-red-600">
-                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                </button>
-                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent py-3 px-4">
-                                    <span class="text-white text-[9px] font-black uppercase tracking-[0.2em]" x-text="index === 0 ? '📌 Muka Depan' : 'GAMBAR ' + (index+1)"></span>
+                                
+                                {{-- Drag Handle Indicator --}}
+                                <div class="absolute top-2 left-2 bg-white/80 backdrop-blur-sm text-gray-600 p-1 rounded-md opacity-100 shadow-sm z-10 pointer-events-none">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path></svg>
+                                </div>
+
+                                {{-- Action Overlay --}}
+                                <div class="absolute inset-0 bg-black/30 lg:bg-black/40 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity flex flex-wrap items-center justify-center gap-2 p-2">
+                                    {{-- Arrange Buttons (Mobile focused) --}}
+                                    <div class="flex w-full justify-center gap-1.5 mb-1">
+                                        <button type="button" @click="moveImage(index, -1)" x-show="index > 0"
+                                                class="bg-white/90 text-gray-700 p-2 rounded-lg hover:bg-white transition shadow-lg active:scale-90" title="Alih ke Depan">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                        </button>
+                                        <button type="button" @click="moveImage(index, 1)" x-show="index < imageUrls.length - 1"
+                                                class="bg-white/90 text-gray-700 p-2 rounded-lg hover:bg-white transition shadow-lg active:scale-90" title="Alih ke Belakang">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="flex gap-2">
+                                        <button type="button" @click="manualCrop(index)" 
+                                                class="bg-blue-600 text-white p-2.5 rounded-lg hover:bg-blue-700 transition shadow-lg active:scale-95" title="Potong Gambar">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7 7m-7-14l-4 4m0 0l-4 4m4-4l4 4m4-4l4 4"></path></svg>
+                                        </button>
+                                        <button type="button" @click="removeImage(index)" 
+                                                class="bg-red-500 text-white p-2.5 rounded-lg hover:bg-red-600 transition shadow-lg active:scale-95" title="Padam">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent py-2 px-3 pointer-events-none">
+                                    <span class="text-white text-[8px] font-black uppercase tracking-[0.2em]" x-text="index === 0 ? '📌 Thumbnail' : 'Gambar ' + (index+1)"></span>
                                 </div>
                             </div>
                         </template>
 
-                        <template x-if="imageUrls.length < 3">
-                            <div @click="$refs.fileInput.click()"
-                                 class="cursor-pointer group hover:border-blue-400 border-2 border-dashed border-gray-100 rounded-2xl text-center transition aspect-square flex flex-col items-center justify-center bg-gray-50/30 relative overflow-hidden">
-                                <div x-show="!uploading" class="text-gray-300 group-hover:text-blue-500 transition-colors duration-300 flex flex-col items-center">
-                                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm mb-3 border border-gray-100 group-hover:scale-110 transition duration-300">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                                    </div>
-                                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-blue-600">Tambah Gambar</p>
-                                    <p class="text-[9px] text-gray-300 mt-1 font-bold" x-text="imageUrls.length + ' / 3'"></p>
+                        <div @click="$refs.fileInput.click()"
+                             @dragover.prevent="dragOver = true"
+                             @dragleave.prevent="dragOver = false"
+                             @drop.prevent="handleDrop"
+                             :class="dragOver ? 'border-blue-500 bg-blue-50/50 scale-[0.98]' : 'border-gray-100 bg-gray-50/30'"
+                             class="cursor-pointer group hover:border-blue-400 border-2 border-dashed rounded-2xl text-center transition aspect-square flex flex-col items-center justify-center relative overflow-hidden min-h-[150px]">
+                            
+                            <div x-show="!uploading" class="text-gray-300 group-hover:text-blue-500 transition-colors duration-300 flex flex-col items-center p-4">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm mb-2 border border-gray-100 group-hover:scale-110 transition duration-300">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                                 </div>
-                                <div x-show="uploading" class="absolute inset-0 bg-white/80 flex items-center justify-center">
-                                    <div class="flex flex-col items-center gap-3">
-                                        <div class="w-8 h-8 border-3 border-blue-600/20 border-t-blue-600 rounded-full animate-spin"></div>
-                                        <span class="text-[9px] font-black text-blue-600 uppercase tracking-widest">Memuatkan...</span>
-                                    </div>
+                                <p class="text-[9px] font-black uppercase tracking-widest text-gray-400 group-hover:text-blue-600">Tambah Gambar</p>
+                                <p class="text-[8px] text-gray-300 mt-1 font-bold">Klik atau Drag & Drop</p>
+                                <p class="text-[8px] text-blue-500 mt-2 font-black" x-text="imageUrls.length + ' Imej'"></p>
+                            </div>
+
+                            <div x-show="uploading" class="absolute inset-0 bg-white/80 flex items-center justify-center z-20">
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-8 h-8 border-3 border-blue-600/20 border-t-blue-600 rounded-full animate-spin"></div>
+                                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest" x-text="uploadProgress"></span>
                                 </div>
                             </div>
-                        </template>
+                        </div>
                     </div>
-                    <input type="file" x-ref="fileInput" class="hidden" accept="image/*" @change="handleUpload">
+                    <input type="file" x-ref="fileInput" class="hidden" accept="image/*" multiple @change="handleUpload">
                     <p class="text-[10px] text-gray-400 italic font-medium flex items-center gap-2">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Maksimum 3 gambar. Gambar pertama akan menjadi thumbnail di halaman utama.
+                        Susunan gambar boleh diubah dengan mengheret (drag). Gambar pertama akan menjadi thumbnail.
                     </p>
                 </div>
             </div>
@@ -254,6 +281,7 @@
 <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -343,43 +371,127 @@
         return {
             imageUrls: existingUrls,
             uploading: false,
-            async handleUpload(e) {
-                const initialFile = e.target.files[0];
-                if (!initialFile) return;
+            dragOver: false,
+            uploadProgress: 'Memuatkan...',
+            
+            initSortable() {
+                this.$nextTick(() => {
+                    const el = document.getElementById('image-grid');
+                    Sortable.create(el, {
+                        animation: 150,
+                        delay: 150, // Added delay for mobile to allow scrolling
+                        delayOnTouchOnly: true,
+                        ghostClass: 'opacity-50',
+                        draggable: '.cursor-move',
+                        onEnd: (evt) => {
+                            const newOrder = Array.from(el.querySelectorAll('input[name="image_urls[]"]')).map(input => input.value);
+                            this.imageUrls = newOrder;
+                        }
+                    });
+                });
+            },
 
-                if (this.imageUrls.length >= 3) {
-                    Swal.fire({ icon: 'warning', title: 'Had Maksimum', text: 'Maksimum 3 gambar sahaja dibenarkan.' });
-                    e.target.value = '';
-                    return;
+            async handleDrop(e) {
+                this.dragOver = false;
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    await this.processFiles(files);
                 }
+            },
 
+            async handleUpload(e) {
+                const files = e.target.files;
+                if (files.length > 0) {
+                    await this.processFiles(files);
+                    e.target.value = '';
+                }
+            },
+
+            async processFiles(files) {
+                this.uploading = true;
+                const total = files.length;
+                
+                for (let i = 0; i < total; i++) {
+                    const file = files[i];
+                    this.uploadProgress = `Memproses ${i + 1}/${total}...`;
+                    
+                    try {
+                        let uploadFile = file;
+                        if (file.name.toLowerCase().endsWith('.heic') || file.type.includes('heic')) {
+                            const blob = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.8 });
+                            uploadFile = Array.isArray(blob) ? blob[0] : blob;
+                        }
+
+                        const formData = new FormData();
+                        formData.append('image', uploadFile);
+
+                        const response = await fetch('{{ route("admin.activity-stories.media.upload") }}', {
+                            method: 'POST',
+                            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                            body: formData
+                        });
+
+                        if (!response.ok) throw new Error('Upload failed');
+                        const data = await response.json();
+                        this.imageUrls.push(data.url);
+                    } catch (err) {
+                        console.error(err);
+                        Swal.fire({ icon: 'error', title: 'Ralat', text: `Gagal memuat naik imej: ${file.name}` });
+                    }
+                }
+                
+                this.uploading = false;
+                this.initSortable();
+            },
+
+            async manualCrop(index) {
+                const url = this.imageUrls[index];
                 try {
-                    const croppedFile = await openCropModal(initialFile, NaN);
+                    const response = await fetch(url);
+                    const blob = await response.blob();
+                    const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+
+                    const croppedFile = await openCropModal(file, NaN);
+                    
                     this.uploading = true;
+                    this.uploadProgress = 'Mengemaskini...';
                     const formData = new FormData();
                     formData.append('image', croppedFile);
 
-                    const response = await fetch('{{ route("admin.activity-stories.media.upload") }}', {
+                    const uploadRes = await fetch('{{ route("admin.activity-stories.media.upload") }}', {
                         method: 'POST',
                         headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                         body: formData
                     });
 
-                    if (!response.ok) throw new Error('Upload failed');
-                    const data = await response.json();
-                    this.imageUrls.push(data.url);
+                    if (!uploadRes.ok) throw new Error('Update failed');
+                    const data = await uploadRes.json();
+                    
+                    this.imageUrls[index] = data.url;
                     this.uploading = false;
-                    e.target.value = '';
                 } catch (err) {
                     if (err.message !== 'cancelled') {
                         console.error(err);
-                        Swal.fire({ icon: 'error', title: 'Ralat', text: 'Gagal memuat naik gambar.' });
+                        Swal.fire({ icon: 'error', title: 'Ralat', text: 'Gagal memotong imej.' });
                     }
                     this.uploading = false;
-                    e.target.value = '';
                 }
             },
-            removeImage(index) { this.imageUrls.splice(index, 1); }
+
+            moveImage(index, direction) {
+                const newIndex = index + direction;
+                if (newIndex < 0 || newIndex >= this.imageUrls.length) return;
+                
+                const current = this.imageUrls[index];
+                this.imageUrls.splice(index, 1);
+                this.imageUrls.splice(newIndex, 0, current);
+                this.initSortable();
+            },
+
+            removeImage(index) {
+                this.imageUrls.splice(index, 1);
+                this.initSortable();
+            }
         }
     }
 </script>
