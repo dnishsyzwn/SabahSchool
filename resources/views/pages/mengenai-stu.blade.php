@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Mengenai Kami | Sabah Teachers Union (STU)')
-@section('meta_description', 'Ketahui sejarah, matlamat, misi, dan perutusan Presiden Sabah Teachers Union (STU). Kesatuan guru terbesar dan tertua di Sabah yang memperjuangkan profesion keguruan.')
-@section('meta_keywords', 'Sejarah STU, Misi STU, Presiden STU, Kesatuan Guru Sabah, Profil STU')
+@section('title', 'Mengenai Kami | Sabah Teachers Union (STU) - Sejarah & Perjuangan')
+@section('meta_description', 'Kenali Sabah Teachers Union (STU), kesatuan guru terawal yang didaftarkan di Sabah sejak 1967. Lihat pengenalan, tujuan, matlamat, dan amanat Presiden STU.')
+@section('meta_keywords', 'Sejarah STU, Pengenalan STU, Matlamat STU, Presiden STU, Kesatuan Guru Sabah, Profil STU, Sabah Teachers Union')
 
 @section('content')
 <div class="bg-white">

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Keahlian STU | Sabah Teachers Union (STU)')
-@section('meta_description', 'Maklumat lengkap keahlian STU. Ketahui yuran, faedah kebajikan, tuntutan wakalah, dan cara mendaftar sebagai ahli kesatuan guru terbesar dan tertua di Sabah.')
-@section('meta_keywords', 'Keahlian STU, Yuran STU, Faedah Ahli STU, Daftar STU, Guru Sabah')
+@section('title', 'Keahlian STU | Sabah Teachers Union (STU) - Sertai Kami')
+@section('meta_description', 'Maklumat lengkap keahlian Sabah Teachers Union (STU). Ketahui syarat keahlian, yuran bulanan, faedah kebajikan, dan cara mendaftar sebagai ahli STU.')
+@section('meta_keywords', 'Keahlian STU, Daftar STU, Yuran STU, Faedah Ahli STU, Guru Sabah, Sabah Teachers Union, Kesatuan Guru Sabah')
 
 @push('styles')
     @vite('resources/css/pages/keahlian.css')

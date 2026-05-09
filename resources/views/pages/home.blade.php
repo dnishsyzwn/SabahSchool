@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Laman Utama | Sabah Teachers Union (STU)')
-@section('meta_description', 'Portal rasmi Sabah Teachers Union (STU). Memperjuangkan kebajikan guru & profesion perguruan di Sabah sejak 1962.')
-@section('meta_keywords', 'STU, Sabah Teachers Union, Kesatuan Guru Sabah, Hak Guru Sabah, Pendidikan Sabah, Kebajikan Guru')
+@section('title', 'Laman Utama | Sabah Teachers Union (STU) - Kesatuan Guru Sabah')
+@section('meta_description', 'Sabah Teachers Union (STU) adalah kesatuan guru terbesar di Sabah. Memperjuangkan hak, kebajikan, dan profesion keguruan sejak 1967. Sertai kami untuk masa depan pendidikan Sabah.')
+@section('meta_keywords', 'STU, STU Sabah, Sabah Teachers Union, Kesatuan Guru Sabah, Hak Guru Sabah, Kebajikan Guru, Pendidikan Sabah, Mutiara Plus STU')
 
 @section('content')
     <div>
