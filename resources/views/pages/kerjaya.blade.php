@@ -81,9 +81,7 @@
                                     </div>
                                     <div>
                                         <p class="text-xs font-bold uppercase tracking-wider text-white/60">Emel Kami</p>
-                                        <a href="mailto:admin@sabahteachersunion.com" class="font-medium text-xs hover:text-secondary transition-colors">
-                                            <!-- email_off -->admin@sabahteachersunion.com<!-- email_on -->
-                                        </a>
+                                        <!-- email_off --><a href="mailto:admin@sabahteachersunion.com" class="font-medium text-xs hover:text-secondary transition-colors">admin@sabahteachersunion.com</a><!-- email_on -->
                                     </div>
                                 </div>
                                 <div class="flex items-start gap-4">

@@ -129,9 +129,9 @@
                     <svg class="w-5 h-5 text-secondary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <a href="mailto:admin@sabahteachersunion.com" class="text-white text-sm hover:text-secondary transition-colors">
-                        <!-- email_off -->admin@sabahteachersunion.com<!-- email_on -->
-                    </a>
+                    <!-- email_off --><a href="mailto:admin@sabahteachersunion.com" class="text-white text-sm hover:text-secondary transition-colors">
+                        admin@sabahteachersunion.com
+                    </a><!-- email_on -->
                 </div>
                 <div class="flex items-start">
                     <svg class="w-5 h-5 text-secondary mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -65,9 +65,9 @@
                         <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-secondary group-hover:text-primary transition-all duration-300">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                         </div>
-                        <a href="mailto:admin@sabahteachersunion.com" class="text-sm opacity-80 group-hover:opacity-100 transition-all duration-300 hover:text-secondary underline decoration-white/20 underline-offset-4">
-                            <!-- email_off -->admin@sabahteachersunion.com<!-- email_on -->
-                        </a>
+                        <!-- email_off --><a href="mailto:admin@sabahteachersunion.com" class="text-sm opacity-80 group-hover:opacity-100 transition-all duration-300 hover:text-secondary underline decoration-white/20 underline-offset-4">
+                            admin@sabahteachersunion.com
+                        </a><!-- email_on -->
                     </div>
                 </div>
             </div>
